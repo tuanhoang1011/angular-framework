@@ -7,43 +7,94 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "changeDetection": "OnPush"
+        },
+        "@schematics/angular:application": {
+          "strict": true
         }
       },
-      "root": "",
-      "sourceRoot": "src",
+      "root": "projects/ngframework",
+      "sourceRoot": "projects/ngframework/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngframework",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": ["zone.js"],
-            "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
-            "scripts": []
+            "outputPath": "dist",
+            "index": "projects/ngframework/src/index.html",
+            "main": "projects/ngframework/src/main.ts",
+            "polyfills": "projects/ngframework/src/polyfills.ts",
+            "tsConfig": "projects/ngframework/tsconfig.app.json",
+            "assets": [
+              "projects/ngframework/src/web.config",
+              "projects/ngframework/src/favicon.ico",
+              "projects/ngframework/src/assets"
+            ],
+            "styles": [
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "projects/ngframework/src/assets/css/styles.scss"
+            ]
           },
           "configurations": {
-            "production": {
+            "test": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "3mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "50kb",
+                  "maximumError": "200kb"
                 }
               ],
-              "outputHashing": "all"
+              "fileReplacements": [
+                {
+                  "replace": "projects/ngframework/src/environments/environment.ts",
+                  "with": "projects/ngframework/src/environments/environment.test.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "optimization": true,
+              "sourceMap": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
             },
-            "development": {
+            "dev": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "3mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "50kb",
+                  "maximumError": "200kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/ngframework/src/environments/environment.ts",
+                  "with": "projects/ngframework/src/environments/environment.dev.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "optimization": true,
+              "sourceMap": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
+            "localhost": {
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
@@ -52,19 +103,21 @@
               "namedChunks": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "localhost"
         },
         "serve": {
+          "options": {
+            "browserTarget": "NGFramework:build"
+          },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
-            "production": {
-              "browserTarget": "NGFramework:build:production"
+            "test": {
+              "browserTarget": "NGFramework:build:test"
             },
-            "development": {
-              "browserTarget": "NGFramework:build:development"
+            "dev": {
+              "browserTarget": "NGFramework:build:dev"
             }
-          },
-          "defaultConfiguration": "development"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -75,12 +128,19 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": ["zone.js", "zone.js/testing"],
-            "tsConfig": "tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
-            "scripts": []
+            "main": "projects/ngframework/src/test.ts",
+            "polyfills": "projects/ngframework/src/polyfills.ts",
+            "tsConfig": "projects/ngframework/tsconfig.app.json",
+            "assets": [
+              "projects/ngframework/src/web.config",
+              "projects/ngframework/src/favicon.ico",
+              "projects/ngframework/src/assets"
+            ],
+            "styles": [
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "projects/ngframework/src/assets/css/styles.scss"
+            ]
           }
         }
       }
