@@ -1,0 +1,10 @@
+<button
+  [ngClass]="'btn ' + styleClass"
+  [disabled]="disabled"
+  (pointerdown)="clickAction($event)"
+  (keyup)="clickAction($event)"
+>
+  <ng-container *ngIf="content">
+      {{ content | translate }}
+  </ng-container>
+</button>

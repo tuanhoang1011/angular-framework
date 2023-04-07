@@ -1,0 +1,7 @@
+{
+    "messageLifeTime": 3000,
+    "version": "2023.2104.1",
+    "defaultLanguage": "en",
+    "logMaxBundleSize": 500,
+    "requestHTTPTimeout": 60000
+}

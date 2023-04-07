@@ -2,7 +2,7 @@ import base from './environment.base';
 
 export const environment = {
     ...base,
-    env: 'test',
+    env: 'prod',
     aws_appsync: {
         API: {
             aws_appsync_graphqlEndpoint: '',

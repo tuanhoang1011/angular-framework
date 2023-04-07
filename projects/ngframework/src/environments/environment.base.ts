@@ -2,7 +2,6 @@ export default {
     host: '',
     prefix: '',
     production: true,
-    version: '2023.0504.1',
     aws_appsync: {
         API: {
             aws_appsync_graphqlEndpoint: '',
@@ -10,12 +9,18 @@ export default {
             aws_appsync_authenticationType: 'AWS_LAMBDA'
         }
     },
-    logger: {
-        db: 'logger-store',
-        objectStore: 'log',
-        levels: ['Error', 'Operation', 'Info'],
-        maxBundleSize: 500,
-        dateFormat: 'yyyyMMdd hh:mm:ss',
-        defaultUsername: 'GUEST'
+    storage: {
+        localStorage: {
+            key: 'ngframework-cache'
+        },
+        indexedDB: {
+            db: 'ngframework-indexed-db',
+            log: {
+                objectStore: 'log',
+                levels: ['All', 'Error', 'Operation', 'Info', 'Warn', 'Debug', 'Off'],
+                dateFormat: 'yyyyMMdd hh:mm:ss',
+                defaultUsername: 'GUEST'
+            }
+        }
     }
 };
