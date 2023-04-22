@@ -3,6 +3,7 @@ import base from './environment.base';
 export const environment = {
     ...base,
     production: false,
+    env: 'dev',
     aws_appsync: {
         API: {
             aws_appsync_graphqlEndpoint: '',

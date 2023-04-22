@@ -1,20 +1,37 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
+import { SharedModule } from '../shared/shared.module';
+import { MessageDialogModule } from './components/message-dialog/message-dialog.module';
+import { MessageToastModule } from './components/message-toast/message-toast.module';
 import { EnsureModuleLoadedOnceGuard } from './guards/ensure-module-loaded-once.guard';
-import { HTTP_INTERCEPTOR_PROVIDERS } from './interceptors/http-interceptor';
+import { HttpLoaderFactory } from './modules/lazy-load-translate.module';
+import { HTTP_INTERCEPTORS_PROVIDERS } from './services/interceptors/http-interceptor';
+import { GLOBAL_ERROR_PROVIDERS } from './services/log/global-error-handler.service';
+import { GlobalVariables } from './utils/global-variables.ultility';
 
 // ---------------- Defined modules ----------------
-
-const modules: any = [];
-const imports = [CommonModule, HttpClientModule, ...modules];
-const exports = [...modules];
+const modules: any = [
+    MessageToastModule.forRoot(),
+    MessageDialogModule,
+    CommonModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+        defaultLanguage: GlobalVariables.defaultLanguage,
+        loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+        }
+    })
+];
 
 @NgModule({
-    imports: imports,
-    exports: exports,
-    providers: [HTTP_INTERCEPTOR_PROVIDERS]
+    imports: [SharedModule, ...modules],
+    exports: [...modules],
+    providers: [GLOBAL_ERROR_PROVIDERS, HTTP_INTERCEPTORS_PROVIDERS]
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {
     constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

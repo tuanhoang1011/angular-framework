@@ -1,7 +1,7 @@
 module.exports = {
     prefix: '',
     mode: 'jit',
-    content: ['./projects/ngframework/**/*.{html,ts,scss,css}'],
+    content: ['./projects/**/*.{html,ts,scss,css}'],
     safelist: [
         {
             pattern: /grid-(cols|rows)/
@@ -26,9 +26,28 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                primary: '#15CCAE',
-                secondary: '#15CCAE',
-                danger: '#15CCAE'
+                body: '#000',
+                dialog: '#1e222d',
+                'toast-message': '#1e222d',
+                'text-primary': '#D1D4DC',
+                primary: '#2962ff',
+                secondary: '#a0a3ad',
+                danger: '#F23645',
+                success: '#1ea97c',
+                warn: '#cc8925',
+                error: '#FC6161',
+                info: '#696cff',
+                confirm: '#2962ff',
+                border: '#434651',
+                scrollbar: '#50535e',
+                'scrollbar-hover': '#465268',
+
+                // primary
+                'btn-primary': '#2962ff',
+                // secondary
+                'btn-secondary': '#a0a3ad',
+                // danger
+                'btn-danger': '#F23645'
             },
 
             minWidth: {
@@ -40,7 +59,6 @@ module.exports = {
             },
 
             width: (theme) => ({
-                sidebar: '70px',
                 min: theme('minWidth.support'),
                 max: theme('maxWidth.support')
             }),

@@ -1,0 +1,43 @@
+.p-dialog {
+    &.dlg-success {
+        @apply bg-success;
+    }
+
+    &.dlg-error {
+        @apply bg-error;
+    }
+
+    &.dlg-warn {
+        @apply bg-warn;
+    }
+
+    &.dlg-info {
+        @apply bg-info;
+    }
+
+    &.dlg-confirm {
+        @apply bg-confirm;
+    }
+
+    .p-dialog-content {
+        @apply flex justify-center;
+
+        .dlg-content {
+            @apply whitespace-pre-line px-[20px] flex items-center;
+
+            .msg-icon {
+                @apply bg-cover;
+            }
+
+            .msg-content {
+                @apply text-[14px] text-text-primary break-words h-full;
+            }
+        }
+    }
+
+    .p-dialog-footer {
+        .dlg-footer {
+            @apply flex justify-end;
+        }
+    }
+}

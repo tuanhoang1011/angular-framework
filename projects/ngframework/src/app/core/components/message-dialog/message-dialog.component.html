@@ -1,0 +1,61 @@
+<ng-container *ngFor="let msgItem of msgDialogService.messageList$ | async">
+    <p-dialog
+        trapFocus
+        [visible]="msgItem"
+        [modal]="true"
+        [closeOnEscape]="false"
+        [showHeader]="!!msgItem.options?.header"
+        [styleClass]="(msgItem.options?.styleClass ?? '')"
+        [contentStyleClass]="'rounded-b-none ' + (msgItem.options?.header ? '' : 'rounded-t-6px')"
+        [draggable]="false"
+        [resizable]="false"
+        [blockScroll]="false"
+        [closable]="msgItem.options?.closable ?? true"
+        [style]="{
+            'min-width': msgItem.options?.header ? '800px' : '800px',
+            'max-width': msgItem.options?.header ? '800px' : '800px',
+            'min-height': msgItem.options?.header ? '350px' : '350px',
+            'max-height': msgItem.options?.header ? '350px' : '350px'
+        }"
+        (visibleChange)="closeMessage(msgItem)"
+    >
+        <ng-template *ngIf="msgItem.options?.header" pTemplate="header">
+            <div class="dlg-header">
+                <span class="dlg-header-content">
+                    {{ msgItem.options?.header || '' | translate }}
+                </span>
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="content">
+            <div [class]="'dlg-content ' + msgItem.options?.contentStyleClass">
+                <div [class]="'msg-icon ' + msgItem.options?.iconStyleClass"></div>
+                <span [class]="'msg-content ' + msgItem.options?.detailStyleClass">
+                    {{ msgItem.key | translate | sprintf: msgItem.options?.variables }}
+                </span>
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="footer">
+            <div [class]="'dlg-footer ' + msgItem.options?.footerStyleClass">
+                <ng-container *ngFor="let action of msgItem.options?.actions">
+                    <app-button *ngIf="action.isDefault; else notDefault"
+                        autoFocus
+                        [content]="action.label"
+                        [styleClass]="'dlg-btn ' + action.styleClass"
+                        [isWriteLog]="false"
+                        (onClickAction)="clickAction(msgItem, action)">
+                    </app-button>
+                    <ng-template #notDefault>
+                        <app-button
+                            [content]="action.label"
+                            [styleClass]="'dlg-btn ' + action.styleClass"
+                            [isWriteLog]="false"
+                            (onClickAction)="clickAction(msgItem, action)">
+                        </app-button>
+                    </ng-template>
+                </ng-container>
+            </div>
+        </ng-template>
+    </p-dialog>
+</ng-container>
