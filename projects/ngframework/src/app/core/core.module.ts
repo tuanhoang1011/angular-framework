@@ -4,8 +4,10 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from '../shared/shared.module';
+import { LoadingModule } from './components/loading/loading.module';
 import { MessageDialogModule } from './components/message-dialog/message-dialog.module';
 import { MessageToastModule } from './components/message-toast/message-toast.module';
+import { SplashScreenModule } from './components/splash-screen/splash-screen.module';
 import { EnsureModuleLoadedOnceGuard } from './guards/ensure-module-loaded-once.guard';
 import { HttpLoaderFactory } from './modules/lazy-load-translate.module';
 import { HTTP_INTERCEPTORS_PROVIDERS } from './services/interceptors/http-interceptor';
@@ -16,6 +18,8 @@ import { GlobalVariables } from './utils/global-variables.ultility';
 const modules: any = [
     MessageToastModule.forRoot(),
     MessageDialogModule,
+    LoadingModule,
+    SplashScreenModule,
     CommonModule,
     HttpClientModule,
     TranslateModule.forRoot({
