@@ -1,5 +1,4 @@
 import {
-    HTTP_INTERCEPTORS,
     HttpErrorResponse,
     HttpEvent,
     HttpHandler,
@@ -7,12 +6,14 @@ import {
     HttpInterceptor,
     HttpRequest,
     HttpStatusCode,
+    HTTP_INTERCEPTORS
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { isEmpty } from 'lodash';
 import { environment } from 'projects/ngframework/src/environments/environment';
 import { Observable, of } from 'rxjs';
-import { catchError, finalize, skip, timeout } from 'rxjs/operators';
+import { catchError, finalize, skip, switchMap, takeUntil, timeout } from 'rxjs/operators';
+import { AuthAPIService } from '../../../network-service/api/auth-api.service';
 
 import { LoadingService } from '../../components/loading/loading.service';
 import { MessageToastService } from '../../components/message-toast/message-toast.service';
@@ -21,18 +22,24 @@ import { ErrorResponse } from '../../models/http-response.model';
 import { LogContent } from '../../models/log.model';
 import { MessageOptions } from '../../models/message.model';
 import { GlobalVariables } from '../../utils/global-variables.ultility';
+import { AuthService } from '../auth/auth.service';
+import { HttpBaseService } from '../communicate-server/http-base.service';
 import { LogService } from '../log/log.service';
 
 @Injectable({ providedIn: 'root' })
 export class CustomInterceptor implements HttpInterceptor {
-    constructor() {}
+    constructor(
+        private authService: AuthService,
+        private httpBaseService: HttpBaseService,
+        private authAPIService: AuthAPIService
+    ) {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         try {
             let request: HttpRequest<any>;
             const reqUrl = req.url.toLowerCase();
 
-            // if request is not API request => stop
+            // not API request => stop
             if (!reqUrl.includes(`${environment.host}${environment.prefix}`.toLowerCase())) {
                 return next.handle(req);
             }
@@ -41,7 +48,38 @@ export class CustomInterceptor implements HttpInterceptor {
                 headers: this.addHeaders(req.headers, reqUrl)
             });
 
-            return next.handle(request).pipe(skip(1));
+            return next.handle(request).pipe(
+                takeUntil(this.httpBaseService.cancelPendingRequests$),
+                skip(1),
+                catchError((err) => {
+                    try {
+                        if (err.status === HttpStatusCode.Unauthorized) {
+                            // refresh token and then sent request again
+                            return this.authAPIService.refreshToken(this.authService.refreshToken).pipe(
+                                switchMap((res) => {
+                                    try {
+                                        const authRes = res.authenticationResult;
+                                        this.authService.idToken = authRes.idToken;
+                                        this.authService.refreshToken = authRes.refreshToken;
+
+                                        request = req.clone({
+                                            headers: this.addHeaders(req.headers, reqUrl)
+                                        });
+
+                                        return next.handle(request);
+                                    } catch (error) {
+                                        throw error;
+                                    }
+                                })
+                            );
+                        }
+
+                        return of(err);
+                    } catch (error) {
+                        throw error;
+                    }
+                })
+            );
         } catch (error) {
             throw error;
         }
@@ -49,13 +87,13 @@ export class CustomInterceptor implements HttpInterceptor {
 
     private addHeaders(headers: HttpHeaders, reqUrl: string): HttpHeaders {
         try {
-            const exceptedRoutes = [];
+            const noHeaderRoutes = [];
 
-            if (!exceptedRoutes.some((url: string) => reqUrl.includes(url.toLowerCase()))) {
-                headers = headers.set('Authorization', `Bearer`);
+            if (noHeaderRoutes.some((url: string) => reqUrl.includes(url.toLowerCase()))) {
+                return headers;
             }
 
-            return headers;
+            return (headers = headers.set('Authorization', `Bearer ${this.authService.idToken}`));
         } catch (error) {
             throw error;
         }
@@ -65,9 +103,11 @@ export class CustomInterceptor implements HttpInterceptor {
 @Injectable({ providedIn: 'root' })
 export class ErrorInterceptor implements HttpInterceptor {
     constructor(
+        private authService: AuthService,
         private logService: LogService,
         private msgToastService: MessageToastService,
-        private loadingService: LoadingService
+        private loadingService: LoadingService,
+        private httpBaseService: HttpBaseService
     ) {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -91,6 +131,8 @@ export class ErrorInterceptor implements HttpInterceptor {
 
             return next.handle(req).pipe(
                 timeout(GlobalVariables.requestHTTPTimeout),
+                takeUntil(this.httpBaseService.cancelPendingRequests$),
+                skip(1),
                 catchError((err) => {
                     try {
                         // write log
@@ -157,10 +199,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 force sign out when
                 + user already signed in
             */
-            if (
-                // this.authService.signedIn &&
-                forceLogout.includes(key)
-            ) {
+            if (this.authService.signedIn && forceLogout.includes(key)) {
                 // this.loadingService.show();
                 // this.authService.signOut(false, isPushLog);
             }

@@ -2,10 +2,16 @@ export default {
     host: '',
     prefix: '',
     production: true,
+    debugMode: false,
+    wsConfig: {
+        wsUrl: 'ws://localhost:8181',
+        reconnectInterval: 2000, // 2s
+        reconnectAttempts: 10 // 10 times
+    },
     aws_appsync: {
         API: {
             aws_appsync_graphqlEndpoint: '',
-            aws_appsync_region: '',
+            aws_appsync_region: 'ap-northeast-1',
             aws_appsync_authenticationType: 'AWS_LAMBDA'
         }
     },

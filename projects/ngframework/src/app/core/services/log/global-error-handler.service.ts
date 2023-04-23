@@ -17,6 +17,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
                 } as LogExceptionContent
             } as LogContent);
         }
+        console.error(error);
 
         throw error;
     }

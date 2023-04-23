@@ -1,3 +1,4 @@
+import { keys } from 'lodash';
 import { sprintf } from 'sprintf-js';
 
 import { LogIdentiferFormat } from '../constants/log.const';
@@ -14,7 +15,7 @@ export function trimField(value: string) {
 // trim all properties in object
 export function trimObj(obj: any, exceptionList: Array<string> = [], exceptionTrimEmptyList: Array<string> = []) {
     try {
-        Object.keys(obj).forEach((element) => {
+        keys(obj).forEach((element) => {
             if (
                 (obj[element] === '' ||
                     obj[element] === undefined ||
@@ -74,7 +75,7 @@ export function trimAllSpaces(value: string) {
 // trim all properties in object
 export function trimSearchObj(obj: any, exceptionList: Array<string> = [], exceptionTrimEmptyList: Array<string> = []) {
     try {
-        Object.keys(obj).forEach((element) => {
+        keys(obj).forEach((element) => {
             if (typeof obj[element] === 'string' && !exceptionList.some((x) => x === element)) {
                 // type of field is string and not exist in exception list
                 obj[element] = trimField(obj[element]);

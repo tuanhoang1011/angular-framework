@@ -1,33 +1,39 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { isEmpty } from 'lodash';
+import { isEmpty, keys } from 'lodash';
 import { environment } from 'projects/ngframework/src/environments/environment';
+import { Subject, takeUntil } from 'rxjs';
 
 import { Configuration } from '../../models/configuration.model';
 import { GlobalVariables } from '../../utils/global-variables.ultility';
 import { isNullOrUndefined } from '../../utils/utils-func.ultility';
+import { HttpBaseService } from '../communicate-server/http-base.service';
 
 @Injectable({ providedIn: 'root' })
-export class ConfigService {
-    constructor(private httpClient: HttpClient) {}
+export class ConfigService extends HttpBaseService {
+    constructor() {
+        super();
+    }
 
-    loadConfig(): Promise<Configuration> {
+    loadConfig(destroy$: Subject<void>): Promise<Configuration> {
         return new Promise((resolve) => {
-            this.httpClient.get(`../../../../assets/configurations/config.${environment.env}.json`).subscribe({
-                next: (res: Configuration) => {
-                    try {
-                        if (!res || isEmpty(res)) return;
+            super
+                .getLocalFile<Configuration>(`../../../../assets/configurations/config.${environment.env}.json`)
+                .pipe(takeUntil(destroy$))
+                .subscribe({
+                    next: (res) => {
+                        try {
+                            if (!res || isEmpty(res)) return;
 
-                        Object.keys(res).forEach((key) => {
-                            if (!isNullOrUndefined(res[key])) GlobalVariables[key] = res[key];
-                        });
+                            keys(res).forEach((key) => {
+                                if (!isNullOrUndefined(res[key])) GlobalVariables[key] = res[key];
+                            });
 
-                        resolve({});
-                    } catch (error) {
-                        throw error;
+                            resolve({});
+                        } catch (error) {
+                            throw error;
+                        }
                     }
-                }
-            });
+                });
         });
     }
 }
