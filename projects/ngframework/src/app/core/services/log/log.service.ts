@@ -12,7 +12,7 @@ import { IndexedDBService } from '../storage/indexed-db.service';
     providedIn: 'root'
 })
 export class LogService {
-    private activeScreen?: string;
+    public activeScreen?: string;
     private activeDialog?: string;
     private isPushingLog: boolean = false;
     private logDB = environment?.storage.indexedDB?.log;

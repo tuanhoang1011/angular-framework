@@ -29,7 +29,8 @@ module.exports = {
                 body: '#000',
                 dialog: '#1e222d',
                 'toast-message': '#1e222d',
-                'text-primary': '#D1D4DC',
+                'text-primary': '#707070',
+                loading: '#707070',
                 primary: '#2962ff',
                 secondary: '#a0a3ad',
                 danger: '#F23645',
@@ -38,7 +39,7 @@ module.exports = {
                 error: '#FC6161',
                 info: '#696cff',
                 confirm: '#2962ff',
-                border: '#434651',
+                border: '#707070',
                 scrollbar: '#50535e',
                 'scrollbar-hover': '#465268',
 
