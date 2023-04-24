@@ -1,12 +1,15 @@
 import { ChangeDetectionStrategy, Component, HostListener, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Amplify } from 'aws-amplify';
 import { PrimeNGConfig } from 'primeng/api';
 
+import { environment } from '../environments/environment';
 import { BaseComponent } from './core/components/base.component';
 import { LoadingService } from './core/components/loading/loading.service';
 import { MessageDialogService } from './core/components/message-dialog/message-dialog.service';
 import { MessageToastService } from './core/components/message-toast/message-toast.service';
 import { ConfigService } from './core/services/common/config.service';
+import { WebSocketService } from './core/services/communicate-server/web-socket.service';
 import { GlobalVariables } from './core/utils/global-variables.ultility';
 
 @Component({
@@ -17,8 +20,6 @@ import { GlobalVariables } from './core/utils/global-variables.ultility';
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent extends BaseComponent {
-    title = 'NGFramework';
-
     @HostListener('document:keydown', ['$event'])
     handleKeyboardEvent(event: KeyboardEvent) {
         // prevent input when loading is showing
@@ -33,15 +34,32 @@ export class AppComponent extends BaseComponent {
         private loadingService: LoadingService,
         private translateService: TranslateService,
         private primeNGConfig: PrimeNGConfig,
-        private configService: ConfigService
+        private configService: ConfigService,
+        private wsService: WebSocketService
     ) {
         super();
 
-        this.configService.loadConfig().then((res) => {
+        // set configuration for aws appsync
+        Amplify.configure(environment.aws_appsync);
+
+        this.configService.loadConfig(this.destroy$).then(() => {
             this.translateService.setDefaultLang(GlobalVariables.defaultLanguage);
         });
         this.translateService.get('primeng').subscribe((res) => this.primeNGConfig.setTranslation(res));
 
+        this.example();
+    }
+
+    async example() {
+        // await this.wsService.initWebSocket();
+        // setTimeout(() => {
+        //     this.wsService.disconnect();
+        // }, 2000);
+        // this.wsService.receive<any>().subscribe({
+        //     next: (res) => {
+        //         console.log(res.data);
+        //     }
+        // });
         // check later
         // setTimeout(() => {
         //     this.msgToastService.success('MSG.APP_ERR0001', {
@@ -50,21 +68,18 @@ export class AppComponent extends BaseComponent {
         //         contentStyleClass: 'contentStyleClass',
         //         detailStyleClass: 'detailStyleClass'
         //     });
-
         //     this.msgToastService.info('MSG.APP_ERR0001', {
         //         header: 'MSG.TITLE_001',
         //         variables: ['Tuan', 'ABC'],
         //         contentStyleClass: 'contentStyleClass',
         //         detailStyleClass: 'detailStyleClass'
         //     });
-
         //     this.msgToastService.warn('MSG.APP_ERR0001', {
         //         header: 'MSG.TITLE_001',
         //         variables: ['Tuan', 'ABC'],
         //         contentStyleClass: 'contentStyleClass',
         //         detailStyleClass: 'detailStyleClass'
         //     });
-
         //     this.msgToastService.error('MSG.APP_ERR0001', {
         //         header: 'MSG.TITLE_001',
         //         variables: ['Tuan', 'ABC'],
@@ -72,7 +87,6 @@ export class AppComponent extends BaseComponent {
         //         detailStyleClass: 'detailStyleClass'
         //     });
         // }, 200);
-
         // this.msgDialogService.success(
         //     'MSG.APP_ERR0001',
         //     {
@@ -92,7 +106,6 @@ export class AppComponent extends BaseComponent {
         //     //     console.log('cancel');
         //     // }
         // );
-
         // this.msgDialogService.confirm(
         //     'MSG.APP_ERR0001',
         //     {

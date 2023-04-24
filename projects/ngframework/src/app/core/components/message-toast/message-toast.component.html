@@ -13,8 +13,8 @@
                     {{ msg.summary | translate }}
                 </p>
             </div>
-            <div [class]="'flex text-[14px] ' + msg.data.detailStyleClass">
-                {{ msg.detail | translate | sprintf: msg.data.variables }}
+            <div [class]="'flex text-[14px] ' + msg.data?.detailStyleClass">
+                {{ msg.detail | translate | sprintf: msg.data?.variables }}
             </div>
         </div>
     </ng-template>
