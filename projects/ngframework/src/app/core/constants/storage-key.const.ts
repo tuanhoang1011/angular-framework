@@ -1,16 +1,15 @@
 export const StorageKey = {
-    SignInRequestState: 'sign-in-request-state',
-    SignOutRequestState: 'sign-out-request-state',
+    SignInState: 'sign-in-state',
+    SignOutState: 'sign-out-state',
     AutoSignOutState: 'auto-sign-out-state',
     UserProfile: 'user-profile',
-    AuthExpiredTime: 'auth-expired-time',
+
     AutoSignoutTime: 'auto-signout-time',
-    AccessToken: 'access-token',
+
+    AuthExpiredTime: 'auth-expired-time',
     IdToken: 'id-token',
     RefreshToken: 'refresh-token',
-    TokenType: 'token-type',
-    Session: 'session',
-    TempPassword: 'tempogary-password',
+
     ExpiredPasswordState: 'expired-password-state',
     CurrentRoute: 'current-route'
 };

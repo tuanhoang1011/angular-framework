@@ -1,0 +1,41 @@
+<div class="signin-wrapper">
+    <div class="signin-main">
+        <div class="signin-logo">
+            <img class="signin-img" src="../../../../assets/images/fw-logo.svg"
+                alt=""
+                width="180px"
+                height="32px">
+        </div>
+        <div class="signin-header">
+            <span>
+                {{ 'AUTH_LABEL_005' | translate }}
+            </span>
+        </div>
+        <!-- check later -->
+        <!-- <div trapFocus
+            [active]="true"
+            class="signin-form">
+            <input *ngIf="globalVar.isMobile"
+                class="absolute outline-0 invisible">
+            
+            <app-form
+                #signinForm
+                *ngIf="signinConfig$ | async as config"
+                class="form-main"
+                [config]="config"
+                [mode]="mode"
+                (submitForm)="onSubmit()"
+            ></app-form>
+
+            <div class="form-link">
+                <app-hyperlink [title]="'AUTH_LABEL_004'"></app-hyperlink>
+            </div>
+
+            <app-button [title]="'BTN_signin'"
+                styleClass="form-btn btn-primary-1"
+                (onActionClick)="onSubmit()">
+            </app-button>
+        </div> -->
+    </div>
+</div>
+

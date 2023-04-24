@@ -44,7 +44,8 @@ export const LogActiveScreen = {
         Create: 'Screen-1-Create',
         Edit: 'Screen-1-Edit',
         Detail: 'Screen-1-Detail'
-    }
+    },
+    SignIn: 'Sign-in-page'
 };
 
 export const LogTableIdentifier = {

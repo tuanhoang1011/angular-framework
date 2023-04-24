@@ -1,3 +1,5 @@
+import { createThemes } from 'tw-colors';
+
 module.exports = {
     prefix: '',
     mode: 'jit',
@@ -25,32 +27,6 @@ module.exports = {
     // darkMode: false, // or 'media' or 'class'
     theme: {
         extend: {
-            colors: {
-                body: '#000',
-                dialog: '#1e222d',
-                'toast-message': '#1e222d',
-                'text-primary': '#707070',
-                loading: '#707070',
-                primary: '#2962ff',
-                secondary: '#a0a3ad',
-                danger: '#F23645',
-                success: '#1ea97c',
-                warn: '#cc8925',
-                error: '#FC6161',
-                info: '#696cff',
-                confirm: '#2962ff',
-                border: '#707070',
-                scrollbar: '#50535e',
-                'scrollbar-hover': '#465268',
-
-                // primary
-                'btn-primary': '#2962ff',
-                // secondary
-                'btn-secondary': '#a0a3ad',
-                // danger
-                'btn-danger': '#F23645'
-            },
-
             minWidth: {
                 support: '1366px'
             },
@@ -88,5 +64,55 @@ module.exports = {
         textColor: ['responsive', 'hover', 'focus', 'focus-visible'],
         fill: ['hover', 'focus']
     },
-    plugins: []
+    plugins: [
+        createThemes({
+            default: {
+                // common
+                body: '#000',
+                'text-primary': '#707070',
+                primary: '#2962ff',
+                secondary: '#a0a3ad',
+                danger: '#F23645',
+                loading: '#707070',
+                border: '#707070',
+
+                // header
+                header: '#1e222d',
+                'header-menu': '#707070',
+                'header-submenu': '#707070',
+
+                // sidebar
+                sidebar: '#1e222d',
+                'sidebar-menu': '#707070',
+                'sidebar-submenu': '#707070',
+
+                // footer
+                footer: '#1e222d',
+                'footer-menu': '#707070',
+                'footer-submenu': '#707070',
+
+                // dialog
+                dialog: '#1e222d',
+                'dialog-header': '#707070',
+                'dialog-content': '#707070',
+
+                // button
+                'btn-primary': '#2962ff',
+                'btn-secondary': '#a0a3ad',
+                'btn-danger': '#F23645',
+
+                // message
+                'toast-message': '#1e222d',
+                success: '#1ea97c',
+                warn: '#cc8925',
+                error: '#FC6161',
+                info: '#696cff',
+                confirm: '#2962ff',
+
+                // scrollbar
+                scrollbar: '#50535e',
+                'scrollbar-hover': '#465268'
+            }
+        })
+    ]
 };

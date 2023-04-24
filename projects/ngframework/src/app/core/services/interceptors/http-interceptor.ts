@@ -1,4 +1,5 @@
 import {
+    HTTP_INTERCEPTORS,
     HttpErrorResponse,
     HttpEvent,
     HttpHandler,
@@ -6,15 +7,14 @@ import {
     HttpInterceptor,
     HttpRequest,
     HttpStatusCode,
-    HTTP_INTERCEPTORS
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { isEmpty } from 'lodash';
 import { environment } from 'projects/ngframework/src/environments/environment';
 import { Observable, of } from 'rxjs';
 import { catchError, finalize, skip, switchMap, takeUntil, timeout } from 'rxjs/operators';
-import { AuthAPIService } from '../../../network-service/api/auth-api.service';
 
+import { AuthAPIService } from '../../../network-service/api/auth-api.service';
 import { LoadingService } from '../../components/loading/loading.service';
 import { MessageToastService } from '../../components/message-toast/message-toast.service';
 import { LogMessage, LogSubType, LogType } from '../../constants/log.const';
@@ -22,14 +22,14 @@ import { ErrorResponse } from '../../models/http-response.model';
 import { LogContent } from '../../models/log.model';
 import { MessageOptions } from '../../models/message.model';
 import { GlobalVariables } from '../../utils/global-variables.ultility';
-import { AuthService } from '../auth/auth.service';
+import { AuthBaseService } from '../auth/auth-base.service';
 import { HttpBaseService } from '../communicate-server/http-base.service';
 import { LogService } from '../log/log.service';
 
 @Injectable({ providedIn: 'root' })
 export class CustomInterceptor implements HttpInterceptor {
     constructor(
-        private authService: AuthService,
+        private authService: AuthBaseService,
         private httpBaseService: HttpBaseService,
         private authAPIService: AuthAPIService
     ) {}
@@ -58,9 +58,8 @@ export class CustomInterceptor implements HttpInterceptor {
                             return this.authAPIService.refreshToken(this.authService.refreshToken).pipe(
                                 switchMap((res) => {
                                     try {
-                                        const authRes = res.authenticationResult;
-                                        this.authService.idToken = authRes.idToken;
-                                        this.authService.refreshToken = authRes.refreshToken;
+                                        this.authService.idToken = res.idToken!;
+                                        this.authService.refreshToken = res.refreshToken!;
 
                                         request = req.clone({
                                             headers: this.addHeaders(req.headers, reqUrl)
@@ -103,7 +102,7 @@ export class CustomInterceptor implements HttpInterceptor {
 @Injectable({ providedIn: 'root' })
 export class ErrorInterceptor implements HttpInterceptor {
     constructor(
-        private authService: AuthService,
+        private authService: AuthBaseService,
         private logService: LogService,
         private msgToastService: MessageToastService,
         private loadingService: LoadingService,
@@ -130,7 +129,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             }
 
             return next.handle(req).pipe(
-                timeout(GlobalVariables.requestHTTPTimeout),
+                timeout(GlobalVariables.requestHTTPTimeoutMilSecond),
                 takeUntil(this.httpBaseService.cancelPendingRequests$),
                 skip(1),
                 catchError((err) => {
@@ -199,7 +198,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 force sign out when
                 + user already signed in
             */
-            if (this.authService.signedIn && forceLogout.includes(key)) {
+            if (this.authService.isSignedInSession && forceLogout.includes(key)) {
                 // this.loadingService.show();
                 // this.authService.signOut(false, isPushLog);
             }

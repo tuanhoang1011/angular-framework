@@ -2,16 +2,17 @@ import { Injectable } from '@angular/core';
 import autoBind from 'auto-bind';
 import { API, graphqlOperation } from 'aws-amplify';
 import { Observable, of } from 'rxjs';
+
 import { LogMessage, LogSubType, LogType } from '../../constants/log.const';
 import { LogContent } from '../../models/log.model';
-import { AuthService } from '../../services/auth/auth.service';
+import { AuthBaseService } from '../auth/auth-base.service';
 import { LogService } from '../log/log.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export abstract class GraphQLBaseService {
-    constructor(private logService: LogService, private authService: AuthService) {
+    constructor(private logService: LogService, private authService: AuthBaseService) {
         autoBind(this);
     }
 
