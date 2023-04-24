@@ -4,9 +4,10 @@
         "TITLE_002": "Error",
         "TITLE_003": "Warning",
         "TITLE_004": "Confirmation",
-        "APP_ERR0001": "Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 Message example 1 ",
+        "APP_ERR0001": "There is a problem with the website. Please contact the site’s administrator.",
         "APP_ERR0002": "No network. Please check again.",
-        "APP_ERR0003": "Bad Request"
+        "APP_ERR0003": "Bad Request",
+        "APP_ERR0004": "Username or Password is wrong."
     },
     "BTN_0001": "Yes",
     "BTN_0002": "No",

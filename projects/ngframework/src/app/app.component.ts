@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, HostListener, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Amplify } from 'aws-amplify';
 import { PrimeNGConfig } from 'primeng/api';
@@ -8,6 +9,8 @@ import { BaseComponent } from './core/components/base.component';
 import { LoadingService } from './core/components/loading/loading.service';
 import { MessageDialogService } from './core/components/message-dialog/message-dialog.service';
 import { MessageToastService } from './core/components/message-toast/message-toast.service';
+import { AuthBaseService } from './core/services/auth/auth-base.service';
+import { AutoSignOutService } from './core/services/auth/auto-signout.service';
 import { ConfigService } from './core/services/common/config.service';
 import { WebSocketService } from './core/services/communicate-server/web-socket.service';
 import { GlobalVariables } from './core/utils/global-variables.ultility';
@@ -19,7 +22,7 @@ import { GlobalVariables } from './core/utils/global-variables.ultility';
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
-export class AppComponent extends BaseComponent {
+export class AppComponent extends BaseComponent implements OnInit {
     @HostListener('document:keydown', ['$event'])
     handleKeyboardEvent(event: KeyboardEvent) {
         // prevent input when loading is showing
@@ -29,26 +32,56 @@ export class AppComponent extends BaseComponent {
     }
 
     constructor(
+        private router: Router,
         private msgToastService: MessageToastService,
         private msgDialogService: MessageDialogService,
         private loadingService: LoadingService,
         private translateService: TranslateService,
         private primeNGConfig: PrimeNGConfig,
         private configService: ConfigService,
-        private wsService: WebSocketService
+        private wsService: WebSocketService,
+        private autoSignOutService: AutoSignOutService,
+        private authService: AuthBaseService
     ) {
         super();
 
         // set configuration for aws appsync
         Amplify.configure(environment.aws_appsync);
 
+        // get config from local file
         this.configService.loadConfig(this.destroy$).then(() => {
             this.translateService.setDefaultLang(GlobalVariables.defaultLanguage);
+            this.translateService.get('primeng').subscribe((res) => this.primeNGConfig.setTranslation(res));
         });
-        this.translateService.get('primeng').subscribe((res) => this.primeNGConfig.setTranslation(res));
+    }
+
+    ngOnInit(): void {
+        // start automatically signing out
+        this.autoSignOutService.init();
+
+        // user signed out at other tab (same browser) -> will sign out at current tab
+        window.addEventListener('storage', this.onStorageChange, false);
+
+        // already signed in
+        if (this.authService.isSignedInSession) {
+            this.authService.isSignedOutSession = this.authService.signedOutCurrentTab = false;
+        }
 
         this.example();
     }
+
+    private onStorageChange = async (e: StorageEvent) => {
+        if (e.newValue) {
+            // user signed out at other tab (same browser) -> will sign out at current tab
+            const isDiffSignedOut = this.authService.isSignedOutSession !== this.authService.signedOutCurrentTab;
+
+            if (this.authService.isSignedInSession && !this.authService.signedOutCurrentTab && isDiffSignedOut) {
+                await this.authService.signOut();
+
+                return;
+            }
+        }
+    };
 
     async example() {
         // await this.wsService.initWebSocket();

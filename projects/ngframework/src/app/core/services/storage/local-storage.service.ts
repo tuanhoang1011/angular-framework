@@ -10,72 +10,98 @@ export class LocalStorageService {
     constructor() {}
 
     get(key: string): string {
-        const storageItems: string = this.getAppCache();
-        let val = '';
+        try {
+            const storageItems: string = this.getAppCache();
+            let val = '';
 
-        if (isEmpty(storageItems)) {
-            return val;
-        } else {
-            const items: Array<StorageItem> = JSON.parse(storageItems);
-            const existedItem = items.find((x) => x.key === key);
+            if (isEmpty(storageItems)) {
+                return val;
+            } else {
+                const items: Array<StorageItem> = JSON.parse(storageItems);
+                const existedItem = items.find((x) => x.key === key);
 
-            if (existedItem) {
-                val = existedItem.value!;
+                if (existedItem) {
+                    val = existedItem.value!;
+                }
+
+                return val;
             }
-
-            return val;
+        } catch (error) {
+            throw error;
         }
     }
 
     set(key: string, value: string) {
-        const item: StorageItem = {
-            key: key,
-            value: value
-        };
+        try {
+            const item: StorageItem = {
+                key: key,
+                value: value
+            };
 
-        let objItems: Array<StorageItem> = new Array<StorageItem>();
-        const storageItems: string = this.getAppCache();
-        const existedItem = objItems.find((x) => x.key === key);
+            let objItems: Array<StorageItem> = new Array<StorageItem>();
+            const storageItems: string = this.getAppCache() || '';
+            if (!isEmpty(storageItems)) {
+                objItems = JSON.parse(storageItems);
+            }
 
-        if (existedItem) {
-            // update value
-            existedItem.value = value;
-        } else {
-            // add new
-            objItems = JSON.parse(storageItems);
-            objItems.push(item);
-        }
+            const existedItem = objItems.find((x) => x.key === key);
+            if (existedItem) {
+                // update value
+                existedItem.value = value;
+            } else {
+                // add new
+                objItems.push(item);
+            }
 
-        localStorage.setItem(this.mainKey, JSON.stringify(objItems));
-    }
-
-    removeItem(key: string) {
-        const storageItems: string = this.getAppCache();
-
-        if (!isEmpty(storageItems)) {
-            const objItems: Array<StorageItem> = JSON.parse(storageItems);
-            const remainItems = objItems.filter((x) => x.key !== key);
-
-            localStorage.setItem(this.mainKey, JSON.stringify(remainItems));
+            localStorage.setItem(this.mainKey, JSON.stringify(objItems));
+        } catch (error) {
+            throw error;
         }
     }
 
-    removeItems(keys: Array<string>) {
-        const storageItems: string = this.getAppCache();
+    remove(key: string) {
+        try {
+            const storageItems: string = this.getAppCache();
 
-        if (!isEmpty(storageItems)) {
-            const objItems: Array<StorageItem> = JSON.parse(storageItems);
-            const remainItems = objItems.filter((x) => keys.indexOf(x.key!) === -1);
+            if (!isEmpty(storageItems)) {
+                const objItems: Array<StorageItem> = JSON.parse(storageItems);
+                const remainItems = objItems.filter((x) => x.key !== key);
 
-            localStorage.setItem(this.mainKey, JSON.stringify(remainItems));
+                localStorage.setItem(this.mainKey, JSON.stringify(remainItems));
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    removeMulti(keys: Array<string>) {
+        try {
+            const storageItems: string = this.getAppCache();
+
+            if (!isEmpty(storageItems)) {
+                const objItems: Array<StorageItem> = JSON.parse(storageItems);
+                const remainItems = objItems.filter((x) => keys.indexOf(x.key!) === -1);
+
+                localStorage.setItem(this.mainKey, JSON.stringify(remainItems));
+            }
+        } catch (error) {
+            throw error;
         }
     }
 
     clear() {
-        localStorage.clear();
+        try {
+            localStorage.clear();
+        } catch (error) {
+            throw error;
+        }
     }
 
     private getAppCache() {
-        return localStorage.getItem(this.mainKey) || '';
+        try {
+            return localStorage.getItem(this.mainKey) || '';
+        } catch (error) {
+            throw error;
+        }
     }
 }

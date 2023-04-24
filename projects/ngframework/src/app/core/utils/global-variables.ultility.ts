@@ -1,11 +1,16 @@
 export class GlobalVariables {
-    static messageLifeTime = 3000;
+    // map to value in config files
+    static messageLifeTimeMilSecond = 3000;
     static version = '';
     static defaultLanguage = 'en';
     static logMaxBundleSize = 500;
-    static requestHTTPTimeout = 60000;
+    static requestHTTPTimeoutMilSecond = 60000;
     static language = 'en';
-
+    static autoSignOutIntervalMilSecond = 2000;
+    static autoSignOutDurationMinute = 15;
+    static splashScreenDurationMilSecond = 2000;
+    // other
+    static pendingAutoSignOut = false;
     static isMobile =
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
         (/Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints > 1);

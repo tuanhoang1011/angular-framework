@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { MessageService } from 'primeng/api';
 
 import { MessageOptions } from '../../models/message.model';
+import { GlobalVariables } from '../../utils/global-variables.ultility';
 
 @Injectable({
     providedIn: 'root'
@@ -36,7 +37,7 @@ export class MessageToastService {
             severity: type,
             detail: id,
             icon: icon,
-            life: 1000,
+            life: GlobalVariables.messageLifeTimeMilSecond,
             closable: options?.closable ?? true,
             sticky: type === 'success' ? false : options?.sticky ?? true,
             styleClass: options?.contentStyleClass,

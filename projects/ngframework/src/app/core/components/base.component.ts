@@ -2,6 +2,7 @@ import { Component, Inject, OnDestroy } from '@angular/core';
 import { orderBy } from 'lodash';
 import { Subject } from 'rxjs';
 
+import { AppModule } from '../../app.module';
 import { LogActiveScreen, LogTableIdentifier } from '../constants/log.const';
 import { SortInfo } from '../models/common.model';
 import { LogService } from '../services/log/log.service';
@@ -19,12 +20,12 @@ export abstract class BaseComponent implements OnDestroy {
     tableIdentifier = LogTableIdentifier;
     logActiveScreen = LogActiveScreen;
 
-    constructor(
-        @Inject({}) public logService?: LogService,
-        @Inject({}) private _screenName?: string,
-        @Inject({}) private _tableID?: string
-    ) {
+    private logService?: LogService;
+
+    constructor(@Inject({}) private _screenName?: string, @Inject({}) private _tableID?: string) {
         try {
+            this.logService = AppModule.injector.get(LogService);
+
             if (this._screenName) {
                 this.logService!.activeScreen = _screenName;
             }

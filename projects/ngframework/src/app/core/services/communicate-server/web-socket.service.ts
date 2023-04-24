@@ -7,7 +7,7 @@ import { webSocket, WebSocketSubject, WebSocketSubjectConfig } from 'rxjs/webSoc
 import { MessageToastService } from '../../components/message-toast/message-toast.service';
 import { WSReceiveEvent } from '../../enums/web-socket.enum';
 import { WebSocketRequestResponse } from '../../models/web-socket.model';
-import { showMessageDebug } from '../../utils/utils-func.ultility';
+import { showMessageDebug } from '../../utils/common-func.ultility';
 
 @Injectable({
     providedIn: 'root'
@@ -34,26 +34,38 @@ export class WebSocketService {
         },
         closeObserver: {
             next: async (e) => {
-                this.isConnected = false;
+                try {
+                    this.isConnected = false;
 
-                if (this.excuteReconnect && !this.reconnect$) {
-                    showMessageDebug('WS is closed. It will be reconnected.');
-                    this.reconnect();
-                } else if (!this.excuteReconnect) {
-                    showMessageDebug('WS is closed.');
-                    await this.cleanWebSocket();
+                    if (this.excuteReconnect && !this.reconnect$) {
+                        showMessageDebug('WS is closed. It will be reconnected.');
+                        this.reconnect();
+                    } else if (!this.excuteReconnect) {
+                        showMessageDebug('WS is closed.');
+                        await this.cleanWebSocket();
+                    }
+                } catch (error) {
+                    throw error;
                 }
             }
         },
         serializer: (req) => {
-            return JSON.stringify(req);
+            try {
+                return JSON.stringify(req);
+            } catch (error) {
+                throw error;
+            }
         },
         deserializer: ({ data }) => {
-            if (data instanceof ArrayBuffer) {
-                // convert bson -> json
-                // return deserialize(decompressSync(new Uint8Array(data)));
-            } else {
-                return JSON.parse(data);
+            try {
+                if (data instanceof ArrayBuffer) {
+                    // convert bson -> json
+                    // return deserialize(decompressSync(new Uint8Array(data)));
+                } else {
+                    return JSON.parse(data);
+                }
+            } catch (error) {
+                throw error;
             }
         }
     };
