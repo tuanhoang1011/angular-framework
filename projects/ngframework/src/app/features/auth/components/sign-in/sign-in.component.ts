@@ -14,8 +14,8 @@ import { SignInService } from './sign-in.service';
     selector: 'app-sign-in',
     templateUrl: './sign-in.component.html',
     styleUrls: ['./sign-in.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SignInComponent extends BaseComponent implements OnInit {
     @ViewChild('signinForm') signinForm?: DynamicFormComponent;

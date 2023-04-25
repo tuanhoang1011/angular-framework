@@ -12,7 +12,7 @@ export abstract class ComponentStoreBase<State extends object> extends Component
         return this.get();
     }
 
-    readonly updateState = this.updater((state, newState?: State) => ({
+    updateState = this.updater((state, newState: State) => ({
         ...state,
         ...newState
     }));

@@ -5,11 +5,11 @@ export class GlobalVariables {
     static defaultLanguage = 'en';
     static logMaxBundleSize = 500;
     static requestHTTPTimeoutMilSecond = 60000;
-    static language = 'en';
     static autoSignOutIntervalMilSecond = 2000;
     static autoSignOutDurationMinute = 15;
     static splashScreenDurationMilSecond = 2000;
     // other
+    static language = 'en';
     static pendingAutoSignOut = false;
     static isMobile =
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||

@@ -131,7 +131,6 @@ export class ErrorInterceptor implements HttpInterceptor {
             return next.handle(req).pipe(
                 timeout(GlobalVariables.requestHTTPTimeoutMilSecond),
                 takeUntil(this.httpBaseService.cancelPendingRequests$),
-                skip(1),
                 catchError((err) => {
                     try {
                         // write log

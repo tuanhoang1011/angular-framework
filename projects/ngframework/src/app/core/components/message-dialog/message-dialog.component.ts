@@ -11,8 +11,8 @@ import { MessageDialogService } from './message-dialog.service';
     selector: 'app-message-dialog',
     templateUrl: './message-dialog.component.html',
     styleUrls: ['./message-dialog.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MessageDialogComponent {
     constructor(

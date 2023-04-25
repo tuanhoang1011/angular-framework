@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { GraphQLBaseService } from '../../core/services/communicate-server/graphQL-base.service';
 
+import { GraphQLBaseService } from '../../core/services/communicate-server/graphQL-base.service';
 import { HttpBaseService } from '../../core/services/communicate-server/http-base.service';
 import { APIName, APIRoutes } from '../api-routes';
 
@@ -13,11 +13,11 @@ export class ExampleAPIService extends HttpBaseService {
     }
 
     pushLogs(logs: any[]) {
-        return super.post<{ Items: any[] }, boolean>(APIRoutes.Log, APIName.LogPOST, { Items: logs }).subscribe({
-            next: (res) => {
+        return super
+            .post<{ Items: any[] }, boolean>(APIRoutes.Log, APIName.LogPOST, { Items: logs })
+            .subscribe((res) => {
                 res;
-            }
-        });
+            });
     }
 
     createCommentSubscription(userID: string) {

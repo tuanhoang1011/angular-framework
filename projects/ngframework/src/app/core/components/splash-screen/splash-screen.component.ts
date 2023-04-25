@@ -6,8 +6,8 @@ import { SplashScreenService } from './splash-screen.service';
     selector: 'app-splash-screen',
     templateUrl: './splash-screen.component.html',
     styleUrls: ['./splash-screen.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SplashScreenComponent {
     constructor(public splashScreenService: SplashScreenService) {}

@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class SplashScreenService {
-    public splashScreenSubject = new BehaviorSubject<boolean>(true);
+    public splashScreenSubject = new BehaviorSubject<boolean>(false);
     public splashScreen$ = this.splashScreenSubject.asObservable();
 
     show = () => this.splashScreenSubject.next(true);

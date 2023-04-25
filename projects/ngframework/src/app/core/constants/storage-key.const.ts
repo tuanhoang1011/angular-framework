@@ -3,6 +3,7 @@ export const StorageKey = {
     SignOutState: 'sign-out-state',
     AutoSignOutState: 'auto-sign-out-state',
     UserProfile: 'user-profile',
+    Language: 'language',
 
     AutoSignoutTime: 'auto-signout-time',
 
