@@ -11,32 +11,12 @@ export class MessageToastService {
     constructor(private msgService: MessageService) {}
 
     show = (id: string, type: 'success' | 'info' | 'warn' | 'error', options?: MessageOptions) => {
-        let icon = '';
-
-        switch (type) {
-            case 'success':
-                icon = 'pi-check-circle';
-                break;
-
-            case 'info':
-                icon = 'pi-info-circle';
-                break;
-
-            case 'warn':
-                icon = 'pi-exclamation-triangle';
-                break;
-
-            case 'error':
-                icon = 'pi-times-circle';
-                break;
-        }
-
         this.msgService.add({
             id: id,
             summary: options?.header,
             severity: type,
             detail: id,
-            icon: icon,
+            icon: options?.icon,
             life: GlobalVariables.messageLifeTimeMilSecond,
             closable: options?.closable ?? true,
             sticky: type === 'success' ? false : options?.sticky ?? true,
@@ -47,18 +27,42 @@ export class MessageToastService {
     };
 
     success = (id: string, options?: MessageOptions): void => {
+        options = {
+            ...options,
+            header: options?.header ?? 'MSG.TITLE_001',
+            icon: options?.icon ?? 'pi-check-circle'
+        };
+
         this.show(id, 'success', options);
     };
 
     info = (id: string, options?: MessageOptions): void => {
+        options = {
+            ...options,
+            header: options?.header ?? 'MSG.TITLE_005',
+            icon: options?.icon ?? 'pi-info-circle'
+        };
+
         this.show(id, 'info', options);
     };
 
     error = (id: string, options?: MessageOptions): void => {
+        options = {
+            ...options,
+            header: options?.header ?? 'MSG.TITLE_002',
+            icon: options?.icon ?? 'pi-times-circle'
+        };
+
         this.show(id, 'error', options);
     };
 
     warn = (id: string, options?: MessageOptions): void => {
+        options = {
+            ...options,
+            header: options?.header ?? 'MSG.TITLE_003',
+            icon: options?.icon ?? 'pi-exclamation-triangle'
+        };
+
         this.show(id, 'warn', options);
     };
 

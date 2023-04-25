@@ -4614,7 +4614,7 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
 .p-dialog .p-dialog-header {
     border-bottom: 0 none;
 
-    @apply bg-dialog text-[20px] font-bold text-text-primary mt-4 p-3;
+    @apply bg-dialog text-[20px] font-bold text-tc-default mt-4 p-3;
 }
 .p-dialog .p-dialog-header .p-dialog-title {
     font-weight: 700;
@@ -4644,9 +4644,7 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
     margin-right: 0;
 }
 .p-dialog .p-dialog-content {
-    padding: 0 1.5rem 2rem 1.5rem;
-
-    @apply bg-dialog text-[14px] text-text-primary;
+    @apply bg-dialog text-fs-default text-tc-default px-6;
 }
 .p-dialog .p-dialog-content:last-of-type {
     @apply rounded-b-[6px];
@@ -4655,7 +4653,7 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
     border-top: 0 none;
     text-align: right;
 
-    @apply bg-dialog text-[14px] text-text-primary p-6 pt-4;
+    @apply bg-dialog text-fs-default text-tc-default p-6 pt-4;
 }
 .p-dialog .p-dialog-footer button {
 }

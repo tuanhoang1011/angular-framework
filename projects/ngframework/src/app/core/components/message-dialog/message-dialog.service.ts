@@ -53,49 +53,41 @@ export class MessageDialogService {
     custom = (key: string, options?: MessageOptions) => this.show(key, options);
 
     success = (key: string, options?: MessageOptions, closeAction?: () => void) => {
-        if (!options) {
-            options = {
-                styleClass: 'dlg-success'
-            };
-        } else {
-            options.styleClass = 'dlg-success';
-        }
+        options = {
+            ...options,
+            styleClass: options?.styleClass ? `${options?.styleClass} dlg-success` : 'dlg-success',
+            header: options?.header ?? 'MSG.TITLE_001'
+        };
 
         this.setMessageParams(key, options, closeAction);
     };
 
     info = (key: string, options?: MessageOptions, closeAction?: () => void) => {
-        if (!options) {
-            options = {
-                styleClass: 'dlg-info'
-            };
-        } else {
-            options.styleClass = 'dlg-info';
-        }
+        options = {
+            ...options,
+            styleClass: options?.styleClass ? `${options?.styleClass} dlg-info` : 'dlg-info',
+            header: options?.header ?? 'MSG.TITLE_005'
+        };
 
         this.setMessageParams(key, options, closeAction);
     };
 
     error = (key: string, options?: MessageOptions, closeAction?: () => void) => {
-        if (!options) {
-            options = {
-                styleClass: 'dlg-error'
-            };
-        } else {
-            options.styleClass = 'dlg-error';
-        }
+        options = {
+            ...options,
+            styleClass: options?.styleClass ? `${options?.styleClass} dlg-error` : 'dlg-error',
+            header: options?.header ?? 'MSG.TITLE_002'
+        };
 
         this.setMessageParams(key, options, closeAction);
     };
 
     warn = (key: string, options?: MessageOptions, closeAction?: () => void) => {
-        if (!options) {
-            options = {
-                styleClass: 'dlg-warn'
-            };
-        } else {
-            options.styleClass = 'dlg-warn';
-        }
+        options = {
+            ...options,
+            styleClass: options?.styleClass ? `${options?.styleClass} dlg-warn` : 'dlg-warn',
+            header: options?.header ?? 'MSG.TITLE_003'
+        };
 
         this.setMessageParams(key, options, closeAction);
     };
@@ -107,28 +99,26 @@ export class MessageDialogService {
         rejectAction?: () => void,
         cancelAction?: () => void
     ): void => {
-        if (!options) {
-            options = {
-                styleClass: 'dlg-confirm'
-            };
-        } else {
-            options.styleClass = 'dlg-confirm';
-        }
-
-        options.actions = [
-            { ...CANCEL_BUTTON, click: cancelAction },
-            { ...NO_BUTTON, click: rejectAction },
-            { ...YES_BUTTON, click: acceptAction }
-        ];
+        options = {
+            ...options,
+            styleClass: options?.styleClass ? `${options?.styleClass} dlg-confirm` : 'dlg-confirm',
+            header: options?.header ?? 'MSG.TITLE_004',
+            actions: [
+                { ...CANCEL_BUTTON, click: cancelAction },
+                { ...NO_BUTTON, click: rejectAction },
+                { ...YES_BUTTON, click: acceptAction }
+            ]
+        };
 
         this.show(key, options);
     };
 
     private setMessageParams(key: string, options: MessageOptions = {}, closeAction?: () => void) {
         // in case confirm message does not has any actions
-        if (!options.actions) {
-            options.actions = [{ ...CLOSE_BUTTON, click: closeAction }];
-        }
+        options = {
+            ...options,
+            actions: [{ ...CLOSE_BUTTON, click: closeAction }]
+        };
 
         this.show(key, options);
     }

@@ -1,6 +1,6 @@
 export default {
-    host: '',
-    prefix: '',
+    host: 'host',
+    prefix: 'prefix',
     production: true,
     debugMode: false,
     wsConfig: {

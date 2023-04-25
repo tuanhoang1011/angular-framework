@@ -4,9 +4,9 @@
     "scripts": {
         "ng": "ng",
         "start": "ng serve --poll=3000 --port 4200 --disable-host-check",
-        "build:dev": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --prod --configuration=dev --output-path=dist/dev --output-hashing=all",
-        "build:test": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --prod --configuration=test --output-path=dist/test --output-hashing=all",
-        "build:production": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --prod --configuration=production --output-path=dist/production --output-hashing=all",
+        "build:dev": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --configuration dev --output-path=dist/dev --output-hashing=all",
+        "build:test": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --configuration test --output-path=dist/test --output-hashing=all",
+        "build:production": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --configuration production --output-path=dist/production --output-hashing=all",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
         "pretty": "prettier --write \"./**/*.{js,ts,css,scss,json}\""
@@ -46,15 +46,15 @@
         "@angular/cli": "~15.2.4",
         "@angular/compiler-cli": "~15.2.0",
         "@types/jasmine": "~4.3.0",
-        "autoprefixer": "^10.4.14",
+        "autoprefixer": "~10.4.14",
         "jasmine-core": "~4.5.0",
         "karma": "~6.4.0",
         "karma-chrome-launcher": "~3.1.0",
         "karma-coverage": "~2.2.0",
         "karma-jasmine": "~5.1.0",
         "karma-jasmine-html-reporter": "~2.0.0",
-        "postcss": "^8.4.23",
-        "tailwindcss": "^3.3.1",
+        "postcss": "~8.4.23",
+        "tailwindcss": "~3.3.1",
         "typescript": "~4.9.4"
     }
 }

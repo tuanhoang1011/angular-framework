@@ -17,10 +17,10 @@ export interface LogExceptionContent {
 export interface LogRequest {
     level: string;
     type: string;
-    subType: string;
+    subType?: string;
     date: string;
     accountID: string;
-    identifier: string;
+    identifier?: string;
     screen: string;
     destinationScreen?: string;
     apiName?: string;

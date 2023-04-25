@@ -13,16 +13,17 @@ import { LogService } from '../../../core/services/log/log.service';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent {
-    @Input() styleClass?: string;
     @Input() content?: string;
+    @Input() styleClass?: string;
     @Input() disabled? = false;
     @Input() isWriteLog? = true;
-    @Input() screenIdentifer?: string;
     @Output() onClickAction = new EventEmitter();
 
     constructor(private logService: LogService, private translateService: TranslateService) {}
 
     clickAction(e: any) {
+        if (this.disabled) return;
+
         const writeLog = () => {
             if (this.isWriteLog && this.content) {
                 // write log

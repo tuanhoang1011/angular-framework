@@ -1,0 +1,13 @@
+.hyper-link {
+    @apply text-hyperlink cursor-pointer underline truncate hover:underline focus:underline;
+    @apply hover:opacity-60 active:opacity-80;
+
+    &.disabled {
+        @apply opacity-40 cursor-default;
+    }
+}
+
+a {
+    @apply outline-none;
+    @apply focus-visible:ring-2;
+}

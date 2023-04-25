@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    HostListener,
+    OnInit,
+    ViewChild,
+    ViewContainerRef,
+    ViewEncapsulation,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Amplify } from 'aws-amplify';
@@ -8,15 +16,15 @@ import { takeUntil } from 'rxjs';
 import { environment } from '../environments/environment';
 import { BaseComponent } from './core/components/base.component';
 import { LoadingService } from './core/components/loading/loading.service';
-import { MessageDialogService } from './core/components/message-dialog/message-dialog.service';
-import { MessageToastService } from './core/components/message-toast/message-toast.service';
 import { SplashScreenService } from './core/components/splash-screen/splash-screen.service';
+import { LogActiveScreen, LogSubType, LogType } from './core/constants/log.const';
+import { AppRoutes } from './core/routers/app.routes';
 import { AuthBaseService } from './core/services/auth/auth-base.service';
 import { AutoSignOutService } from './core/services/auth/auto-signout.service';
 import { ConfigService } from './core/services/common/config.service';
-import { WebSocketService } from './core/services/communicate-server/web-socket.service';
 import { LogService } from './core/services/log/log.service';
 import { GlobalStateService } from './core/services/state-manager/component-store/global-state.service';
+import { isNullOrUndefined } from './core/utils/common-func.ultility';
 import { GlobalVariables } from './core/utils/global-variables.ultility';
 
 @Component({
@@ -27,23 +35,26 @@ import { GlobalVariables } from './core/utils/global-variables.ultility';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent extends BaseComponent implements OnInit {
+    @ViewChild('appContainer', {
+        read: ViewContainerRef,
+        static: true
+    })
+    appContainerRef!: ViewContainerRef;
+
     @HostListener('document:keydown', ['$event'])
     handleKeyboardEvent(event: KeyboardEvent) {
         // prevent input when loading is showing
-        if (this.loadingService.isShown) {
+        if (this.loadingService.getStates.loading) {
             event.preventDefault();
         }
     }
 
     constructor(
         private router: Router,
-        private msgToastService: MessageToastService,
-        private msgDialogService: MessageDialogService,
         private loadingService: LoadingService,
         private translateService: TranslateService,
         private primeNGConfig: PrimeNGConfig,
         private configService: ConfigService,
-        private wsService: WebSocketService,
         private autoSignOutService: AutoSignOutService,
         private authService: AuthBaseService,
         private globalStateService: GlobalStateService,
@@ -60,6 +71,10 @@ export class AppComponent extends BaseComponent implements OnInit {
             this.configService.loadConfig(this.destroy$).then(() => {
                 this.translateService.setDefaultLang(GlobalVariables.defaultLanguage);
                 this.translateService.get('primeng').subscribe((res) => this.primeNGConfig.setTranslation(res));
+
+                setTimeout(() => {
+                    this.splashScreenService.hide();
+                }, GlobalVariables.splashScreenDurationMilSecond);
             });
         } catch (error) {
             throw error;
@@ -68,10 +83,6 @@ export class AppComponent extends BaseComponent implements OnInit {
 
     ngOnInit(): void {
         try {
-            setTimeout(() => {
-                this.splashScreenService.hide();
-            }, GlobalVariables.splashScreenDurationMilSecond);
-
             // start automatically signing out
             this.autoSignOutService.init();
 
@@ -85,7 +96,7 @@ export class AppComponent extends BaseComponent implements OnInit {
                 this.authService.isSignedOutSession = this.authService.signedOutCurrentTab = false;
             }
 
-            this.example();
+            this.globalStateService.setAppContainerRef(this.appContainerRef);
         } catch (error) {
             throw error;
         }
@@ -93,8 +104,28 @@ export class AppComponent extends BaseComponent implements OnInit {
 
     private listenState() {
         this.globalStateService.vm$.pipe(takeUntil(this.destroy$)).subscribe((res) => {
-            // set active screen/dialog for writing log
-            this.logService.screenIdentifer = res.activeDialog || res.activeScreen;
+            try {
+                // set active screen/dialog for writing log
+                this.logService.screenIdentifer = res.activeDialog || res.activeScreen;
+            } catch (error) {
+                throw error;
+            }
+        });
+
+        this.globalStateService.errorPage$.pipe(takeUntil(this.destroy$)).subscribe((errCode) => {
+            try {
+                if (!isNullOrUndefined(errCode)) {
+                    // write log
+                    this.logService.operation(LogType.Action, {
+                        subType: LogSubType.ScreenTransition,
+                        destinationScreen: LogActiveScreen.ErrorPage
+                    });
+
+                    this.router.navigate([AppRoutes.Error]);
+                }
+            } catch (error) {
+                throw error;
+            }
         });
     }
 
@@ -114,78 +145,4 @@ export class AppComponent extends BaseComponent implements OnInit {
             throw error;
         }
     };
-
-    async example() {
-        // setTimeout(() => {
-        //     this.globalStateService.setActiveScreen('Screen');
-        //     this.globalStateService.setActiveDialog('Dialog');
-        // }, 2000);
-        // // await this.wsService.initWebSocket();
-        // setTimeout(() => {
-        //     this.wsService.disconnect();
-        // }, 2000);
-        // this.wsService.receive<any>().subscribe({
-        //     next: (res) => {
-        //         console.log(res.data);
-        //     }
-        // });
-        // // check later
-        // setTimeout(() => {
-        //     this.msgToastService.success('MSG.APP_ERR0001', {
-        //         header: 'MSG.TITLE_001',
-        //         variables: ['Tuan', 'ABC'],
-        //         contentStyleClass: 'contentStyleClass',
-        //         detailStyleClass: 'detailStyleClass'
-        //     });
-        //     this.msgToastService.info('MSG.APP_ERR0001', {
-        //         header: 'MSG.TITLE_001',
-        //         variables: ['Tuan', 'ABC'],
-        //         contentStyleClass: 'contentStyleClass',
-        //         detailStyleClass: 'detailStyleClass'
-        //     });
-        //     this.msgToastService.warn('MSG.APP_ERR0001', {
-        //         header: 'MSG.TITLE_001',
-        //         variables: ['Tuan', 'ABC'],
-        //         contentStyleClass: 'contentStyleClass',
-        //         detailStyleClass: 'detailStyleClass'
-        //     });
-        //     this.msgToastService.error('MSG.APP_ERR0001', {
-        //         header: 'MSG.TITLE_001',
-        //         variables: ['Tuan', 'ABC'],
-        //         contentStyleClass: 'contentStyleClass',
-        //         detailStyleClass: 'detailStyleClass'
-        //     });
-        // }, 200);
-        // this.msgDialogService.success(
-        //     'MSG.APP_ERR0001',
-        //     {
-        //         header: 'MSG.TITLE_001',
-        //         variables: ['Tuan', 'ABC'],
-        //         styleClass: 'styleClass',
-        //         contentStyleClass: 'contentStyleClass',
-        //         detailStyleClass: 'detailStyleClass'
-        //     },
-        //     () => {
-        //         console.log('yes');
-        //     }
-        // );
-        // this.msgDialogService.confirm(
-        //     'MSG.APP_ERR0001',
-        //     {
-        //         header: 'MSG.TITLE_001',
-        //         variables: ['Tuan', 'ABC'],
-        //         contentStyleClass: 'contentStyleClass',
-        //         detailStyleClass: 'detailStyleClass'
-        //     },
-        //     () => {
-        //         console.log('yes');
-        //     },
-        //     () => {
-        //         console.log('no');
-        //     },
-        //     () => {
-        //         console.log('cancel');
-        //     }
-        // );
-    }
 }

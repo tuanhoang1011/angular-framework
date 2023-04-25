@@ -1,4 +1,5 @@
 export const AppRoutes = {
     Private: 'private',
-    Public: 'public'
+    Public: 'public',
+    Error: 'error-page'
 };

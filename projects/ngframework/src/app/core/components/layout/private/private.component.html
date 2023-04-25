@@ -1,1 +1,9 @@
-<p>Private layout</p>
+<div *ngIf="!(splashScreenService.splashScreen$ | async)"
+    class="private-container">
+    <div class="private-header">
+    </div>
+    <div class="private-body">
+    </div>
+    <div class="private-footer">
+    </div>
+</div>
