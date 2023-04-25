@@ -12,8 +12,7 @@ import { IndexedDBService } from '../storage/indexed-db.service';
     providedIn: 'root'
 })
 export class LogService {
-    public activeScreen?: string;
-    private activeDialog?: string;
+    public screenIdentifer = '';
     private isPushingLog: boolean = false;
     private logDB = environment?.storage.indexedDB?.log;
 
@@ -106,7 +105,7 @@ export class LogService {
                 date: date,
                 accountID: 'GUEST', // or ID of logged in account
                 identifier: log.identifier,
-                screen: this.activeDialog || this.activeScreen,
+                screen: this.screenIdentifer,
                 destinationScreen: log.destinationScreen || undefined,
                 apiName: log.apiName || undefined,
                 errorContent: log.errorContent || undefined

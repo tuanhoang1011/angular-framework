@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 import { AppModule } from '../../app.module';
 import { LogActiveScreen, LogTableIdentifier } from '../constants/log.const';
 import { SortInfo } from '../models/common.model';
-import { LogService } from '../services/log/log.service';
+import { GlobalStateService } from '../services/state-management/component-store/global-state.service';
 
 @Component({
     template: ''
@@ -20,19 +20,16 @@ export abstract class BaseComponent implements OnDestroy {
     tableIdentifier = LogTableIdentifier;
     logActiveScreen = LogActiveScreen;
 
-    private logService?: LogService;
-
-    constructor(@Inject({}) private _screenName?: string, @Inject({}) private _tableID?: string) {
+    constructor(
+        @Inject({}) private _activeScreen?: string,
+        @Inject({}) private _activeDialog?: string,
+        @Inject({}) private _tableID?: string
+    ) {
         try {
-            this.logService = AppModule.injector.get(LogService);
-
-            if (this._screenName) {
-                this.logService!.activeScreen = _screenName;
-            }
-
-            if (this._tableID) {
-                this.tableID = this._tableID;
-            }
+            // set screen identifer for writing log when access pages
+            if (this._activeScreen) AppModule.injector.get(GlobalStateService).setActiveScreen(this._activeScreen);
+            if (this._activeDialog) AppModule.injector.get(GlobalStateService).setActiveDialog(this._activeDialog);
+            if (this._tableID) this.tableID = this._tableID;
         } catch (error) {
             throw error;
         }
