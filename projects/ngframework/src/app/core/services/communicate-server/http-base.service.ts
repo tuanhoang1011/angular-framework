@@ -4,6 +4,7 @@ import autoBind from 'auto-bind';
 import { keys } from 'lodash';
 import { environment } from 'projects/ngframework/src/environments/environment';
 import { Observable, Subject } from 'rxjs';
+
 import { AppModule } from '../../../app.module';
 
 export type HttpMethod = 'DELETE' | 'GET' | 'HEAD' | 'JSONP' | 'OPTIONS' | 'POST' | 'PUT' | 'PATCH';
@@ -29,9 +30,10 @@ export interface Options {
     providedIn: 'root'
 })
 export abstract class HttpBaseService {
-    httpClient: HttpClient;
     cancelPendingRequestsSource = new Subject<void>();
     cancelPendingRequests$ = this.cancelPendingRequestsSource.asObservable();
+
+    private httpClient: HttpClient;
 
     constructor() {
         this.httpClient = AppModule.injector.get(HttpClient);

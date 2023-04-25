@@ -10,20 +10,21 @@ import { BaseComponent } from './core/components/base.component';
 import { LoadingService } from './core/components/loading/loading.service';
 import { MessageDialogService } from './core/components/message-dialog/message-dialog.service';
 import { MessageToastService } from './core/components/message-toast/message-toast.service';
+import { SplashScreenService } from './core/components/splash-screen/splash-screen.service';
 import { AuthBaseService } from './core/services/auth/auth-base.service';
 import { AutoSignOutService } from './core/services/auth/auto-signout.service';
 import { ConfigService } from './core/services/common/config.service';
 import { WebSocketService } from './core/services/communicate-server/web-socket.service';
 import { LogService } from './core/services/log/log.service';
-import { GlobalStateService } from './core/services/state-management/component-store/global-state.service';
+import { GlobalStateService } from './core/services/state-manager/component-store/global-state.service';
 import { GlobalVariables } from './core/utils/global-variables.ultility';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent extends BaseComponent implements OnInit {
     @HostListener('document:keydown', ['$event'])
@@ -46,7 +47,8 @@ export class AppComponent extends BaseComponent implements OnInit {
         private autoSignOutService: AutoSignOutService,
         private authService: AuthBaseService,
         private globalStateService: GlobalStateService,
-        private logService: LogService
+        private logService: LogService,
+        private splashScreenService: SplashScreenService
     ) {
         super();
 
@@ -66,10 +68,14 @@ export class AppComponent extends BaseComponent implements OnInit {
 
     ngOnInit(): void {
         try {
+            setTimeout(() => {
+                this.splashScreenService.hide();
+            }, GlobalVariables.splashScreenDurationMilSecond);
+
             // start automatically signing out
             this.autoSignOutService.init();
 
-            this.listenGlobalState();
+            this.listenState();
 
             // user signed out at other tab (same browser) -> will sign out at current tab
             window.addEventListener('storage', this.onStorageChange, false);
@@ -85,12 +91,10 @@ export class AppComponent extends BaseComponent implements OnInit {
         }
     }
 
-    private listenGlobalState() {
-        this.globalStateService.vm$.pipe(takeUntil(this.destroy$)).subscribe({
-            next: (res) => {
-                // set active screen/dialog for writing log
-                this.logService.screenIdentifer = res.activeDialog || res.activeScreen;
-            }
+    private listenState() {
+        this.globalStateService.vm$.pipe(takeUntil(this.destroy$)).subscribe((res) => {
+            // set active screen/dialog for writing log
+            this.logService.screenIdentifer = res.activeDialog || res.activeScreen;
         });
     }
 
@@ -112,12 +116,11 @@ export class AppComponent extends BaseComponent implements OnInit {
     };
 
     async example() {
-        setTimeout(() => {
-            this.globalStateService.setActiveScreen('Screen');
-            this.globalStateService.setActiveDialog('Dialog');
-        }, 2000);
-
-        // await this.wsService.initWebSocket();
+        // setTimeout(() => {
+        //     this.globalStateService.setActiveScreen('Screen');
+        //     this.globalStateService.setActiveDialog('Dialog');
+        // }, 2000);
+        // // await this.wsService.initWebSocket();
         // setTimeout(() => {
         //     this.wsService.disconnect();
         // }, 2000);
@@ -126,7 +129,7 @@ export class AppComponent extends BaseComponent implements OnInit {
         //         console.log(res.data);
         //     }
         // });
-        // check later
+        // // check later
         // setTimeout(() => {
         //     this.msgToastService.success('MSG.APP_ERR0001', {
         //         header: 'MSG.TITLE_001',
@@ -165,12 +168,6 @@ export class AppComponent extends BaseComponent implements OnInit {
         //     () => {
         //         console.log('yes');
         //     }
-        //     // () => {
-        //     //     console.log('no');
-        //     // },
-        //     // () => {
-        //     //     console.log('cancel');
-        //     // }
         // );
         // this.msgDialogService.confirm(
         //     'MSG.APP_ERR0001',
@@ -179,29 +176,16 @@ export class AppComponent extends BaseComponent implements OnInit {
         //         variables: ['Tuan', 'ABC'],
         //         contentStyleClass: 'contentStyleClass',
         //         detailStyleClass: 'detailStyleClass'
-        //         // actions: [
-        //         //     {
-        //         //         label: 'BTN_0005',
-        //         //         styleClass: 'btn-danger',
-        //         //         click: () => {
-        //         //             console.log('Btn 1');
-        //         //         }
-        //         //     },
-        //         //     {
-        //         //         label: 'BTN_0005',
-        //         //         styleClass: 'btn-danger'
-        //         //     }
-        //         // ]
         //     },
         //     () => {
         //         console.log('yes');
+        //     },
+        //     () => {
+        //         console.log('no');
+        //     },
+        //     () => {
+        //         console.log('cancel');
         //     }
-        //     // () => {
-        //     //     console.log('no');
-        //     // }
-        //     // () => {
-        //     //     console.log('cancel');
-        //     // }
         // );
     }
 }

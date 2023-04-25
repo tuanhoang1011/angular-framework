@@ -4,6 +4,7 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from '../shared/shared.module';
+import { DialogManagerModule } from './components/dialog-manager/dialog-manager.module';
 import { LoadingModule } from './components/loading/loading.module';
 import { MessageDialogModule } from './components/message-dialog/message-dialog.module';
 import { MessageToastModule } from './components/message-toast/message-toast.module';
@@ -18,6 +19,7 @@ import { GlobalVariables } from './utils/global-variables.ultility';
 const modules: any = [
     MessageToastModule.forRoot(),
     MessageDialogModule,
+    DialogManagerModule,
     LoadingModule,
     SplashScreenModule,
     CommonModule,

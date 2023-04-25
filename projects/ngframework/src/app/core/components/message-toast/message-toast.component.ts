@@ -4,8 +4,8 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
     selector: 'app-message-toast',
     templateUrl: './message-toast.component.html',
     styleUrls: ['./message-toast.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MessageToastComponent {
     position = 'bottom-right';

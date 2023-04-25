@@ -8,7 +8,7 @@ export class LoadingService {
     public isShown: boolean = false;
     public isPendingAPI: boolean = false;
 
-    public loadingSubject = new BehaviorSubject<boolean>(true);
+    public loadingSubject = new BehaviorSubject<boolean>(false);
     public loading$ = this.loadingSubject.asObservable();
 
     constructor() {

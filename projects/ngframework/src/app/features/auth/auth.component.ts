@@ -4,8 +4,8 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
     selector: 'app-auth',
     templateUrl: './auth.component.html',
     styleUrls: ['./auth.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AuthComponent {
     constructor() {}

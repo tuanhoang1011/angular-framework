@@ -1,0 +1,25 @@
+:host::ng-deep {
+    .dl-content {
+        @apply flex flex-col p-[100px];
+
+        @media screen and (max-width: 675px) {
+            @apply w-[675px];
+        }
+
+        .term-manual-main {
+            @apply flex flex-col items-center justify-center gap-y-10;
+
+            .tm-file {
+                @apply flex flex-row gap-x-[30px];
+
+                .tm-f-text1 {
+                    @apply text-[20px] font-bold text-primary;
+                }
+
+                button {
+                    @apply w-[380px];
+                }
+            }
+        }
+    }
+}

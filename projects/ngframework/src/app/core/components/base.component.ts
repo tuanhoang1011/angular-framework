@@ -1,16 +1,19 @@
-import { Component, Inject, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnDestroy, Output } from '@angular/core';
 import { orderBy } from 'lodash';
 import { Subject } from 'rxjs';
 
 import { AppModule } from '../../app.module';
 import { LogActiveScreen, LogTableIdentifier } from '../constants/log.const';
 import { SortInfo } from '../models/common.model';
-import { GlobalStateService } from '../services/state-management/component-store/global-state.service';
+import { GlobalStateService } from '../services/state-manager/component-store/global-state.service';
 
 @Component({
     template: ''
 })
 export abstract class BaseComponent implements OnDestroy {
+    @Input() isVisible: boolean = true;
+    @Output() isVisibleChange: EventEmitter<boolean> = new EventEmitter<boolean>(false);
+
     destroy$ = new Subject<void>();
     sortInfo?: SortInfo;
     tableValue?: any;

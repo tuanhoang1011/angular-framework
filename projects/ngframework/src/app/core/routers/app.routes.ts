@@ -1,4 +1,4 @@
 export const AppRoutes = {
-    Private: '',
-    Public: 'home',
+    Private: 'private',
+    Public: 'public'
 };
