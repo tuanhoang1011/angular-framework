@@ -9,6 +9,7 @@ export interface Message {
 
 export interface MessageOptions {
     header?: string;
+    icon?: string;
     closable?: boolean;
     sticky?: boolean;
     styleClass?: string;

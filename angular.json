@@ -29,6 +29,7 @@
                         "tsConfig": "projects/ngframework/tsconfig.app.json",
                         "assets": [
                             "projects/ngframework/src/web.config",
+                            "projects/ngframework/src/.htaccess",
                             "projects/ngframework/src/favicon.ico",
                             "projects/ngframework/src/assets"
                         ],
@@ -165,6 +166,7 @@
                         "tsConfig": "projects/ngframework/tsconfig.app.json",
                         "assets": [
                             "projects/ngframework/src/web.config",
+                            "projects/ngframework/src/.htaccess",
                             "projects/ngframework/src/favicon.ico",
                             "projects/ngframework/src/assets"
                         ],

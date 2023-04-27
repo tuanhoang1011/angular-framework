@@ -20,11 +20,11 @@ import { MessageToastService } from '../../components/message-toast/message-toas
 import { LogMessage, LogSubType, LogType } from '../../constants/log.const';
 import { ErrorResponse } from '../../models/http-response.model';
 import { LogContent } from '../../models/log.model';
-import { MessageOptions } from '../../models/message.model';
 import { GlobalVariables } from '../../utils/global-variables.ultility';
 import { AuthBaseService } from '../auth/auth-base.service';
 import { HttpBaseService } from '../communicate-server/http-base.service';
 import { LogService } from '../log/log.service';
+import { GlobalStateService } from '../state-manager/component-store/global-state.service';
 
 @Injectable({ providedIn: 'root' })
 export class CustomInterceptor implements HttpInterceptor {
@@ -106,7 +106,8 @@ export class ErrorInterceptor implements HttpInterceptor {
         private logService: LogService,
         private msgToastService: MessageToastService,
         private loadingService: LoadingService,
-        private httpBaseService: HttpBaseService
+        private httpBaseService: HttpBaseService,
+        private globalStateService: GlobalStateService
     ) {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -146,10 +147,19 @@ export class ErrorInterceptor implements HttpInterceptor {
                                 : LogMessage.NoNetwork
                         } as LogContent);
 
-                        let msgKey = this.getMessageKey(err, req);
-                        this.showMessage(msgKey);
+                        switch (err.status) {
+                            case HttpStatusCode.BadRequest:
+                            case HttpStatusCode.Forbidden:
+                            case HttpStatusCode.NotFound:
+                            case HttpStatusCode.InternalServerError:
+                                this.globalStateService.setErrorPage(err.status);
+                                return of(err);
 
-                        return of(err);
+                            default:
+                                let msgKey = this.getMessageKey(err, req);
+                                this.showMessage(msgKey);
+                                return of(err);
+                        }
                     } catch (error) {
                         throw error;
                     }
@@ -174,9 +184,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             } else if (err.error.hasOwnProperty('error')) {
                 const errorRes = err.error.error as ErrorResponse;
 
-                if (err.status === HttpStatusCode.BadRequest) {
-                    key = 'MSG.APP_ERR0003';
-                }
+                key = 'MSG.APP_ERR0001';
             }
 
             return key;
@@ -187,9 +195,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     private showMessage(key: string) {
         try {
-            this.msgToastService.error(key, {
-                header: 'MSG.TITLE_002'
-            } as MessageOptions);
+            this.msgToastService.error(key);
 
             // check later
             const forceLogout: string[] = [];

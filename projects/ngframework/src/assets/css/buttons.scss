@@ -1,6 +1,6 @@
 .btn {
-    @apply h-[35px] outline-none rounded-[18px] text-[16px] border-[1px] ml-2 w-[80px];
-    @apply focus-visible:ring-2;
+    @apply text-tc-btn h-[35px] outline-none rounded-[18px] text-fs-default border-[2px] min-w-[120px] px-[10px];
+    @apply hover:opacity-60 active:opacity-80 focus-visible:ring-2;
 
     &:disabled {
         @apply opacity-40 cursor-default pointer-events-none;
@@ -8,16 +8,21 @@
 }
 
 .btn-primary {
-    @apply text-text-primary bg-btn-primary border-btn-primary;
+    @apply text-tc-btn bg-btn-primary border-btn-primary;
     @apply hover:opacity-60 active:opacity-80;
 }
 
 .btn-secondary {
-    @apply text-text-primary bg-btn-secondary border-btn-secondary;
+    @apply text-tc-btn border-btn-secondary;
     @apply hover:opacity-60 active:opacity-80;
 }
 
 .btn-danger {
-    @apply text-text-primary bg-btn-danger border-btn-danger;
+    @apply text-tc-btn bg-btn-danger border-btn-danger;
+    @apply hover:opacity-60 active:opacity-80;
+}
+
+.btn-close-icon {
+    @apply text-tc-default bg-btn-close-icon border-none rounded-[50%] leading-[35px] min-w-[40px] min-h-[40px];
     @apply hover:opacity-60 active:opacity-80;
 }

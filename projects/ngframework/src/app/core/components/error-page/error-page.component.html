@@ -1,0 +1,29 @@
+<div *ngIf="error.code" 
+    class="errpage-container animation-zoom-in">
+    <div class="errpage-child-1">
+        <h1 class="errpage-code">
+            {{ error.code }}
+        </h1>
+        <div class="errpage-content">
+            <h3 class="errpage-title">
+                {{ error.title | translate }}
+            </h3>
+            <h6 class="errpage-msg">
+                {{ error.msg | translate }}
+            </h6> 
+            <div class="errpage-btn">
+                <app-button *ngIf="error.isShowBackBtn" 
+                    content="BTN_0005"
+                    styleClass="btn-secondary"
+                    (onClickAction)="back()">
+                </app-button>
+
+                <app-button *ngIf="error.isShowHomeBtn"
+                    content="BTN_0006"
+                    styleClass="btn-primary"
+                    (onClickAction)="goHome()">
+                </app-button>
+            </div> 
+        </div>
+    </div>
+</div>

@@ -18,6 +18,18 @@
     }
 }
 
+@keyframes zoomIn {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 * {
     // CUSTOM SCROLLBAR
     // width
@@ -57,9 +69,14 @@ body {
     // prevent to adjust text size on mobile devices
     -webkit-text-size-adjust: none;
 
-    @apply bg-body;
+    @apply bg-body text-fs-default text-tc-default;
 }
 
 .cursor-pointer {
     @apply focus-visible:ring-2 outline-none;
+}
+
+.animation-zoom-in {
+    animation-duration: 0.5s;
+    animation-name: zoomIn;
 }

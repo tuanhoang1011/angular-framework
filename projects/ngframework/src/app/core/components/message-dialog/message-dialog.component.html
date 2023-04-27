@@ -12,27 +12,27 @@
         [blockScroll]="false"
         [closable]="msgItem.options?.closable ?? true"
         [style]="{
-            'min-width': msgItem.options?.header ? '800px' : '800px',
-            'max-width': msgItem.options?.header ? '800px' : '800px',
-            'min-height': msgItem.options?.header ? '350px' : '350px',
-            'max-height': msgItem.options?.header ? '350px' : '350px'
+            'min-width':'600px',
+            'max-width':'800px',
+            'min-height':'200px',
+            'max-height':'350px'
         }"
         (visibleChange)="closeMessage(msgItem)"
     >
         <ng-template *ngIf="msgItem.options?.header" pTemplate="header">
             <div class="dlg-header">
-                <span class="dlg-header-content">
+                <h1 class="dlg-header-content">
                     {{ msgItem.options?.header || '' | translate }}
-                </span>
+                </h1>
             </div>
         </ng-template>
 
         <ng-template pTemplate="content">
             <div [class]="'dlg-content ' + msgItem.options?.contentStyleClass">
                 <div [class]="'msg-icon ' + msgItem.options?.iconStyleClass"></div>
-                <span [class]="'msg-content ' + msgItem.options?.detailStyleClass">
-                    {{ msgItem.key | translate | sprintf: msgItem.options?.variables }}
-                </span>
+                <div [class]="'msg-content ' + msgItem.options?.detailStyleClass">
+                    <p>{{ msgItem.key | translate | sprintf: msgItem.options?.variables }}</p>
+                </div>
             </div>
         </ng-template>
 

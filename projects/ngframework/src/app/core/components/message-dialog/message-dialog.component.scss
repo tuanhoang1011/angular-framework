@@ -1,23 +1,25 @@
+.dlg-success {
+    @apply bg-success #{!important};
+}
+
+.dlg-error {
+    @apply bg-error #{!important};
+}
+
+.dlg-warn {
+    @apply bg-warn #{!important};
+}
+
+.dlg-info {
+    @apply bg-info #{!important};
+}
+
+.dlg-confirm {
+    @apply bg-confirm #{!important};
+}
+
 .p-dialog {
-    &.dlg-success {
-        @apply bg-success;
-    }
-
-    &.dlg-error {
-        @apply bg-error;
-    }
-
-    &.dlg-warn {
-        @apply bg-warn;
-    }
-
-    &.dlg-info {
-        @apply bg-info;
-    }
-
-    &.dlg-confirm {
-        @apply bg-confirm;
-    }
+    @apply bg-dialog;
 
     .p-dialog-content {
         @apply flex justify-center;
@@ -30,14 +32,14 @@
             }
 
             .msg-content {
-                @apply text-[14px] text-text-primary break-words h-full;
+                @apply flex items-center text-fs-msg text-tc-default break-words whitespace-pre-line h-full;
             }
         }
     }
 
     .p-dialog-footer {
         .dlg-footer {
-            @apply flex justify-end;
+            @apply flex justify-end gap-x-3;
         }
     }
 }

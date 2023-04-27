@@ -1,15 +1,17 @@
+import { CommonConstant } from '../constants/common.const';
+
 export class GlobalVariables {
     // map to value in config files
     static messageLifeTimeMilSecond = 3000;
     static version = '';
-    static defaultLanguage = 'en';
+    static defaultLanguage = CommonConstant.Language.English.sortLabel;
     static logMaxBundleSize = 500;
     static requestHTTPTimeoutMilSecond = 60000;
     static autoSignOutIntervalMilSecond = 2000;
     static autoSignOutDurationMinute = 15;
     static splashScreenDurationMilSecond = 2000;
     // other
-    static language = 'en';
+    static language = CommonConstant.Language.English.sortLabel;
     static pendingAutoSignOut = false;
     static isMobile =
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||

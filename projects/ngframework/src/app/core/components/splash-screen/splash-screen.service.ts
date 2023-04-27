@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+
+import { LoadingState } from '../../models/state.model';
+import { ComponentStoreBase } from '../../services/state-manager/component-store/component-store-base.service';
 
 @Injectable({ providedIn: 'root' })
-export class SplashScreenService {
-    public splashScreenSubject = new BehaviorSubject<boolean>(false);
-    public splashScreen$ = this.splashScreenSubject.asObservable();
+export class SplashScreenService extends ComponentStoreBase<LoadingState> {
+    public splashScreen$ = this.select((state) => state.splashScreen);
 
-    show = () => this.splashScreenSubject.next(true);
+    constructor() {
+        super({
+            splashScreen: true
+        });
+    }
 
-    hide = () => this.splashScreenSubject.next(false);
+    show = () => this.updateState({ splashScreen: true });
+
+    hide = () => this.updateState({ splashScreen: false });
 }

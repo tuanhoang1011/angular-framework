@@ -1,1 +1,289 @@
-<p>example works!</p>
+<div class="flex flex-col mx-auto w-[90vw] max-w-[1366px] p-8 shadow-errpage animation-zoom-in">
+    <div class="flex flex-col p-5 items-center">
+        <div class="relative w-fit">
+            <img src="../../../../../assets/images/fw-logo.svg" 
+                width="200" 
+                height="0"
+                class="self-center">
+            <img src="../../../../../assets/images/dummy-star.png" 
+                width="50" 
+                height="0"
+                class="self-center absolute top-[-18%] left-[-12%]"
+                style="animation: 1s ease 0s infinite normal none running pulse; rotate: -20deg;">
+            <img src="../../../../../assets/images/dummy-star.png" 
+                width="50" 
+                height="0"
+                class="self-center absolute top-[5%] left-[49%]"
+                style="animation: 1s ease 0s infinite normal none running pulse">
+        </div>
+
+        <h1 class="self-center text-center text-transparent bg-gradient-to-r bg-clip-text from-loading-gradient-fr to-loading-gradient-to text-[40px]">
+            Angular Framework
+        </h1>
+        <h3 class="self-center text-center text-transparent bg-gradient-to-r bg-clip-text from-loading-gradient-fr to-loading-gradient-to text-[16px]">
+           {{ 'EXAMPLE_0001' | translate }}
+        </h3>
+    </div>
+
+    <div class="flex flex-col gap-y-6">
+        <!-- BUTTON/HYPERLINK -->
+        <div class="flex flex-col gap-y-2">
+            <h1 class="text-[20px]">Button/ Hyperlink</h1>
+            <div class="flex items-center gap-x-5">
+                <app-button content="Secondary"
+                    styleClass="btn-secondary"
+                    (onClickAction)="clickButton('Secondary')">
+                </app-button>
+                <app-button content="Primary"
+                    styleClass="btn-primary"
+                    (onClickAction)="clickButton('Primary')">
+                </app-button>
+                <app-button content="Danger"
+                    styleClass="btn-danger"
+                    (onClickAction)="clickButton('Danger')">
+                </app-button>
+                <app-hyperlink content="Hyperlink"
+                    (onActionClick)="clickHyperlink()">
+                </app-hyperlink>
+            </div>
+            <div class="flex items-center gap-x-5 mt-4">
+                <app-button content="Secondary"
+                    styleClass="btn-secondary"
+                    [disabled]="true"
+                    (onClickAction)="clickButton('Secondary')">
+                </app-button>
+                <app-button content="Primary"
+                    styleClass="btn-primary"
+                    [disabled]="true"
+                    (onClickAction)="clickButton('Primary')">
+                </app-button>
+                <app-button content="Danger"
+                    styleClass="btn-danger"
+                    [disabled]="true"
+                    (onClickAction)="clickButton('Danger')">
+                </app-button>
+                <app-hyperlink content="Hyperlink"
+                    [disabled]="true">
+                </app-hyperlink>
+            </div>
+        </div>
+
+        <!-- DYNAMIC DIALOG -->
+        <div class="flex flex-col gap-y-2">
+            <h1 class="text-[20px]">Dynamic Dialog</h1>
+            <div class="flex items-center gap-x-5">
+                <app-button content="Open Dialog A"
+                    styleClass="btn-primary"
+                    (onClickAction)="openDialogA()">
+                </app-button>
+                <app-button content="Open Dialog B"
+                    styleClass="btn-primary"
+                    (onClickAction)="openDialogB()">
+                </app-button>
+                <app-button content="Update Dialog A"
+                    styleClass="btn-primary"
+                    (onClickAction)="updateDialogA()">
+                </app-button>
+                <app-button content="Remove Dialog A"
+                    styleClass="btn-danger"
+                    (onClickAction)="removeDialogA()">
+                </app-button>
+            </div>
+        </div>
+        
+        <!-- Error Page -->
+        <div class="flex flex-col gap-y-2 err-page-module">
+            <h1 class="text-[20px]">Error Page</h1>
+            <p class="ml-3">Click on image to redirect to error page</p>
+            <div class="flex flex-row">
+                <app-image-view src="../../../assets/images/dummy-error-400.png"
+                    [width]="imgRatio.PreviewMode.width"
+                    [height]="imgRatio.PreviewMode.height"
+                    [fullMode]="false"
+                    (click)="redirectErrorPage(400)">
+                </app-image-view>
+                <app-image-view src="../../../assets/images/dummy-error-403.png"
+                    [fullMode]="false"
+                    (click)="redirectErrorPage(403)">
+                </app-image-view>
+                <app-image-view src="../../../assets/images/dummy-error-404.png"
+                    [fullMode]="false"
+                    (click)="redirectErrorPage(404)">
+                </app-image-view>
+                <app-image-view src="../../../assets/images/dummy-error-500.png"
+                    [fullMode]="false"
+                    (click)="redirectErrorPage(500)">
+                </app-image-view>
+            </div>
+        </div>
+        
+        <!-- TOAST MESSAGE -->
+        <div class="flex flex-col gap-y-2">
+            <h1 class="text-[20px]">Toast Message</h1>
+            <div class="flex items-center gap-x-5">
+                <app-button content="Success"
+                    styleClass="btn-primary"
+                    (onClickAction)="showMessageToast('success')">
+                </app-button>
+                <app-button content="Error"
+                    styleClass="btn-danger"
+                    (onClickAction)="showMessageToast('error')">
+                </app-button>
+                <app-button content="Info"
+                    styleClass="btn-primary !bg-info !border-[#696cff]"
+                    (onClickAction)="showMessageToast('info')">
+                </app-button>
+                <app-button content="Warn"
+                    styleClass="btn-primary !bg-warn !border-warn"
+                    (onClickAction)="showMessageToast('warn')">
+                </app-button>
+                <app-button content="Close All"
+                    styleClass="btn-danger"
+                    (onClickAction)="showMessageToast('')">
+                </app-button>
+            </div>
+        </div>
+    
+        <!-- DIALOG MESSAGE -->
+        <div class="flex flex-col gap-y-2">
+            <h1 class="text-[20px]">Dialog Message</h1>
+            <div class="flex items-center gap-x-5">
+                <app-button content="Success"
+                    styleClass="btn-primary"
+                    (onClickAction)="showMessageDialog('success')">
+                </app-button>
+                <app-button content="Error"
+                    styleClass="btn-danger"
+                    (onClickAction)="showMessageDialog('error')">
+                </app-button>
+                <app-button content="Info"
+                    styleClass="btn-primary !bg-info !border-info"
+                    (onClickAction)="showMessageDialog('info')">
+                </app-button>
+                <app-button content="Warn"
+                    styleClass="btn-primary !bg-warn !border-warn"
+                    (onClickAction)="showMessageDialog('warn')">
+                </app-button>
+                <app-button content="Confirm"
+                    styleClass="btn-primary !bg-confirm !border-confirm"
+                    (onClickAction)="showMessageDialog('confirm')">
+                </app-button>
+                <app-button content="Custom"
+                    styleClass="btn-primary !bg-dialog !border-dialog"
+                    (onClickAction)="showMessageDialog('custom')">
+                </app-button>
+            </div>
+        </div>
+
+        <!-- LOADING/ SPLASH SCREEN -->
+        <div class="flex flex-col gap-y-2">
+            <h1 class="text-[20px]">Loading/ Splash Screen</h1>
+            <div class="flex items-center gap-x-5">
+                <app-button content="Loading"
+                    styleClass="btn-primary"
+                    (onClickAction)="showLoadingSplashScreen(true)">
+                </app-button>
+                <app-button content="Splash Screen"
+                    styleClass="btn-primary"
+                    (onClickAction)="showLoadingSplashScreen(false)">
+                </app-button>
+            </div>
+        </div>
+
+           <!-- Image Preview/ Full Mode -->
+        <div class="flex flex-col gap-y-2">
+            <h1 class="text-[20px]">Image Preview/ Full Mode</h1>
+            <p class="ml-3">You can view image at full mode by clicking on image.</p>
+            <app-image-view src="../../../assets/images/dummy-angular.png"
+                [width]="imgRatio.PreviewMode.width"
+                [height]="imgRatio.PreviewMode.height">
+            </app-image-view>
+        </div>
+
+        <!-- WRITE LOG -->
+        <div class="flex flex-col gap-y-2">
+            <h1 class="text-[20px]">Write/ Push Log</h1>
+            <div class="flex items-center gap-x-5">
+                <app-button content="Write Log"
+                    styleClass="btn-primary"
+                    [disabled]="true">
+                </app-button>
+                <app-button content="Push Logs"
+                    styleClass="btn-primary"
+                    [disabled]="true">
+                </app-button>
+                <app-button content="Clear Logs"
+                    styleClass="btn-danger"
+                    [disabled]="true">
+                </app-button>
+            </div>
+        </div>
+
+        <!-- DYNAMIC TAB -->
+        <div class="flex flex-col gap-y-2">
+            <h1 class="text-[20px]">Dynamic Tab</h1>
+            <div class="flex items-center gap-x-5">
+                <app-button content="Show Tab"
+                    styleClass="btn-primary"
+                    [disabled]="true">
+                </app-button>
+            </div>
+        </div>
+
+        <!-- EXPORT PDF -->
+        <div class="flex flex-col gap-y-2">
+            <h1 class="text-[20px]">Export PDF</h1>
+            <div class="flex items-center gap-x-5">
+                <app-button content="Export"
+                    styleClass="btn-primary"
+                    [disabled]="true">
+                </app-button>
+            </div>
+        </div>
+
+         <!-- COMMUNICATE SERVER -->
+         <div class="flex flex-col gap-y-2">
+            <h1 class="text-[20px]">Communicate Server</h1>
+            <div class="flex items-center gap-x-5">
+                <app-button content="API"
+                    styleClass="btn-primary"
+                    [disabled]="true">
+                </app-button>
+                <app-button content="GraphQL"
+                    styleClass="btn-primary"
+                    [disabled]="true">
+                </app-button>
+                <app-button content="WebSocket"
+                    styleClass="btn-primary"
+                    [disabled]="true">
+                </app-button>
+            </div>
+        </div>
+
+        <!-- DYNAMIC TABLE -->
+        <div class="flex flex-col gap-y-2">
+            <h1 class="text-[20px]">Dynamic Table</h1>
+            <div class="flex items-center gap-x-5">
+                <app-button content="Static Table"
+                    styleClass="btn-primary"
+                    [disabled]="true">
+                </app-button>
+                <app-button content="Editable Table"
+                    styleClass="btn-primary"
+                    [disabled]="true">
+                </app-button>
+            </div>
+        </div>
+
+        <!-- CREATE FORM -->
+        <div class="flex flex-col gap-y-2">
+            <h1 class="text-[20px]">Create Form</h1>
+            <div class="flex items-center gap-x-5">
+                <app-button content="Create Form"
+                    styleClass="btn-primary"
+                    [disabled]="true">
+                </app-button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,11 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutes } from './core/routers/app.routes';
-import { GlobalVariables } from './core/utils/global-variables.ultility';
 
 const routes: Routes = [
     {
-        path: GlobalVariables.language,
+        path: '',
         resolve: {},
         children: [
             {
@@ -18,10 +17,15 @@ const routes: Routes = [
                 loadChildren: () =>
                     import('./core/components/layout/private/private.module').then((m) => m.PrivateModule)
             },
+            {
+                path: AppRoutes.Error,
+                loadChildren: () =>
+                    import('./core/components/error-page/error-page.module').then((m) => m.ErrorPageModule)
+            },
             { path: '**', redirectTo: AppRoutes.Public }
         ]
     },
-    { path: '**', redirectTo: GlobalVariables.language }
+    { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

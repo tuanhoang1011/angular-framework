@@ -45,6 +45,7 @@ export const LogActiveScreen = {
         Edit: 'Screen-1-Edit',
         Detail: 'Screen-1-Detail'
     },
+    ErrorPage: 'Error-page',
     SignIn: 'Sign-in-page'
 };
 

@@ -1,25 +1,26 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'projects/ngframework/src/environments/environment';
-import { BehaviorSubject } from 'rxjs';
+
+import { LoadingState } from '../../models/state.model';
+import { ComponentStoreBase } from '../../services/state-manager/component-store/component-store-base.service';
 
 @Injectable({ providedIn: 'root' })
-export class LoadingService {
+export class LoadingService extends ComponentStoreBase<LoadingState> {
+    public loading$ = this.select((state) => state.loading);
     public apiReqCount: number = 0;
-    public isShown: boolean = false;
     public isPendingAPI: boolean = false;
 
-    public loadingSubject = new BehaviorSubject<boolean>(false);
-    public loading$ = this.loadingSubject.asObservable();
-
     constructor() {
-        this.loading$.subscribe((isShown) => {
-            this.isShown = isShown;
+        super({
+            loading: false
         });
     }
 
     show = (isPendingAPI: boolean = true) => {
         try {
-            this.loadingSubject.next(true);
+            this.updateState({
+                loading: true
+            });
 
             if (!isPendingAPI) {
                 this.apiReqCount = 0;
@@ -33,7 +34,9 @@ export class LoadingService {
     hide = (isPendingAPI: boolean = true) => {
         try {
             if (this.apiReqCount === 0) {
-                this.loadingSubject.next(false);
+                this.updateState({
+                    loading: false
+                });
             }
 
             if (isPendingAPI) {

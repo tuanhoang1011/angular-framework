@@ -1,5 +1,5 @@
 .splash-screen {
-    @apply absolute flex items-center justify-center h-full w-full bg-body;
+    @apply fixed flex items-center justify-center h-full w-full bg-body;
     z-index: 999999999;
 }
 
@@ -22,7 +22,7 @@
 
     div {
         animation: spinner 1.5s linear infinite;
-        @apply bg-loading rounded-[50%] w-2 h-2;
+        @apply bg-gradient-to-r from-loading-gradient-fr to-loading-gradient-to rounded-[50%] w-2 h-2;
     }
 
     div:nth-child(1) {

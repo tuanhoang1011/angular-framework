@@ -1,6 +1,6 @@
 .load-container {
     z-index: 99999;
-    @apply absolute flex justify-center items-center h-[100vh] w-[100vw] opacity-50;
+    @apply fixed flex justify-center items-center h-full w-full bg-mask;
 
     // ========================= LOADING SPINNER =========================
     .spinner {
@@ -8,7 +8,7 @@
 
         div {
             animation: spinner 1.5s linear infinite;
-            @apply bg-loading rounded-[50%] w-2 h-2;
+            @apply bg-gradient-to-r from-loading-gradient-fr to-loading-gradient-to rounded-[50%] w-2 h-2;
         }
 
         div:nth-child(1) {

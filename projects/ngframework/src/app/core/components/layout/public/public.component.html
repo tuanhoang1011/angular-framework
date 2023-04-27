@@ -1,5 +1,10 @@
-<p>Public layout</p>
-<button class="w-[80px]" (click)="openDialogA()">Open Dialog A</button>
-<button class="w-[80px]"  (click)="openDialogB()">Open Dialog B</button>
-<button class="w-[80px]"  (click)="updateDialogA()">Update Dialog A</button>
-<button class="w-[80px]"  (click)="removeDialogA()">Remove Dialog A</button>
+<div *ngIf="!(splashScreenService.splashScreen$ | async)" 
+    class="public-container">
+    <div class="public-header">
+    </div>
+    <div class="public-body">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="public-footer">
+    </div>
+</div>

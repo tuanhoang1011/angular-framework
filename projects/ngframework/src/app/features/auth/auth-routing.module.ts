@@ -6,11 +6,19 @@ import { AuthRoutes } from '../../core/routers/auth.routes';
 
 const routes: Routes = [
     {
-        path: AuthRoutes.SignIn,
-        loadChildren: () => import('./components/sign-in/sign-in.module').then((m) => m.SignInModule),
-        canActivate: [SignInGuard]
-    },
-    { path: '', redirectTo: AuthRoutes.SignIn }
+        path: '',
+        children: [
+            {
+                path: AuthRoutes.SignIn,
+                loadChildren: () => import('./components/sign-in/sign-in.module').then((m) => m.SignInModule),
+                canActivate: [SignInGuard]
+            },
+            {
+                path: '**',
+                redirectTo: AuthRoutes.SignIn
+            }
+        ]
+    }
 ];
 
 @NgModule({

@@ -3,7 +3,6 @@ import { orderBy } from 'lodash';
 import { Subject } from 'rxjs';
 
 import { AppModule } from '../../app.module';
-import { LogActiveScreen, LogTableIdentifier } from '../constants/log.const';
 import { SortInfo } from '../models/common.model';
 import { GlobalStateService } from '../services/state-manager/component-store/global-state.service';
 
@@ -19,9 +18,6 @@ export abstract class BaseComponent implements OnDestroy {
     tableValue?: any;
 
     tableID: string = '';
-
-    tableIdentifier = LogTableIdentifier;
-    logActiveScreen = LogActiveScreen;
 
     constructor(
         @Inject({}) private _activeScreen?: string,

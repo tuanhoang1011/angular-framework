@@ -27,6 +27,11 @@ module.exports = {
     // darkMode: false, // or 'media' or 'class'
     theme: {
         extend: {
+            fontSize: {
+                'fs-default': '16px',
+                'fs-msg': '14px'
+            },
+
             minWidth: {
                 support: '1366px'
             },
@@ -49,7 +54,9 @@ module.exports = {
                 header: '0 5px 5px 0 #0000000d',
                 dialog: '5px 5px 10px #00000033',
                 'text-box': '0 0 0 0.2rem #eff0e0',
-                panel: '0 3px 6px 0 #0000000d'
+                panel: '0 3px 6px 0 #0000000d',
+
+                errpage: '5px 5px 40px 5px #14380c'
             }
         }
     },
@@ -69,12 +76,20 @@ module.exports = {
             default: {
                 // common
                 body: '#000',
-                'text-primary': '#707070',
-                primary: '#2962ff',
+                primary: '#1ea97c',
                 secondary: '#a0a3ad',
                 danger: '#F23645',
-                loading: '#707070',
                 border: '#707070',
+                hyperlink: '#1ea97c',
+
+                // loading
+                mask: '#1e222dcc',
+                'loading-gradient-fr': '#00f0fc',
+                'loading-gradient-to': '#bcfd02',
+
+                // text
+                'tc-default': '#f2f2f2',
+                'tc-btn': '#fff',
 
                 // header
                 header: '#1e222d',
@@ -97,9 +112,10 @@ module.exports = {
                 'dialog-content': '#707070',
 
                 // button
-                'btn-primary': '#2962ff',
-                'btn-secondary': '#a0a3ad',
+                'btn-primary': '#1ea97c',
+                'btn-secondary': '#1ea97c',
                 'btn-danger': '#F23645',
+                'btn-close-icon': '#1e222d',
 
                 // message
                 'toast-message': '#1e222d',
@@ -107,7 +123,7 @@ module.exports = {
                 warn: '#cc8925',
                 error: '#FC6161',
                 info: '#696cff',
-                confirm: '#2962ff',
+                confirm: '#50535e',
 
                 // scrollbar
                 scrollbar: '#50535e',

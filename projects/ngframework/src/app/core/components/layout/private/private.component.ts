@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
 import { BaseComponent } from '../../base.component';
+import { SplashScreenService } from '../../splash-screen/splash-screen.service';
 
 @Component({
     selector: 'app-private',
@@ -10,7 +11,7 @@ import { BaseComponent } from '../../base.component';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PrivateComponent extends BaseComponent {
-    constructor() {
+    constructor(public splashScreenService: SplashScreenService) {
         super();
     }
 }
