@@ -6,5 +6,6 @@
     "requestHTTPTimeoutMilSecond": 60000,
     "autoSignOutIntervalMilSecond": 2000,
     "autoSignOutDurationMinute": 15,
-    "splashScreenDurationMilSecond": 2000
+    "splashScreenDurationMilSecond": 2000,
+    "imageCarouselNumVisible": 5
 }

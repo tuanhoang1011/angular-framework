@@ -10,6 +10,7 @@ export class GlobalVariables {
     static autoSignOutIntervalMilSecond = 2000;
     static autoSignOutDurationMinute = 15;
     static splashScreenDurationMilSecond = 2000;
+    static imageCarouselNumVisible = 5;
     // other
     static language = CommonConstant.Language.English.sortLabel;
     static pendingAutoSignOut = false;

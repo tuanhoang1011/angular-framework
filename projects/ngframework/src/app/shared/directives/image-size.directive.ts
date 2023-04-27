@@ -6,7 +6,7 @@ import { CommonConstant } from '../../core/constants/common.const';
     selector: '[imageSize]'
 })
 export class ImageSizeDirective implements AfterViewInit {
-    @Input() imgRatio: number = CommonConstant.ImageRatio.PreviewMode.ratio;
+    @Input() imgRatio: number = CommonConstant.ImageRatio.Thumbnail.ratio;
 
     constructor(private elRef: ElementRef, private renderer2: Renderer2) {}
 

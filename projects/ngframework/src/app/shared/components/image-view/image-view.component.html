@@ -1,0 +1,56 @@
+<div [class]="'img-thumbnail-container ' + styleClass"
+    [ngClass]="{
+        'cursor-pointer': previewMode
+    }"
+    (click)="clickImage()">
+    <img [src]="src"
+        class="rounded-[15px]"
+        [width]="width"
+        [height]="height"
+        [class]="styleClass"
+        [alt]="alt">
+</div>
+
+<div *ngIf="isShowingPreview" 
+    id="img-preview"
+    class="img-preview-container"
+    (click)="clickOutside($event)">
+    <div class="preview-btn">
+        <ng-container *ngIf="transformMode">
+            <app-button styleClass="btn-icon"
+                [isWriteLog]="false"
+                (onClickAction)="rotate(true)">
+                <i class="pi pi-refresh"></i>
+            </app-button>
+            <app-button styleClass="btn-icon"
+                [isWriteLog]="false"
+                (onClickAction)="rotate(false)">
+                <i class="pi pi-replay"></i>
+            </app-button>
+            <app-button styleClass="btn-icon"
+                [isWriteLog]="false"
+                (onClickAction)="zoom(true)">
+                <i class="pi pi-search-minus"></i>
+            </app-button>
+            <app-button styleClass="btn-icon"
+                [isWriteLog]="false"
+                (onClickAction)="zoom(false)">
+                <i class="pi pi-search-plus"></i>
+            </app-button>
+        </ng-container>
+        <app-button styleClass="btn-icon"
+            [isWriteLog]="false"
+            (onClickAction)="offPreviewMode()">
+            <i class="pi pi-times"></i>
+        </app-button>
+    </div>
+
+    <div #previewImg class="preview-img">
+        <img imageRatio
+            class="rounded-[15px]"
+            [src]="src"
+            [width]="imgRatio.Preview.width"
+            [height]="imgRatio.Preview.height"
+            [alt]="alt">
+    </div>
+</div>
