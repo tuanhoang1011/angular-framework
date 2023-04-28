@@ -33,20 +33,38 @@ module.exports = {
             },
 
             minWidth: {
-                support: '1366px'
+                support: '1366px',
+                'icon-btn': '40px'
             },
 
             maxWidth: {
-                support: '1920px'
+                support: '1920px',
+                'icon-btn': '40px'
             },
 
             width: (theme) => ({
                 min: theme('minWidth.support'),
-                max: theme('maxWidth.support')
+                max: theme('maxWidth.support'),
+                'icon-btn': '40px'
             }),
 
+            minHeight: {
+                'icon-btn': '40px'
+            },
+
+            maxHeight: {
+                'icon-btn': '40px'
+            },
+
             height: {
-                header: '35px'
+                header: '35px',
+                'icon-btn': '40px'
+            },
+
+            opacity: {
+                disable: '0.4',
+                hover: '0.6',
+                active: '0.8'
             },
 
             boxShadow: {
@@ -56,7 +74,7 @@ module.exports = {
                 'text-box': '0 0 0 0.2rem #eff0e0',
                 panel: '0 3px 6px 0 #0000000d',
 
-                errpage: '5px 5px 40px 5px #14380c'
+                errpage: '5px 5px 30px 20px #14380c'
             }
         }
     },
@@ -88,7 +106,8 @@ module.exports = {
                 'loading-gradient-to': '#bcfd02',
 
                 // text
-                'tc-default': '#f2f2f2',
+                'tc-default': '#C8CCD8',
+                'tc-title': '#f2f2f2',
                 'tc-btn': '#fff',
 
                 // header
@@ -115,7 +134,7 @@ module.exports = {
                 'btn-primary': '#1ea97c',
                 'btn-secondary': '#1ea97c',
                 'btn-danger': '#F23645',
-                'btn-close-icon': '#1e222d',
+                'btn-icon': '#1e222d',
 
                 // message
                 'toast-message': '#1e222d',

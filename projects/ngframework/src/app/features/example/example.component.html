@@ -1,4 +1,4 @@
-<div class="flex flex-col mx-auto w-[90vw] max-w-[1366px] p-8 shadow-errpage animation-zoom-in">
+<div class="ex-container animation-zoom-in">
     <div class="flex flex-col p-5 items-center">
         <div class="relative w-fit">
             <img src="../../../../../assets/images/fw-logo.svg" 
@@ -8,28 +8,33 @@
             <img src="../../../../../assets/images/dummy-star.png" 
                 width="50" 
                 height="0"
-                class="self-center absolute top-[-18%] left-[-12%]"
-                style="animation: 1s ease 0s infinite normal none running pulse; rotate: -20deg;">
+                class="logo-sticker top-[-8%] left-[-12%]"
+                style="rotate: -20deg;">
             <img src="../../../../../assets/images/dummy-star.png" 
                 width="50" 
                 height="0"
-                class="self-center absolute top-[5%] left-[49%]"
-                style="animation: 1s ease 0s infinite normal none running pulse">
+                class="logo-sticker top-[13%] left-[49%]">
         </div>
 
-        <h1 class="self-center text-center text-transparent bg-gradient-to-r bg-clip-text from-loading-gradient-fr to-loading-gradient-to text-[40px]">
-            Angular Framework
+        <h1 class="header header-title">
+            Angular
         </h1>
-        <h3 class="self-center text-center text-transparent bg-gradient-to-r bg-clip-text from-loading-gradient-fr to-loading-gradient-to text-[16px]">
+        <h1 class="header header-title">
+            Base Project Framework
+        </h1>
+        <h3 class="header header-info">
            {{ 'EXAMPLE_0001' | translate }}
         </h3>
     </div>
 
+    <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
+
     <div class="flex flex-col gap-y-6">
         <!-- BUTTON/HYPERLINK -->
-        <div class="flex flex-col gap-y-2">
-            <h1 class="text-[20px]">Button/ Hyperlink</h1>
-            <div class="flex items-center gap-x-5">
+        <div class="module">
+            <h1 class="module-title">Button/ Hyperlink</h1>
+            <p class="module-info">Normal</p>
+            <div class="module-btn">
                 <app-button content="Secondary"
                     styleClass="btn-secondary"
                     (onClickAction)="clickButton('Secondary')">
@@ -46,7 +51,9 @@
                     (onActionClick)="clickHyperlink()">
                 </app-hyperlink>
             </div>
-            <div class="flex items-center gap-x-5 mt-4">
+            
+            <p class="module-info mt-4">Disabled</p>
+            <div class="module-btn">
                 <app-button content="Secondary"
                     styleClass="btn-secondary"
                     [disabled]="true"
@@ -68,59 +75,69 @@
             </div>
         </div>
 
+        <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
+
         <!-- DYNAMIC DIALOG -->
-        <div class="flex flex-col gap-y-2">
-            <h1 class="text-[20px]">Dynamic Dialog</h1>
-            <div class="flex items-center gap-x-5">
+        <div class="module">
+            <h1 class="module-title">Dynamic Dialog</h1>
+            <div class="module-btn">
                 <app-button content="Open Dialog A"
                     styleClass="btn-primary"
-                    (onClickAction)="openDialogA()">
+                    (onClickAction)="openDialogA()"
+                    [disabled]="true">
                 </app-button>
                 <app-button content="Open Dialog B"
                     styleClass="btn-primary"
-                    (onClickAction)="openDialogB()">
+                    (onClickAction)="openDialogB()"
+                    [disabled]="true">
                 </app-button>
                 <app-button content="Update Dialog A"
                     styleClass="btn-primary"
-                    (onClickAction)="updateDialogA()">
+                    (onClickAction)="updateDialogA()"
+                    [disabled]="true">
                 </app-button>
                 <app-button content="Remove Dialog A"
                     styleClass="btn-danger"
-                    (onClickAction)="removeDialogA()">
+                    (onClickAction)="removeDialogA()"
+                    [disabled]="true">
                 </app-button>
             </div>
         </div>
         
+        <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
+
         <!-- Error Page -->
-        <div class="flex flex-col gap-y-2 err-page-module">
-            <h1 class="text-[20px]">Error Page</h1>
-            <p class="ml-3">Click on image to redirect to error page</p>
-            <div class="flex flex-row">
+        <div class="module err-page-module">
+            <h1 class="module-title">Error Page</h1>
+            <p class="module-info">Click on image to redirect to error page</p>
+            <div class="module-img">
                 <app-image-view src="../../../assets/images/dummy-error-400.png"
-                    [width]="imgRatio.PreviewMode.width"
-                    [height]="imgRatio.PreviewMode.height"
-                    [fullMode]="false"
+                    [width]="imgRatio.Thumbnail.width"
+                    [height]="imgRatio.Thumbnail.height"
+                    [previewMode]="false"
                     (click)="redirectErrorPage(400)">
                 </app-image-view>
                 <app-image-view src="../../../assets/images/dummy-error-403.png"
-                    [fullMode]="false"
+                    [previewMode]="false"
                     (click)="redirectErrorPage(403)">
                 </app-image-view>
                 <app-image-view src="../../../assets/images/dummy-error-404.png"
-                    [fullMode]="false"
+                    [previewMode]="false"
                     (click)="redirectErrorPage(404)">
                 </app-image-view>
                 <app-image-view src="../../../assets/images/dummy-error-500.png"
-                    [fullMode]="false"
+                    [previewMode]="false"
                     (click)="redirectErrorPage(500)">
                 </app-image-view>
             </div>
         </div>
         
+        <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
+        
         <!-- TOAST MESSAGE -->
-        <div class="flex flex-col gap-y-2">
-            <h1 class="text-[20px]">Toast Message</h1>
-            <div class="flex items-center gap-x-5">
+        <div class="module">
+            <h1 class="module-title">Toast Message</h1>
+            <div class="module-btn">
                 <app-button content="Success"
                     styleClass="btn-primary"
                     (onClickAction)="showMessageToast('success')">
@@ -144,10 +161,12 @@
             </div>
         </div>
     
+        <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
+        
         <!-- DIALOG MESSAGE -->
-        <div class="flex flex-col gap-y-2">
-            <h1 class="text-[20px]">Dialog Message</h1>
-            <div class="flex items-center gap-x-5">
+        <div class="module">
+            <h1 class="module-title">Dialog Message</h1>
+            <div class="module-btn">
                 <app-button content="Success"
                     styleClass="btn-primary"
                     (onClickAction)="showMessageDialog('success')">
@@ -175,10 +194,12 @@
             </div>
         </div>
 
+        <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
+        
         <!-- LOADING/ SPLASH SCREEN -->
-        <div class="flex flex-col gap-y-2">
-            <h1 class="text-[20px]">Loading/ Splash Screen</h1>
-            <div class="flex items-center gap-x-5">
+        <div class="module">
+            <h1 class="module-title">Loading/ Splash Screen</h1>
+            <div class="module-btn">
                 <app-button content="Loading"
                     styleClass="btn-primary"
                     (onClickAction)="showLoadingSplashScreen(true)">
@@ -190,20 +211,27 @@
             </div>
         </div>
 
-           <!-- Image Preview/ Full Mode -->
-        <div class="flex flex-col gap-y-2">
-            <h1 class="text-[20px]">Image Preview/ Full Mode</h1>
-            <p class="ml-3">You can view image at full mode by clicking on image.</p>
-            <app-image-view src="../../../assets/images/dummy-angular.png"
-                [width]="imgRatio.PreviewMode.width"
-                [height]="imgRatio.PreviewMode.height">
-            </app-image-view>
+        <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
+        
+        <!-- IMAGE THUMBNAIL/ PREVIEW MODE -->
+        <div class="module">
+            <h1 class="module-title">Image Thumbnail/ Preview Mode</h1>
+            <p class="module-info">You can view image at preview mode by clicking on image.</p>
+            <div class="module-img">
+                <app-image-carousel [images]="thumbnailImages"
+                    [numVisible]="2"
+                    [numScroll]="1"
+                    [circular]="false">
+                </app-image-carousel>
+            </div>
         </div>
 
+        <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
+        
         <!-- WRITE LOG -->
-        <div class="flex flex-col gap-y-2">
-            <h1 class="text-[20px]">Write/ Push Log</h1>
-            <div class="flex items-center gap-x-5">
+        <div class="module">
+            <h1 class="module-title">Write/ Push Log</h1>
+            <div class="module-btn">
                 <app-button content="Write Log"
                     styleClass="btn-primary"
                     [disabled]="true">
@@ -219,10 +247,12 @@
             </div>
         </div>
 
+        <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
+        
         <!-- DYNAMIC TAB -->
-        <div class="flex flex-col gap-y-2">
-            <h1 class="text-[20px]">Dynamic Tab</h1>
-            <div class="flex items-center gap-x-5">
+        <div class="module">
+            <h1 class="module-title">Dynamic Tab</h1>
+            <div class="module-btn">
                 <app-button content="Show Tab"
                     styleClass="btn-primary"
                     [disabled]="true">
@@ -230,10 +260,12 @@
             </div>
         </div>
 
+        <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
+        
         <!-- EXPORT PDF -->
-        <div class="flex flex-col gap-y-2">
-            <h1 class="text-[20px]">Export PDF</h1>
-            <div class="flex items-center gap-x-5">
+        <div class="module">
+            <h1 class="module-title">Export PDF</h1>
+            <div class="module-btn">
                 <app-button content="Export"
                     styleClass="btn-primary"
                     [disabled]="true">
@@ -241,10 +273,12 @@
             </div>
         </div>
 
+        <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
+        
          <!-- COMMUNICATE SERVER -->
-         <div class="flex flex-col gap-y-2">
-            <h1 class="text-[20px]">Communicate Server</h1>
-            <div class="flex items-center gap-x-5">
+         <div class="module">
+            <h1 class="module-title">Communicate Server</h1>
+            <div class="module-btn">
                 <app-button content="API"
                     styleClass="btn-primary"
                     [disabled]="true">
@@ -260,10 +294,12 @@
             </div>
         </div>
 
+        <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
+        
         <!-- DYNAMIC TABLE -->
-        <div class="flex flex-col gap-y-2">
-            <h1 class="text-[20px]">Dynamic Table</h1>
-            <div class="flex items-center gap-x-5">
+        <div class="module">
+            <h1 class="module-title">Dynamic Table</h1>
+            <div class="module-btn">
                 <app-button content="Static Table"
                     styleClass="btn-primary"
                     [disabled]="true">
@@ -275,10 +311,12 @@
             </div>
         </div>
 
+        <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
+        
         <!-- CREATE FORM -->
-        <div class="flex flex-col gap-y-2">
-            <h1 class="text-[20px]">Create Form</h1>
-            <div class="flex items-center gap-x-5">
+        <div class="module">
+            <h1 class="module-title">Create Form</h1>
+            <div class="module-btn">
                 <app-button content="Create Form"
                     styleClass="btn-primary"
                     [disabled]="true">
@@ -286,4 +324,14 @@
             </div>
         </div>
     </div>
+
+    <div class="flex flex-col pt-5 items-center">
+        <h1 class="header header-title">
+            The end - Thank you.
+        </h1>
+    </div>
 </div>
+
+<ng-template #lineModule>
+    <img class="module-line" src="../../../assets/images/dummy-line.svg">
+</ng-template>

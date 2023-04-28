@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { cloneDeep } from 'lodash';
 import { takeUntil } from 'rxjs';
 
 import { BaseComponent } from '../../core/components/base.component';
@@ -11,6 +12,7 @@ import { MessageToastService } from '../../core/components/message-toast/message
 import { SplashScreenService } from '../../core/components/splash-screen/splash-screen.service';
 import { CommonConstant } from '../../core/constants/common.const';
 import { DialogInfo } from '../../core/models/common.model';
+import { ImageView } from '../../core/models/image.model';
 import { GlobalState } from '../../core/models/state.model';
 import { GlobalStateService } from '../../core/services/state-manager/component-store/global-state.service';
 import { GlobalVariables } from '../../core/utils/global-variables.ultility';
@@ -27,6 +29,7 @@ import { DialogBComponent } from './dialog-b/dialog-b.component';
 })
 export class ExampleComponent extends BaseComponent {
     imgRatio = CommonConstant.ImageRatio;
+    thumbnailImages: ImageView[] = [];
 
     constructor(
         private dialogService: DialogManagerService,
@@ -37,7 +40,8 @@ export class ExampleComponent extends BaseComponent {
         private translateService: TranslateService,
         private LoadingService: LoadingService,
         private splashScreenService: SplashScreenService,
-        private router: Router
+        private router: Router,
+        private cdr: ChangeDetectorRef
     ) {
         super('Example Page');
 
@@ -46,6 +50,16 @@ export class ExampleComponent extends BaseComponent {
                 console.log(res);
             }
         });
+
+        for (let i = 0; i < 20; i++) {
+            this.thumbnailImages.push({
+                src: '../../../assets/images/dummy-angular.png',
+                width: CommonConstant.ImageRatio.Thumbnail.width,
+                height: CommonConstant.ImageRatio.Thumbnail.width
+            });
+        }
+        this.thumbnailImages = cloneDeep(this.thumbnailImages);
+        this.cdr.markForCheck();
     }
 
     clickButton(type: 'Primary' | 'Secondary' | 'Danger') {

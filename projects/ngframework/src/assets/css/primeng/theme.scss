@@ -2813,26 +2813,28 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
 
 .p-carousel .p-carousel-content .p-carousel-prev,
 .p-carousel .p-carousel-content .p-carousel-next {
-    width: 2rem;
-    height: 2rem;
-    color: rgba(255, 255, 255, 0.6);
     border: 0 none;
-    background: transparent;
     border-radius: 50%;
     transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
     margin: 0.5rem;
+
+    @apply bg-btn-icon text-tc-btn w-icon-btn h-icon-btn;
 }
 .p-carousel .p-carousel-content .p-carousel-prev:enabled:hover,
 .p-carousel .p-carousel-content .p-carousel-next:enabled:hover {
-    color: rgba(255, 255, 255, 0.87);
-    border-color: transparent;
-    background: rgba(255, 255, 255, 0.03);
+    @apply opacity-hover;
+}
+.p-carousel .p-carousel-content .p-carousel-prev:enabled:active,
+.p-carousel .p-carousel-content .p-carousel-next:enabled:active {
+    @apply opacity-active;
 }
 .p-carousel .p-carousel-content .p-carousel-prev:focus,
 .p-carousel .p-carousel-content .p-carousel-next:focus {
-    outline: 0 none;
-    outline-offset: 0;
-    box-shadow: 0 0 0 1px #e0d8fc;
+    @apply ring-0;
+}
+.p-carousel .p-carousel-content .p-carousel-prev:focus-visible,
+.p-carousel .p-carousel-content .p-carousel-next:focus-visible {
+    @apply ring-2;
 }
 .p-carousel .p-carousel-indicators {
     padding: 1rem;
