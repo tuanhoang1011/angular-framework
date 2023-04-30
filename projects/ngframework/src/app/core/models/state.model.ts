@@ -15,6 +15,10 @@ export interface LoadingState {
     splashScreen?: boolean;
 }
 
+export interface LayoutState {
+    expandSidebar?: boolean;
+}
+
 export interface DialogManagerState {
     dialogs?: DialogInfo[];
     openedDialog?: DialogInfo;

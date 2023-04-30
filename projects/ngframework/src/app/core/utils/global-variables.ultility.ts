@@ -5,6 +5,7 @@ export class GlobalVariables {
     static messageLifeTimeMilSecond = 3000;
     static version = '';
     static defaultLanguage = CommonConstant.Language.English.sortLabel;
+    static defaultTheme = CommonConstant.Theme.Light.label;
     static logMaxBundleSize = 500;
     static requestHTTPTimeoutMilSecond = 60000;
     static autoSignOutIntervalMilSecond = 2000;
@@ -13,6 +14,7 @@ export class GlobalVariables {
     static imageCarouselNumVisible = 5;
     // other
     static language = CommonConstant.Language.English.sortLabel;
+    static theme = CommonConstant.Theme.Light.label;
     static pendingAutoSignOut = false;
     static isMobile =
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||

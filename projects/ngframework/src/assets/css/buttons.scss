@@ -1,10 +1,6 @@
 .btn {
     @apply text-tc-btn h-[35px] outline-none rounded-[18px] text-fs-default border-[2px] min-w-[120px] px-[10px];
     @apply hover:opacity-hover active:opacity-active focus-visible:ring-2;
-
-    &:disabled {
-        @apply opacity-disable cursor-default pointer-events-none;
-    }
 }
 
 .btn-primary {

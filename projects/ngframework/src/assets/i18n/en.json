@@ -39,5 +39,8 @@
     "LBL_0001": "Male",
     "LBL_0002": "Female",
     "LBL_0003": "Active",
-    "LBL_0004": "Inactive"
+    "LBL_0004": "Inactive",
+    "LBL_0005": "Profile",
+    "LBL_0006": "Sign in",
+    "LBL_0007": "Sign out"
 }

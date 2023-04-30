@@ -4,5 +4,6 @@ export enum FormatTextType {
     Time,
     DateTime,
     Gender,
-    ShortNumber
+    ShortNumber,
+    Language
 }

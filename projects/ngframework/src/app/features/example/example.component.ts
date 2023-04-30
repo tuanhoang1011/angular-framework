@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulatio
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { cloneDeep } from 'lodash';
+import { environment } from 'projects/ngframework/src/environments/environment';
 import { takeUntil } from 'rxjs';
 
 import { BaseComponent } from '../../core/components/base.component';
@@ -15,6 +16,7 @@ import { DialogInfo } from '../../core/models/common.model';
 import { ImageView } from '../../core/models/image.model';
 import { GlobalState } from '../../core/models/state.model';
 import { GlobalStateService } from '../../core/services/state-manager/component-store/global-state.service';
+import { IndexedDBService } from '../../core/services/storage/indexed-db.service';
 import { GlobalVariables } from '../../core/utils/global-variables.ultility';
 import { DialogAComponent } from './dialog-a/dialog-a.component';
 import { DialogAService } from './dialog-a/dialog-a.service';
@@ -40,6 +42,7 @@ export class ExampleComponent extends BaseComponent {
         private translateService: TranslateService,
         private LoadingService: LoadingService,
         private splashScreenService: SplashScreenService,
+        private indexedDBService: IndexedDBService,
         private router: Router,
         private cdr: ChangeDetectorRef
     ) {
@@ -249,5 +252,32 @@ export class ExampleComponent extends BaseComponent {
                 this.splashScreenService.hide();
             }
         }, GlobalVariables.splashScreenDurationMilSecond);
+    }
+
+    processLog(type: 'write' | 'push' | 'clear') {
+        switch (type) {
+            case 'write':
+                let msg = 'Log function has:\n';
+                msg += '+ 7 levels: All, Error, Operation, Info, Warn, Debug, Off\n';
+                msg += '+ 2 type: Action, Error\n';
+                msg +=
+                    '+ 7 sub type: Hyperlink, Button, Table Item Selection, Menu, Screen Transittion, API Error, Exception\n';
+                msg +=
+                    '+ Logs will write to indexed db of browser (Open Developer Tools -> Application -> Indexed DB)\n';
+                msg +=
+                    '+ Example: If you click on any button. A log information includes Operation (Level), Action (Type), Button (Sub type) will be saved into Indexed DB.\n';
+                msg += '+ If you want more information. Please check source code: LogService (log.service.ts)';
+                this.msgDialogService.info(msg);
+                break;
+
+            case 'push':
+                this.msgDialogService.info('The time that you push log to server will depend on your requirements.');
+                break;
+
+            case 'clear':
+                this.indexedDBService.clear(environment.storage.indexedDB.log.objectStore);
+                this.msgDialogService.info('Current logs are cleared. Please check Indexed DB.');
+                break;
+        }
     }
 }

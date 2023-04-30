@@ -1,0 +1,17 @@
+<div class="sidebar-container"
+    [ngClass]="{
+        expanded: expanded
+    }">
+    <div class="sidebar-nav">
+        <!-- <app-menu [menus]="navMenu"
+            styleClass="sidebar-nav-menu"
+            subMenuStyleClass="sidebar-nav-submenu">
+        </app-menu> -->
+    </div>
+    <div *ngIf="expanded"
+        class="sidebar-info">
+        <span class="gradient-1">
+            {{ env.version }}
+        </span>
+    </div>
+</div>

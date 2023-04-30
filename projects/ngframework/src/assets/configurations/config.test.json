@@ -2,6 +2,7 @@
     "messageLifeTimeMilSecond": 3000,
     "version": "2023.2104.1",
     "defaultLanguage": "en",
+    "defaultTheme": "dark",
     "logMaxBundleSize": 500,
     "requestHTTPTimeoutMilSecond": 60000,
     "autoSignOutIntervalMilSecond": 2000,

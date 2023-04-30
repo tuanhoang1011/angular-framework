@@ -1,9 +1,15 @@
 export const CommonConstant = {
+    WebSite: 'Tnet',
     NA: 'N/A',
 
     Language: {
         English: { value: 0, label: 'English', sortLabel: 'en' },
         Vietnamese: { value: 1, label: 'Tiếng Việt', sortLabel: 'vn' }
+    },
+
+    Theme: {
+        Light: { value: 0, label: 'light' },
+        Dark: { value: 1, label: 'dark' }
     },
 
     Gender: [

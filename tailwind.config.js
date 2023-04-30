@@ -33,12 +33,16 @@ module.exports = {
             },
 
             minWidth: {
-                support: '1366px',
+                support: '1200px',
+                'sidebar-expand': '220px',
+                'sidebar-collapse': '60px',
                 'icon-btn': '40px'
             },
 
             maxWidth: {
-                support: '1920px',
+                support: '1200px',
+                'sidebar-expand': '220px',
+                'sidebar-collapse': '60px',
                 'icon-btn': '40px'
             },
 
@@ -57,7 +61,8 @@ module.exports = {
             },
 
             height: {
-                header: '35px',
+                header: '48px',
+                sidebar: 'calc(100vh - 48px)', // minus header height
                 'icon-btn': '40px'
             },
 
@@ -65,6 +70,10 @@ module.exports = {
                 disable: '0.4',
                 hover: '0.6',
                 active: '0.8'
+            },
+
+            borderRadius: {
+                default: '10px'
             },
 
             boxShadow: {
@@ -91,9 +100,9 @@ module.exports = {
     },
     plugins: [
         createThemes({
-            default: {
+            light: {
                 // common
-                body: '#000',
+                body: '#fff',
                 primary: '#1ea97c',
                 secondary: '#a0a3ad',
                 danger: '#F23645',
@@ -138,6 +147,59 @@ module.exports = {
 
                 // message
                 'toast-message': '#1e222d',
+                success: '#1ea97c',
+                warn: '#cc8925',
+                error: '#FC6161',
+                info: '#696cff',
+                confirm: '#50535e',
+
+                // scrollbar
+                scrollbar: '#50535e',
+                'scrollbar-hover': '#465268'
+            },
+            dark: {
+                // common
+                'body-primary': '#000',
+                'body-secondary': '#1e222d',
+                primary: '#1ea97c',
+                secondary: '#a0a3ad',
+                danger: '#F23645',
+                border: '#50535e',
+                hyperlink: '#1ea97c',
+
+                // loading
+                mask: '#1e222dcc',
+                'loading-gradient-fr': '#00f0fc',
+                'loading-gradient-to': '#bcfd02',
+
+                // text
+                'tc-default': '#C8CCD8',
+                'tc-title': '#f2f2f2',
+                'tc-btn': '#fff',
+
+                // header
+                'header-menu': '#707070',
+                'header-submenu': '#707070',
+
+                // sidebar
+                'sidebar-menu': '#707070',
+                'sidebar-submenu': '#707070',
+
+                // footer
+                'footer-menu': '#707070',
+                'footer-submenu': '#707070',
+
+                // dialog
+                'dialog-header': '#707070',
+                'dialog-content': '#707070',
+
+                // button
+                'btn-primary': '#1ea97c',
+                'btn-secondary': '#1ea97c',
+                'btn-danger': '#F23645',
+                'btn-icon': '#1e222d',
+
+                // message
                 success: '#1ea97c',
                 warn: '#cc8925',
                 error: '#FC6161',

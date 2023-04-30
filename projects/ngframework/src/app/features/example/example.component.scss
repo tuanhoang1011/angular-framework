@@ -13,7 +13,7 @@
 }
 
 .ex-container {
-    @apply flex flex-col mx-auto w-[90vw] max-w-[1366px] p-8 shadow-errpage rounded-[28px];
+    @apply flex flex-col mx-auto max-w-[90%] p-8 shadow-errpage rounded-[28px];
 
     .logo {
         &-sticker {
@@ -23,7 +23,7 @@
     }
 
     .header {
-        @apply self-center text-center text-transparent bg-gradient-to-r bg-clip-text from-loading-gradient-fr to-loading-gradient-to;
+        @apply self-center text-center;
 
         &-title {
             @apply text-[40px] leading-[50px];
@@ -39,7 +39,7 @@
     }
 
     .module {
-        @apply flex flex-col gap-y-2 rounded-[15px] bg-[#1f232e66] px-7 py-5;
+        @apply flex flex-col gap-y-2 rounded-default bg-[#1f232e66] px-7 py-5;
 
         &-title {
             @apply text-[20px] mb-2 text-tc-title;
