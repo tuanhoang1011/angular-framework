@@ -89,6 +89,13 @@ export class FormatTextPipe implements PipeTransform {
                     return '';
                 }
 
+            case FormatTextType.Language:
+                try {
+                    return data.toUpperCase();
+                } catch (error) {
+                    return '';
+                }
+
             default:
                 return data;
         }

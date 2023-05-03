@@ -1,28 +1,28 @@
 <div class="ex-container animation-zoom-in">
     <div class="flex flex-col p-5 items-center">
         <div class="relative w-fit">
-            <img src="../../../../../assets/images/fw-logo.svg" 
-                width="200" 
+            <img src="../../../../../assets/images/fw-logo.svg"
+                width="200"
                 height="0"
                 class="self-center">
-            <img src="../../../../../assets/images/dummy-star.png" 
-                width="50" 
+            <img src="../../../../../assets/images/dummy-star.png"
+                width="50"
                 height="0"
                 class="logo-sticker top-[-8%] left-[-12%]"
                 style="rotate: -20deg;">
-            <img src="../../../../../assets/images/dummy-star.png" 
-                width="50" 
+            <img src="../../../../../assets/images/dummy-star.png"
+                width="50"
                 height="0"
                 class="logo-sticker top-[13%] left-[49%]">
         </div>
 
-        <h1 class="header header-title">
+        <h1 class="header header-title gradient-1">
             Angular
         </h1>
-        <h1 class="header header-title">
+        <h1 class="header header-title gradient-1">
             Base Project Framework
         </h1>
-        <h3 class="header header-info">
+        <h3 class="header header-info gradient-1">
            {{ 'EXAMPLE_0001' | translate }}
         </h3>
     </div>
@@ -51,7 +51,7 @@
                     (onActionClick)="clickHyperlink()">
                 </app-hyperlink>
             </div>
-            
+
             <p class="module-info mt-4">Disabled</p>
             <div class="module-btn">
                 <app-button content="Secondary"
@@ -103,7 +103,7 @@
                 </app-button>
             </div>
         </div>
-        
+
         <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
 
         <!-- Error Page -->
@@ -131,9 +131,9 @@
                 </app-image-view>
             </div>
         </div>
-        
+
         <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
-        
+
         <!-- TOAST MESSAGE -->
         <div class="module">
             <h1 class="module-title">Toast Message</h1>
@@ -160,9 +160,9 @@
                 </app-button>
             </div>
         </div>
-    
+
         <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
-        
+
         <!-- DIALOG MESSAGE -->
         <div class="module">
             <h1 class="module-title">Dialog Message</h1>
@@ -188,14 +188,14 @@
                     (onClickAction)="showMessageDialog('confirm')">
                 </app-button>
                 <app-button content="Custom"
-                    styleClass="btn-primary !bg-dialog !border-dialog"
+                    styleClass="btn-primary !bg-body-secondary !border-body-secondary"
                     (onClickAction)="showMessageDialog('custom')">
                 </app-button>
             </div>
         </div>
 
         <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
-        
+
         <!-- LOADING/ SPLASH SCREEN -->
         <div class="module">
             <h1 class="module-title">Loading/ Splash Screen</h1>
@@ -212,7 +212,7 @@
         </div>
 
         <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
-        
+
         <!-- IMAGE THUMBNAIL/ PREVIEW MODE -->
         <div class="module">
             <h1 class="module-title">Image Thumbnail/ Preview Mode</h1>
@@ -227,28 +227,28 @@
         </div>
 
         <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
-        
+
         <!-- WRITE LOG -->
         <div class="module">
             <h1 class="module-title">Write/ Push Log</h1>
             <div class="module-btn">
                 <app-button content="Write Log"
                     styleClass="btn-primary"
-                    [disabled]="true">
+                    (onClickAction)="processLog('write')">
                 </app-button>
                 <app-button content="Push Logs"
                     styleClass="btn-primary"
-                    [disabled]="true">
+                    (onClickAction)="processLog('push')">
                 </app-button>
                 <app-button content="Clear Logs"
                     styleClass="btn-danger"
-                    [disabled]="true">
+                    (onClickAction)="processLog('clear')">
                 </app-button>
             </div>
         </div>
 
         <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
-        
+
         <!-- DYNAMIC TAB -->
         <div class="module">
             <h1 class="module-title">Dynamic Tab</h1>
@@ -261,7 +261,7 @@
         </div>
 
         <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
-        
+
         <!-- EXPORT PDF -->
         <div class="module">
             <h1 class="module-title">Export PDF</h1>
@@ -274,7 +274,7 @@
         </div>
 
         <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
-        
+
          <!-- COMMUNICATE SERVER -->
          <div class="module">
             <h1 class="module-title">Communicate Server</h1>
@@ -295,7 +295,7 @@
         </div>
 
         <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
-        
+
         <!-- DYNAMIC TABLE -->
         <div class="module">
             <h1 class="module-title">Dynamic Table</h1>
@@ -312,7 +312,7 @@
         </div>
 
         <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
-        
+
         <!-- CREATE FORM -->
         <div class="module">
             <h1 class="module-title">Create Form</h1>
@@ -323,12 +323,6 @@
                 </app-button>
             </div>
         </div>
-    </div>
-
-    <div class="flex flex-col pt-5 items-center">
-        <h1 class="header header-title">
-            The end - Thank you.
-        </h1>
     </div>
 </div>
 

@@ -3,6 +3,7 @@ import {
     Component,
     HostListener,
     OnInit,
+    Renderer2,
     ViewChild,
     ViewContainerRef,
     ViewEncapsulation,
@@ -15,15 +16,18 @@ import { takeUntil } from 'rxjs';
 
 import { environment } from '../environments/environment';
 import { BaseComponent } from './core/components/base.component';
+import { HeaderService } from './core/components/layout/header/header.service';
 import { LoadingService } from './core/components/loading/loading.service';
 import { SplashScreenService } from './core/components/splash-screen/splash-screen.service';
 import { LogActiveScreen, LogSubType, LogType } from './core/constants/log.const';
+import { StorageKey } from './core/constants/storage-key.const';
 import { AppRoutes } from './core/routers/app.routes';
 import { AuthBaseService } from './core/services/auth/auth-base.service';
 import { AutoSignOutService } from './core/services/auth/auto-signout.service';
 import { ConfigService } from './core/services/common/config.service';
 import { LogService } from './core/services/log/log.service';
 import { GlobalStateService } from './core/services/state-manager/component-store/global-state.service';
+import { LocalStorageService } from './core/services/storage/local-storage.service';
 import { isNullOrUndefined } from './core/utils/common-func.ultility';
 import { GlobalVariables } from './core/utils/global-variables.ultility';
 
@@ -50,7 +54,9 @@ export class AppComponent extends BaseComponent implements OnInit {
     }
 
     constructor(
+        private headerService: HeaderService,
         private router: Router,
+        private renderer2: Renderer2,
         private loadingService: LoadingService,
         private translateService: TranslateService,
         private primeNGConfig: PrimeNGConfig,
@@ -59,7 +65,8 @@ export class AppComponent extends BaseComponent implements OnInit {
         private authService: AuthBaseService,
         private globalStateService: GlobalStateService,
         private logService: LogService,
-        private splashScreenService: SplashScreenService
+        private splashScreenService: SplashScreenService,
+        private localStorageService: LocalStorageService
     ) {
         super();
 
@@ -69,12 +76,7 @@ export class AppComponent extends BaseComponent implements OnInit {
 
             // get config from local file
             this.configService.loadConfig(this.destroy$).then(() => {
-                this.translateService.setDefaultLang(GlobalVariables.defaultLanguage);
-                this.translateService.get('primeng').subscribe((res) => this.primeNGConfig.setTranslation(res));
-
-                setTimeout(() => {
-                    this.splashScreenService.hide();
-                }, GlobalVariables.splashScreenDurationMilSecond);
+                this.applyConfig();
             });
         } catch (error) {
             throw error;
@@ -145,4 +147,34 @@ export class AppComponent extends BaseComponent implements OnInit {
             throw error;
         }
     };
+
+    private applyConfig() {
+        setTimeout(() => {
+            this.splashScreenService.hide();
+        }, GlobalVariables.splashScreenDurationMilSecond);
+
+        let language = this.localStorageService.get(StorageKey.Language);
+        let theme = this.localStorageService.get(StorageKey.Theme);
+
+        if (language === '') {
+            this.localStorageService.set(StorageKey.Language, GlobalVariables.defaultLanguage);
+            language = GlobalVariables.defaultLanguage;
+        }
+
+        if (theme === '') {
+            this.localStorageService.set(StorageKey.Theme, GlobalVariables.defaultTheme);
+            theme = GlobalVariables.defaultTheme;
+        }
+
+        GlobalVariables.language = language;
+        GlobalVariables.theme = theme;
+
+        this.translateService.setDefaultLang(GlobalVariables.language);
+        this.translateService
+            .get('primeng')
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((res) => this.primeNGConfig.setTranslation(res));
+
+        this.headerService.setTheme('', theme, this.renderer2);
+    }
 }

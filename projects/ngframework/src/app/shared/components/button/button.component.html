@@ -1,5 +1,8 @@
 <button
-  [ngClass]="'btn ' + styleClass"
+  [class]="'btn ' + styleClass"
+  [ngClass]="{
+      'app-disabled': disabled
+  }"
   [disabled]="disabled"
   (pointerdown)="clickAction($event)"
   (keyup)="clickAction($event)"

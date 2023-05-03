@@ -13,5 +13,5 @@ import { SplashScreenService } from '../../splash-screen/splash-screen.service';
 export class PublicComponent extends BaseComponent {
     constructor(public splashScreenService: SplashScreenService) {
         super();
-    }
+       }
 }

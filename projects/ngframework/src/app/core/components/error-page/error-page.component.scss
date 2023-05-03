@@ -1,5 +1,5 @@
 .errpage-container {
-    @apply flex items-center justify-center h-[100vh];
+    @apply flex items-center justify-center h-screen;
 
     .errpage-child-1 {
         @apply max-w-[80%] w-[800px] h-[600px] shadow-errpage rounded-[5%] px-[50px] py-[50px];

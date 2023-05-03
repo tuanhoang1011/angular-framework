@@ -3,6 +3,8 @@ export default {
     prefix: 'prefix',
     production: true,
     debugMode: false,
+    env: '',
+    version: '',
     wsConfig: {
         wsUrl: 'ws://localhost:8181',
         reconnectInterval: 2000, // 2s

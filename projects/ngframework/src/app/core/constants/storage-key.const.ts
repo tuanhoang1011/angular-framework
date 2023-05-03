@@ -4,6 +4,7 @@ export const StorageKey = {
     AutoSignOutState: 'auto-sign-out-state',
     UserProfile: 'user-profile',
     Language: 'language',
+    Theme: 'theme',
 
     AutoSignoutTime: 'auto-signout-time',
 

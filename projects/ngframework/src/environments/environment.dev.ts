@@ -4,5 +4,6 @@ export const environment = {
     ...base,
     production: false,
     debugMode: true,
-    env: 'dev'
+    env: 'dev',
+    version: '2305.4.1'
 };

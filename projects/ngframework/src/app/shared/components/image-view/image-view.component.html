@@ -4,14 +4,14 @@
     }"
     (click)="clickImage()">
     <img [src]="src"
-        class="rounded-[15px]"
+        class="rounded-default"
         [width]="width"
         [height]="height"
         [class]="styleClass"
         [alt]="alt">
 </div>
 
-<div *ngIf="isShowingPreview" 
+<div *ngIf="isShowingPreview"
     id="img-preview"
     class="img-preview-container"
     (click)="clickOutside($event)">
@@ -47,7 +47,7 @@
 
     <div #previewImg class="preview-img">
         <img imageRatio
-            class="rounded-[15px]"
+            class="rounded-default"
             [src]="src"
             [width]="imgRatio.Preview.width"
             [height]="imgRatio.Preview.height"
