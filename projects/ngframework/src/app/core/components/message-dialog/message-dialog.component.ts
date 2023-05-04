@@ -58,4 +58,12 @@ export class MessageDialogComponent {
             throw error;
         }
     }
+
+    msgByKey(index, msg) {
+        return msg.key;
+    }
+
+    actionByLabel(index, action) {
+        return action.label;
+    }
 }

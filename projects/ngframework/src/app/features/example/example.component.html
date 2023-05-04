@@ -30,6 +30,16 @@
     <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
 
     <div class="flex flex-col gap-y-6">
+        <!-- BREADCRUMB -->
+        <div class="module">
+            <h1 class="module-title">Breadcrumb</h1>
+            <div class="module-btn">
+                <app-breadcrumb></app-breadcrumb>
+            </div>
+        </div>
+
+        <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
+
         <!-- BUTTON/HYPERLINK -->
         <div class="module">
             <h1 class="module-title">Button/ Hyperlink</h1>
@@ -253,10 +263,14 @@
         <div class="module">
             <h1 class="module-title">Dynamic Tab</h1>
             <div class="module-btn">
-                <app-button content="Show Tab"
-                    styleClass="btn-primary"
-                    [disabled]="true">
-                </app-button>
+                <app-dynamic-tab-view class="w-full"
+                    [items]="tabItems"
+                    [queryParamKey]="'tab'"
+                    styleClass="dynamic-tab">
+                    <ng-template appTemplate="tab1"><app-component1></app-component1></ng-template>
+                    <ng-template appTemplate="tab2"><app-component2></app-component2></ng-template>
+                    <ng-template appTemplate="tab3"><app-component3></app-component3></ng-template>
+                </app-dynamic-tab-view>
             </div>
         </div>
 
@@ -268,7 +282,7 @@
             <div class="module-btn">
                 <app-button content="Export"
                     styleClass="btn-primary"
-                    [disabled]="true">
+                    (onClickAction)="exportPDF()">
                 </app-button>
             </div>
         </div>

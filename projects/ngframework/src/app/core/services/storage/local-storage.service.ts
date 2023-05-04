@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { isEmpty } from 'lodash';
 import { environment } from 'projects/ngframework/src/environments/environment';
 
-import { StorageItem } from '../../models/storage-item.model';
+import { StorageItem } from '../../models/item.model';
 
 @Injectable({ providedIn: 'root' })
 export class LocalStorageService {

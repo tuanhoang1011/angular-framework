@@ -16,6 +16,9 @@ export class GlobalVariables {
     static language = CommonConstant.Language.English.sortLabel;
     static theme = CommonConstant.Theme.Light.label;
     static pendingAutoSignOut = false;
+    static standardSize = {
+        heightDialog: 590
+    };
     static isMobile =
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
         (/Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints > 1);

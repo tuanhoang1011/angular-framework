@@ -4496,29 +4496,21 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
     border: solid #3e4053;
     border-width: 0 0 2px 0;
     border-color: transparent transparent #3e4053 transparent;
-    background: #282936;
-    color: rgba(255, 255, 255, 0.6);
     padding: 1.25rem;
     font-weight: 700;
-    border-top-right-radius: 6px;
-    border-top-left-radius: 6px;
     transition: box-shadow 0.2s;
     margin: 0 0 -2px 0;
+
+    @apply bg-body-secondary rounded-t-default;
 }
-.p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus {
-    outline: 0 none;
-    outline-offset: 0;
-    box-shadow: inset 0 0 0 1px #e0d8fc;
+.p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus-visible {
+    @apply ring-1;
 }
 .p-tabview .p-tabview-nav li:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link {
-    background: #282936;
-    border-color: #b19df7;
-    color: rgba(255, 255, 255, 0.87);
+    @apply bg-opacity-hover border-primary;
 }
 .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
-    background: #282936;
-    border-color: #b19df7;
-    color: #b19df7;
+    @apply bg-body-secondary text-primary border-primary;
 }
 .p-tabview .p-tabview-left-icon {
     margin-right: 0.5rem;
@@ -4543,12 +4535,10 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
     box-shadow: inset 0 0 0 1px #e0d8fc;
 }
 .p-tabview .p-tabview-panels {
-    background: #282936;
     padding: 1.25rem;
     border: 0 none;
-    color: rgba(255, 255, 255, 0.87);
-    border-bottom-right-radius: 6px;
-    border-bottom-left-radius: 6px;
+
+    @apply bg-body-secondary rounded-b-default;
 }
 
 .p-toolbar {
@@ -6469,7 +6459,7 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
 }
 
 .p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {
-    background-color: #b19df7;
+    @apply bg-primary;
 }
 
 .p-galleria .p-galleria-indicators .p-galleria-indicator.p-highlight button {

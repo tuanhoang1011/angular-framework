@@ -1,5 +1,5 @@
 <ul [class]="'menu ' + styleClass">
-    <li *ngFor="let menu of menus"
+    <li *ngFor="let menu of menus; trackBy: menuById"
         [id]="menu.id"
         [class]="'text-hover ' + menu.styleClass"
         [ngClass]="{
@@ -19,7 +19,7 @@
 
         <ul *ngIf="menu.subMenu && menu.subMenu.length > 0"
             [class]="'submenu-dropdown ' + subMenuStyleClass">
-            <li *ngFor="let sub of menu.subMenu"
+            <li *ngFor="let sub of menu.subMenu; trackBy: subMenuById"
                 [id]="sub.id"
                 [class]="'text-hover ' + sub.styleClass"
                 [ngClass]="{

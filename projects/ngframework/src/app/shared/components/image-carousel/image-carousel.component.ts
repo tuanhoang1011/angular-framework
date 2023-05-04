@@ -10,7 +10,7 @@ import {
     ViewEncapsulation,
 } from '@angular/core';
 
-import { ImageView } from '../../../core/models/image.model';
+import { ImageItem } from '../../../core/models/item.model';
 import { GlobalVariables } from '../../../core/utils/global-variables.ultility';
 
 @Component({
@@ -21,7 +21,7 @@ import { GlobalVariables } from '../../../core/utils/global-variables.ultility';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ImageCarouselComponent {
-    @Input() images: ImageView[] = [];
+    @Input() images: ImageItem[] = [];
     @Input() circular: boolean = false;
     @Input() numScroll: number = 1;
     @Input() numVisible: number = GlobalVariables.imageCarouselNumVisible;

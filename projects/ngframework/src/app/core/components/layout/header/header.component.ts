@@ -7,7 +7,7 @@ import { environment } from 'projects/ngframework/src/environments/environment';
 import { CommonConstant } from '../../../constants/common.const';
 import { StorageKey } from '../../../constants/storage-key.const';
 import { FormatTextType } from '../../../enums/format-text.enum';
-import { MenuItem } from '../../../models/menu.model';
+import { MenuItem } from '../../../models/item.model';
 import { LocalStorageService } from '../../../services/storage/local-storage.service';
 import { GlobalVariables } from '../../../utils/global-variables.ultility';
 import { BaseComponent } from '../../base.component';
