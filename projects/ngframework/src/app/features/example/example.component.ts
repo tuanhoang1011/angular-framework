@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import * as wjPdf from '@grapecity/wijmo.pdf';
 import { TranslateService } from '@ngx-translate/core';
 import { cloneDeep } from 'lodash';
 import { environment } from 'projects/ngframework/src/environments/environment';
@@ -7,14 +8,17 @@ import { takeUntil } from 'rxjs';
 
 import { BaseComponent } from '../../core/components/base.component';
 import { DialogManagerService } from '../../core/components/dialog-manager/dialog-manager.service';
+import { BreadcrumbService } from '../../core/components/layout/breadcrumb/breadcrumb.service';
 import { LoadingService } from '../../core/components/loading/loading.service';
 import { MessageDialogService } from '../../core/components/message-dialog/message-dialog.service';
 import { MessageToastService } from '../../core/components/message-toast/message-toast.service';
 import { SplashScreenService } from '../../core/components/splash-screen/splash-screen.service';
+import { Breadcrumb, BreadcrumbRoutes } from '../../core/constants/breadcrumb.const';
 import { CommonConstant } from '../../core/constants/common.const';
 import { DialogInfo } from '../../core/models/common.model';
-import { ImageView } from '../../core/models/image.model';
+import { ImageItem, TabItem } from '../../core/models/item.model';
 import { GlobalState } from '../../core/models/state.model';
+import { CanvasService } from '../../core/services/common/canvas.service';
 import { GlobalStateService } from '../../core/services/state-manager/component-store/global-state.service';
 import { IndexedDBService } from '../../core/services/storage/indexed-db.service';
 import { GlobalVariables } from '../../core/utils/global-variables.ultility';
@@ -31,7 +35,33 @@ import { DialogBComponent } from './dialog-b/dialog-b.component';
 })
 export class ExampleComponent extends BaseComponent {
     imgRatio = CommonConstant.ImageRatio;
-    thumbnailImages: ImageView[] = [];
+    thumbnailImages: ImageItem[] = [];
+    tabItems: Array<TabItem> = [
+        {
+            id: 'tab1',
+            label: 'BTN_0001',
+            screen: 'tab1',
+            activated: false,
+            rendered: true,
+            icon: 'pi pi-user'
+        },
+        {
+            id: 'tab2',
+            label: 'BTN_0002',
+            screen: 'tab2',
+            activated: false,
+            rendered: false,
+            imgIcon: '../../../../assets/images/fw-user.svg',
+            imgIconAlt: ''
+        },
+        {
+            id: 'tab3',
+            label: 'BTN_0003',
+            screen: 'tab3',
+            activated: false,
+            rendered: false
+        }
+    ];
 
     constructor(
         private dialogService: DialogManagerService,
@@ -44,7 +74,9 @@ export class ExampleComponent extends BaseComponent {
         private splashScreenService: SplashScreenService,
         private indexedDBService: IndexedDBService,
         private router: Router,
-        private cdr: ChangeDetectorRef
+        private cdr: ChangeDetectorRef,
+        private breadcrumbService: BreadcrumbService,
+        private canvasService: CanvasService
     ) {
         super('Example Page');
 
@@ -62,7 +94,43 @@ export class ExampleComponent extends BaseComponent {
             });
         }
         this.thumbnailImages = cloneDeep(this.thumbnailImages);
+
+        this.buildBreadcrumbData();
+
         this.cdr.markForCheck();
+    }
+
+    buildBreadcrumbData() {
+        const bc = cloneDeep(BreadcrumbRoutes).find((x) => x.id === Breadcrumb.Screen1.Id);
+
+        if (bc) {
+            bc.items = bc.items.filter((item) => {
+                switch (item.id) {
+                    case Breadcrumb.Screen1.Child.ScreenList1:
+                        item.url = item.id;
+                        break;
+
+                    case Breadcrumb.Screen1.Child.ScreenDetail1:
+                        item.url = item.id;
+                        break;
+
+                    case Breadcrumb.Screen1.Child.ScreenList2:
+                        item.url = item.id;
+                        break;
+
+                    case Breadcrumb.Screen1.Child.ScreenDetail2:
+                        item.url = item.id;
+                        break;
+                }
+                return [
+                    Breadcrumb.Screen1.Child.ScreenList1,
+                    Breadcrumb.Screen1.Child.ScreenDetail1,
+                    Breadcrumb.Screen1.Child.ScreenList2,
+                    Breadcrumb.Screen1.Child.ScreenDetail2
+                ].includes(item.id);
+            });
+            this.breadcrumbService.setBreadcrumb(bc);
+        }
     }
 
     clickButton(type: 'Primary' | 'Secondary' | 'Danger') {
@@ -278,6 +346,48 @@ export class ExampleComponent extends BaseComponent {
                 this.indexedDBService.clear(environment.storage.indexedDB.log.objectStore);
                 this.msgDialogService.info('Current logs are cleared. Please check Indexed DB.');
                 break;
+        }
+    }
+
+    async exportPDF() {
+        try {
+            this.LoadingService.show(false);
+            let doc = new wjPdf.PdfDocument({
+                footer: CommonConstant.PDFCommon.Footer,
+                pageSettings: CommonConstant.PDFCommon.PageSetting.Default,
+                ended: (sender: wjPdf.PdfDocument, args: wjPdf.PdfDocumentEndedEventArgs) => {
+                    // revert after exporting successfully
+                    wjPdf.saveBlob(new Blob([args.blob], { type: 'application/octet-stream' }), 'example.pdf');
+                    this.LoadingService.hide(true);
+                }
+            });
+
+            // draw img from canvas for pdf
+            const drawImg = (canvas: HTMLCanvasElement, width?: number, height?: number) => {
+                const img = canvas.toDataURL();
+                doc.drawImage(img, undefined, undefined, {
+                    width: width ? width : doc.width,
+                    height: height ? height : doc.height,
+                    stretchProportionally: true,
+                    align: wjPdf.PdfImageHorizontalAlign.Center
+                });
+            };
+
+            const el = document.body.getElementsByClassName('ex-container')[0]! as HTMLCanvasElement;
+            el.style.maxWidth = el.clientWidth + 'px';
+
+            const canvas = await this.canvasService.toCanvas(
+                document.body.getElementsByClassName('ex-container')[0]! as HTMLCanvasElement,
+                {
+                    pixelRatio: 4
+                }
+            );
+            drawImg(canvas);
+            canvas.remove();
+
+            doc.end();
+        } catch (error) {
+            throw error;
         }
     }
 }

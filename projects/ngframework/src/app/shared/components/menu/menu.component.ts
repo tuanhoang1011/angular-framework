@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 
-import { MenuItem } from '../../../core/models/menu.model';
+import { MenuItem } from '../../../core/models/item.model';
 
 @Component({
     selector: 'app-menu',
@@ -24,5 +24,13 @@ export class MenuComponent {
 
     clickSubMenu(menu: MenuItem, subMenu: MenuItem) {
         this.onClickSubMenu?.emit({ menu, subMenu });
+    }
+
+    menuById(index, menu) {
+        return menu.id;
+    }
+
+    subMenuById(index, subMenu) {
+        return subMenu.id;
     }
 }

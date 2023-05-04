@@ -1,0 +1,31 @@
+<div class="tabview-container">
+    <p-tabView [styleClass]="styleClass"
+        [(activeIndex)]="activeIdx"
+        [scrollable]="false"
+        (onChange)="clickTab($event)">
+        <p-tabPanel *ngFor="let tab of items; trackBy: tabById"
+            [closable]="tab.closable ?? false"
+            [headerStyleClass]="tab.headerStyleClass ?? ''"
+            [selected]="tab.activated ?? false"
+            [disabled]="tab.disabled ?? false">
+            <ng-template pTemplate="header">
+                <img *ngIf="tab.imgIcon"
+                    [ngClass]="tab.imgIconStyleClass"
+                    [src]="tab.imgIcon"
+                    width="20"
+                    width="0"
+                    [alt]="tab.imgIconAlt ?? ''">
+                <i *ngIf="tab.icon"
+                    [class]="'pi ' + tab.icon">
+                </i>
+                <span>{{ (tab.label ?? '') | translate }}</span>
+            </ng-template>
+
+            <ng-container *ngIf="tab.rendered">
+                <ng-template [ngTemplateOutlet]="tab.templateRef!"></ng-template>
+            </ng-container>
+            
+        </p-tabPanel>
+    </p-tabView>
+</div>
+<ng-content></ng-content>

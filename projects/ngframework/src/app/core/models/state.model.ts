@@ -17,6 +17,7 @@ export interface LoadingState {
 
 export interface LayoutState {
     expandSidebar?: boolean;
+    breadcrumb?: any;
 }
 
 export interface DialogManagerState {

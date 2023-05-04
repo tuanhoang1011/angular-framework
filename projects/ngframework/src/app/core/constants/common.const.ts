@@ -1,3 +1,5 @@
+import * as wjPdf from '@grapecity/wijmo.pdf';
+
 export const CommonConstant = {
     WebSite: 'Tnet',
     NA: 'N/A',
@@ -29,5 +31,31 @@ export const CommonConstant = {
         Square: { ratio: 1 / 1, width: 1, height: 1 },
         Thumbnail: { ratio: 300 / 200, width: 300, height: 200 },
         Preview: { ratio: 900 / 600, width: 900, height: 600 }
+    },
+
+    PDFCommon: {
+        PageSetting: {
+            Default: {
+                layout: wjPdf.PdfPageOrientation.Portrait,
+                size: wjPdf.PdfPageSize.A4,
+                margins: {
+                    top: 20,
+                    bottom: 20,
+                    left: 50,
+                    right: 50
+                }
+            }
+        },
+
+        Footer: {
+            declarative: {
+                text: '\t&[Page]/&[Pages]',
+                brush: '#8A9999',
+                font: new wjPdf.PdfFont('times', 10, 'normal', '500')
+            }
+        },
+        ClassCSS: {
+            NoPDF: 'no-pdf'
+        }
     }
 };

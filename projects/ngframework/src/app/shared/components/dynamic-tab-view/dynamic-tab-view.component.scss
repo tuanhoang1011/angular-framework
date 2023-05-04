@@ -1,0 +1,15 @@
+.tabview-container {
+    .p-tabview-nav-container {
+        li {
+            @apply w-full;
+
+            a {
+                @apply justify-center;
+            }
+        }
+    }
+
+    img {
+        @apply w-5;
+    }
+}
