@@ -7,7 +7,7 @@ import { HttpBaseService } from '../../../services/communicate-server/http-base.
 import { ComponentStoreBase } from '../../../services/state-manager/component-store/component-store-base.service';
 
 const root = '../../../../../assets/json/';
-const sidebarJSON = `${root}menu/sidebar.json`;
+const sidebarJSON = `${root}items/sidebar.json`;
 
 @Injectable({
     providedIn: 'root'

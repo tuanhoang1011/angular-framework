@@ -1,5 +1,6 @@
 ﻿import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Injectable } from '@angular/core';
+import { differenceInCalendarDays } from 'date-fns';
 import { assignIn, cloneDeep } from 'lodash';
 
 import { AuthAPIService } from '../../../network-service/api/auth-api.service';
@@ -10,7 +11,6 @@ import { ErrorCode } from '../../enums/server-error-code.enum';
 import { SignInRequest, SignInResponse, UserProfileResponse } from '../../models/auth.model';
 import { ErrorResponse } from '../../models/http-response.model';
 import { AppRoutes } from '../../routers/app.routes';
-import { calcDayDuration } from '../../utils/date';
 import { LocalStorageService } from '../storage/local-storage.service';
 
 @Injectable({ providedIn: 'root' })
@@ -118,7 +118,7 @@ export class AuthBaseService {
                     const isDone = await this.processAfterSignIn(res, model.username);
 
                     if (isDone) {
-                        const dayDuration = calcDayDuration(new Date(), res.passwordExpireDate as Date);
+                        const dayDuration = differenceInCalendarDays(res.passwordExpireDate as Date, new Date());
 
                         // case real password is about to expire or expired
                         if (dayDuration <= 15) {

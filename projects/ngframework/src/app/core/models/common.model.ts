@@ -28,3 +28,8 @@ export interface CanvasOptions {
     increaseHeight?: number;
     imageType?: string;
 }
+
+export interface RangeDate {
+    from?: Date;
+    to?: Date;
+}

@@ -4,7 +4,7 @@ import * as wjPdf from '@grapecity/wijmo.pdf';
 import { TranslateService } from '@ngx-translate/core';
 import { cloneDeep } from 'lodash';
 import { environment } from 'projects/ngframework/src/environments/environment';
-import { takeUntil } from 'rxjs';
+import { lastValueFrom, takeUntil } from 'rxjs';
 
 import { BaseComponent } from '../../core/components/base.component';
 import { DialogManagerService } from '../../core/components/dialog-manager/dialog-manager.service';
@@ -19,6 +19,7 @@ import { DialogInfo } from '../../core/models/common.model';
 import { ImageItem, TabItem } from '../../core/models/item.model';
 import { GlobalState } from '../../core/models/state.model';
 import { CanvasService } from '../../core/services/common/canvas.service';
+import { HttpBaseService } from '../../core/services/communicate-server/http-base.service';
 import { GlobalStateService } from '../../core/services/state-manager/component-store/global-state.service';
 import { IndexedDBService } from '../../core/services/storage/indexed-db.service';
 import { GlobalVariables } from '../../core/utils/global-variables.ultility';
@@ -36,32 +37,7 @@ import { DialogBComponent } from './dialog-b/dialog-b.component';
 export class ExampleComponent extends BaseComponent {
     imgRatio = CommonConstant.ImageRatio;
     thumbnailImages: ImageItem[] = [];
-    tabItems: Array<TabItem> = [
-        {
-            id: 'tab1',
-            label: 'BTN_0001',
-            screen: 'tab1',
-            activated: false,
-            rendered: true,
-            icon: 'pi pi-user'
-        },
-        {
-            id: 'tab2',
-            label: 'BTN_0002',
-            screen: 'tab2',
-            activated: false,
-            rendered: false,
-            imgIcon: '../../../../assets/images/fw-user.svg',
-            imgIconAlt: ''
-        },
-        {
-            id: 'tab3',
-            label: 'BTN_0003',
-            screen: 'tab3',
-            activated: false,
-            rendered: false
-        }
-    ];
+    tabItems: Array<TabItem> = [];
 
     constructor(
         private dialogService: DialogManagerService,
@@ -76,7 +52,8 @@ export class ExampleComponent extends BaseComponent {
         private router: Router,
         private cdr: ChangeDetectorRef,
         private breadcrumbService: BreadcrumbService,
-        private canvasService: CanvasService
+        private canvasService: CanvasService,
+        private httpBaseService: HttpBaseService
     ) {
         super('Example Page');
 
@@ -96,6 +73,7 @@ export class ExampleComponent extends BaseComponent {
         this.thumbnailImages = cloneDeep(this.thumbnailImages);
 
         this.buildBreadcrumbData();
+        this.getTabItem();
 
         this.cdr.markForCheck();
     }
@@ -131,6 +109,15 @@ export class ExampleComponent extends BaseComponent {
             });
             this.breadcrumbService.setBreadcrumb(bc);
         }
+    }
+
+    async getTabItem() {
+        const res = await lastValueFrom(
+            this.httpBaseService.getLocalFile<{ menu: TabItem[] }>('../../../assets/json/items/tab-example.json')
+        );
+        this.tabItems = res.menu;
+
+        this.cdr.markForCheck();
     }
 
     clickButton(type: 'Primary' | 'Secondary' | 'Danger') {
