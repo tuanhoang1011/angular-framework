@@ -1158,20 +1158,18 @@ p-inputswitch.ng-dirty.ng-invalid > .p-inputswitch {
     font-size: 1rem;
     color: rgba(255, 255, 255, 0.87);
     background: #1d1e27;
-    padding: 0.75rem 0.75rem;
     border: 1px solid #3e4053;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     appearance: none;
     border-radius: 6px;
+
+    @apply px-3 py-1;
 }
 .p-inputtext:enabled:hover {
-    border-color: #b19df7;
+    @apply border-primary;
 }
 .p-inputtext:enabled:focus {
-    outline: 0 none;
-    outline-offset: 0;
-    box-shadow: 0 0 0 1px #e0d8fc;
-    border-color: #b19df7;
+    @apply border-primary;
 }
 .p-inputtext.ng-dirty.ng-invalid {
     border-color: #ff9a9a;
@@ -1871,23 +1869,18 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
 }
 
 .p-button {
-    color: #1c1d26;
-    background: #b19df7;
-    border: 1px solid #b19df7;
     padding: 0.75rem 1.25rem;
     font-size: 1rem;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     border-radius: 6px;
+
+    @apply bg-btn-primary text-tc-btn;
 }
 .p-button:enabled:hover {
-    background: #a28af5;
-    color: #1c1d26;
-    border-color: #a28af5;
+    @apply opacity-hover;
 }
 .p-button:enabled:active {
-    background: #9378f4;
-    color: #1c1d26;
-    border-color: #9378f4;
+    @apply opacity-active;
 }
 .p-button.p-button-outlined {
     background-color: transparent;
@@ -1978,8 +1971,7 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
     border-radius: 2rem;
 }
 .p-button.p-button-icon-only {
-    width: 3rem;
-    padding: 0.75rem 0;
+    @apply w-icon-btn px-0 py-1;
 }
 .p-button.p-button-icon-only .p-button-icon-left,
 .p-button.p-button-icon-only .p-button-icon-right {
@@ -4486,22 +4478,20 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
 
 .p-tabview .p-tabview-nav {
     background: transparent;
-    border: 1px solid #3e4053;
-    border-width: 0 0 2px 0;
+    // border: 1px solid #3e4053;
+    // border-width: 0 0 2px 0;
 }
 .p-tabview .p-tabview-nav li {
     margin-right: 0;
 }
 .p-tabview .p-tabview-nav li .p-tabview-nav-link {
-    border: solid #3e4053;
-    border-width: 0 0 2px 0;
-    border-color: transparent transparent #3e4053 transparent;
+    // border: solid #3e4053;
     padding: 1.25rem;
     font-weight: 700;
     transition: box-shadow 0.2s;
     margin: 0 0 -2px 0;
 
-    @apply bg-body-secondary rounded-t-default;
+    @apply bg-body-secondary;
 }
 .p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus-visible {
     @apply ring-1;
@@ -4538,7 +4528,7 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
     padding: 1.25rem;
     border: 0 none;
 
-    @apply bg-body-secondary rounded-b-default;
+    @apply bg-body-secondary;
 }
 
 .p-toolbar {

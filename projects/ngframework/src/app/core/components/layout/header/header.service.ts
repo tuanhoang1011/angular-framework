@@ -7,8 +7,8 @@ import { HttpBaseService } from '../../../services/communicate-server/http-base.
 import { LocalStorageService } from '../../../services/storage/local-storage.service';
 
 const root = '../../../../../assets/json/';
-const headerJSON = `${root}menu/header.json`;
-const languagesJSON = `${root}menu/languages.json`;
+const headerJSON = `${root}items/header.json`;
+const languagesJSON = `${root}items/languages.json`;
 
 @Injectable({
     providedIn: 'root'

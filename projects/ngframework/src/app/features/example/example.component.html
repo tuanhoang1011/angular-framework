@@ -266,6 +266,17 @@
                 <app-dynamic-tab-view class="w-full"
                     [items]="tabItems"
                     [queryParamKey]="'tab'"
+                    layout="horizontal"
+                    styleClass="dynamic-tab">
+                    <ng-template appTemplate="tab1"><app-component1></app-component1></ng-template>
+                    <ng-template appTemplate="tab2"><app-component2></app-component2></ng-template>
+                    <ng-template appTemplate="tab3"><app-component3></app-component3></ng-template>
+                </app-dynamic-tab-view>
+
+                <app-dynamic-tab-view class="w-full"
+                    [items]="tabItems"
+                    [queryParamKey]="'tab'"
+                    layout="vertical"
                     styleClass="dynamic-tab">
                     <ng-template appTemplate="tab1"><app-component1></app-component1></ng-template>
                     <ng-template appTemplate="tab2"><app-component2></app-component2></ng-template>
@@ -310,18 +321,11 @@
 
         <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
 
-        <!-- DYNAMIC TABLE -->
+        <!-- RANGE DATE SELECTOR -->
         <div class="module">
-            <h1 class="module-title">Dynamic Table</h1>
+            <h1 class="module-title">Range Date Selector</h1>
             <div class="module-btn">
-                <app-button content="Static Table"
-                    styleClass="btn-primary"
-                    [disabled]="true">
-                </app-button>
-                <app-button content="Editable Table"
-                    styleClass="btn-primary"
-                    [disabled]="true">
-                </app-button>
+                <app-range-date-selector></app-range-date-selector>
             </div>
         </div>
 
@@ -332,6 +336,23 @@
             <h1 class="module-title">Create Form</h1>
             <div class="module-btn">
                 <app-button content="Create Form"
+                    styleClass="btn-primary"
+                    [disabled]="true">
+                </app-button>
+            </div>
+        </div>
+
+        <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
+
+        <!-- DYNAMIC TABLE -->
+        <div class="module">
+            <h1 class="module-title">Dynamic Table</h1>
+            <div class="module-btn">
+                <app-button content="Static Table"
+                    styleClass="btn-primary"
+                    [disabled]="true">
+                </app-button>
+                <app-button content="Editable Table"
                     styleClass="btn-primary"
                     [disabled]="true">
                 </app-button>

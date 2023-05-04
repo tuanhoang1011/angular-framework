@@ -5,6 +5,7 @@ import { PanelModule } from 'primeng/panel';
 import { SkeletonModule } from 'primeng/skeleton';
 
 import { ButtonModule } from './components/button/button.module';
+import { RangeDateSelectorModule } from './components/calendar-range-selector/range-date-selector.module';
 import { DynamicTabViewModule } from './components/dynamic-tab-view/dynamic-tab-view.module';
 import { HyperLinkModule } from './components/hyperlink/hyperlink.module';
 import { ImageCarouselModule } from './components/image-carousel/image-carousel.module';
@@ -29,7 +30,8 @@ const modules = [
     DialogModule,
     MenuModule,
     PanelModule,
-    DynamicTabViewModule
+    DynamicTabViewModule,
+    RangeDateSelectorModule
 ];
 
 // ---------------- Directives ----------------

@@ -38,6 +38,7 @@ export class DynamicTabViewComponent extends BaseComponent implements OnInit, On
     @Input() items: TabItem[] = [];
     @Input() queryParamKey: string = 'tab';
     @Input() styleClass: string = '';
+    @Input() layout: 'horizontal' | 'vertical' = 'horizontal';
     @Input() isWriteLog: boolean = true;
 
     @Output() onClickTab: EventEmitter<TabItem> = new EventEmitter();
@@ -126,7 +127,7 @@ export class DynamicTabViewComponent extends BaseComponent implements OnInit, On
         });
 
         // default
-        if (this.items.every((x) => !x.activated)) {
+        if (this.items.length > 0 && this.items.every((x) => !x.activated)) {
             this.items[0].activated = true;
             this.items[0].rendered = true;
             this.activeIdx = 0;

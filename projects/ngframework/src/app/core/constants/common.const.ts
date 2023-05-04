@@ -1,4 +1,5 @@
 import * as wjPdf from '@grapecity/wijmo.pdf';
+import { endOfDay, startOfDay } from 'date-fns';
 
 export const CommonConstant = {
     WebSite: 'Tnet',
@@ -57,5 +58,16 @@ export const CommonConstant = {
         ClassCSS: {
             NoPDF: 'no-pdf'
         }
+    },
+
+    CalendarConstant: {
+        MinDate: startOfDay(new Date(1900, 0, 1)),
+        MaxDate: endOfDay(new Date(2099, 11, 31)),
+        MinYear: 1900,
+        MaxYear: 2099,
+        MinMonth: 1,
+        MaxMonth: 12,
+        MinDay: 1,
+        MaxDay: 31
     }
 };
