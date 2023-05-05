@@ -13,7 +13,7 @@
 }
 
 .ex-container {
-    @apply flex flex-col mx-auto max-w-[90%] p-8 shadow-errpage rounded-[28px] bg-body-primary;
+    @apply flex flex-col mx-auto max-w-[90%] p-8 shadow-errpage rounded-[28px] bg-bg-primary;
 
     .logo {
         &-sticker {
@@ -42,7 +42,7 @@
         @apply flex flex-col gap-y-2 rounded-default bg-[#1f232e66] px-7 py-5;
 
         &-title {
-            @apply text-[20px] mb-2 text-tc-title;
+            @apply text-[20px] mb-2 text-txt-title;
         }
 
         &-info {

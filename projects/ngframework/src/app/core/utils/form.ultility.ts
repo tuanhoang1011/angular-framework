@@ -1,7 +1,7 @@
 import { ElementRef } from '@angular/core';
 import { head } from 'lodash';
 
-export function focusError(el?: ElementRef | any) {
+export const focusError = (el?: ElementRef | any) => {
     const focusables = [
         'input',
         'select',
@@ -27,9 +27,9 @@ export function focusError(el?: ElementRef | any) {
             input?.focus();
         }
     }
-}
+};
 
-export function _getInputElement(nativeElement: any) {
+export const _getInputElement = (nativeElement: any) => {
     if (!nativeElement || !nativeElement.children) return undefined;
     if (
         !nativeElement.children.length &&
@@ -47,4 +47,4 @@ export function _getInputElement(nativeElement: any) {
     });
 
     return input;
-}
+};

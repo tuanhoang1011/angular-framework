@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { BaseComponent } from 'projects/ngframework/src/app/core/components/base.component';
-import { LoadingService } from 'projects/ngframework/src/app/core/components/loading/loading.service';
+import { LoadingService } from 'projects/ngframework/src/app/core/components/layout/loading/loading.service';
 import { LogActiveScreen } from 'projects/ngframework/src/app/core/constants/log.const';
 import { SignInRequest } from 'projects/ngframework/src/app/core/models/auth.model';
 import { AuthBaseService } from 'projects/ngframework/src/app/core/services/auth/auth-base.service';

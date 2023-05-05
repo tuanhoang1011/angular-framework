@@ -19,7 +19,7 @@
 }
 
 .p-dialog {
-    @apply bg-body-secondary;
+    @apply bg-bg-secondary;
 
     .p-dialog-content {
         @apply flex justify-center;
@@ -32,7 +32,7 @@
             }
 
             .msg-content {
-                @apply flex items-center text-fs-msg text-tc-default break-words whitespace-pre-line h-full;
+                @apply flex items-center text-fs-msg text-txt-default break-words whitespace-pre-line h-full;
             }
         }
     }

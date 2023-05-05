@@ -13,7 +13,7 @@
         @apply relative;
 
         .submenu-dropdown {
-            @apply absolute hidden top-[44px] p-3 rounded-default bg-body-secondary text-tc-default min-w-max;
+            @apply absolute hidden top-[44px] p-3 rounded-default bg-bg-secondary text-txt-default min-w-max;
         }
 
         &:hover .submenu-dropdown {

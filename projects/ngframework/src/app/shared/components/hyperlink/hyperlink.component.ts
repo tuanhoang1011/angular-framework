@@ -17,7 +17,7 @@ export class HyperlinkComponent {
     @Input() styleClass?: string;
     @Input() disabled? = false;
     @Input() isWriteLog? = true;
-    @Output() onActionClick = new EventEmitter();
+    @Output() onClickAction = new EventEmitter();
 
     constructor(private logService: LogService, private translateService: TranslateService) {}
 
@@ -32,6 +32,6 @@ export class HyperlinkComponent {
             });
         }
 
-        this.onActionClick.emit(event);
+        this.onClickAction.emit(event);
     }
 }

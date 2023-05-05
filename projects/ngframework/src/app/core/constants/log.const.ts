@@ -1,4 +1,4 @@
-export const LogLevel = {
+export const LogLevel = Object.freeze({
     All: 'All',
     Operation: 'Operation',
     Error: 'Error',
@@ -6,19 +6,19 @@ export const LogLevel = {
     Warn: 'Warn',
     Debug: 'Debug',
     Off: 'Off'
-};
+});
 
-export const LogType = {
+export const LogType = Object.freeze({
     Action: 'Action',
     Error: 'Error'
-};
+});
 
-export const LogMessage = {
+export const LogMessage = Object.freeze({
     Unknown: 'Unknown',
     NoNetwork: 'Disconnected Internet'
-};
+});
 
-export const LogIdentiferFormat = {
+export const LogIdentiferFormat = Object.freeze({
     Menu: 'Menu: %s',
     Breadcrumb: 'Breadcrumb: %s',
     Button: 'Button: %s',
@@ -26,9 +26,9 @@ export const LogIdentiferFormat = {
     TableItem: 'Table: %s; %s: %s',
     Tab: 'Tab: %s',
     MessageButton: 'Message: %s; Button: %s'
-};
+});
 
-export const LogSubType = {
+export const LogSubType = Object.freeze({
     HyperLink: 'HyperLink',
     Button: 'Button',
     TableItemSelection: 'TableItemSelection',
@@ -36,9 +36,9 @@ export const LogSubType = {
     ScreenTransition: 'ScreenTransition',
     APIError: 'APIError',
     Exception: 'Exception'
-};
+});
 
-export const LogActiveScreen = {
+export const LogActiveScreen = Object.freeze({
     ScreenEx1: {
         List: 'Screen-1-list',
         Create: 'Screen-1-Create',
@@ -48,11 +48,11 @@ export const LogActiveScreen = {
     Home: 'Home-page',
     ErrorPage: 'Error-page',
     SignIn: 'Sign-in-page'
-};
+});
 
-export const LogTableIdentifier = {
+export const LogTableIdentifier = Object.freeze({
     ScreenEx1: {
         List: 'Screen-1-list-table',
         ChildList1: 'Child-list-1-table'
     }
-};
+});

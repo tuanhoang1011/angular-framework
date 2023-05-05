@@ -1,7 +1,7 @@
 import { Directive, ElementRef, HostListener, Input, NgModule } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { CommonRegex } from '../../core/utils/regex.ultility';
+import { CommonRegex } from '../../core/constants/regex.const';
 
 @Directive({
     selector: '[appNumber]'

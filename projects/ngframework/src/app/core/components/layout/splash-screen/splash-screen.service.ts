@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { LoadingState } from '../../models/state.model';
-import { ComponentStoreBase } from '../../services/state-manager/component-store/component-store-base.service';
+import { LoadingState } from '../../../models/state.model';
+import { ComponentStoreBase } from '../../../services/state-manager/component-store/component-store-base.service';
 
 @Injectable({ providedIn: 'root' })
 export class SplashScreenService extends ComponentStoreBase<LoadingState> {

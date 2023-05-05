@@ -5,13 +5,13 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from '../shared/shared.module';
 import { DialogManagerModule } from './components/dialog-manager/dialog-manager.module';
-import { LoadingModule } from './components/loading/loading.module';
+import { LoadingModule } from './components/layout/loading/loading.module';
+import { SplashScreenModule } from './components/layout/splash-screen/splash-screen.module';
 import { MessageDialogModule } from './components/message-dialog/message-dialog.module';
 import { MessageToastModule } from './components/message-toast/message-toast.module';
-import { SplashScreenModule } from './components/splash-screen/splash-screen.module';
 import { EnsureModuleLoadedOnceGuard } from './guards/ensure-module-loaded-once.guard';
 import { HttpLoaderFactory } from './modules/lazy-load-translate.module';
-import { HTTP_INTERCEPTORS_PROVIDERS } from './services/interceptors/http-interceptor';
+import { HTTP_INTERCEPTORS_PROVIDERS } from './services/interceptors/http-interceptor.service';
 import { GLOBAL_ERROR_PROVIDERS } from './services/log/global-error-handler.service';
 import { GlobalVariables } from './utils/global-variables.ultility';
 

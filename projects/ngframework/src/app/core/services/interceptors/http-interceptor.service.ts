@@ -15,7 +15,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, finalize, skip, switchMap, takeUntil, timeout } from 'rxjs/operators';
 
 import { AuthAPIService } from '../../../network-service/api/auth-api.service';
-import { LoadingService } from '../../components/loading/loading.service';
+import { LoadingService } from '../../components/layout/loading/loading.service';
 import { MessageToastService } from '../../components/message-toast/message-toast.service';
 import { LogMessage, LogSubType, LogType } from '../../constants/log.const';
 import { ErrorResponse } from '../../models/http-response.model';
