@@ -1,9 +1,9 @@
 import { inject, NgModule } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterModule, Routes } from '@angular/router';
 
+import { AppRoutes } from './core/constants/router.const';
 import { ErrorPageGuard } from './core/guards/error-page.guard';
 import { PrivatePageGuard } from './core/guards/private-page.guard';
-import { AppRoutes } from './core/routers/app.routes';
 
 const routes: Routes = [
     {

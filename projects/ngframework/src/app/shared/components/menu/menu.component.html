@@ -10,7 +10,7 @@
         <img *ngIf="menu.imgIcon"
             [src]="menu.imgIcon"
             width="20"
-            width="0"
+            height="0"
             [alt]="menu.imgIconAlt ?? ''">
         <i *ngIf="menu.icon"
             [class]="'pi ' + menu.icon">
@@ -29,7 +29,7 @@
                 <img *ngIf="sub.imgIcon"
                     [src]="sub.imgIcon"
                     width="20"
-                    width="0"
+                    height="0"
                     [alt]="sub.imgIconAlt ?? ''">
                 <i *ngIf="sub.icon"
                     [class]="'pi ' + sub.icon">

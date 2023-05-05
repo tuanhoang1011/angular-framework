@@ -14,19 +14,19 @@
 
     <!-- Logo -->
     <div class="header-logo">
-        <img src="../../../../../assets//images//fw-logo.svg"
+        <img src="../../../../../assets/images/fw-logo.svg"
             width="60"
             height="0"
             alt="">
     </div>
 
+    <!-- Navigation menu -->
     <div class="header-left">
-        <!-- Navigation menu -->
         <div class="h-line-item !h-7"></div>
          <ng-container [ngTemplateOutlet]="navigationMenu"
              [ngTemplateOutletContext]="{
                  $implicit: {
-                     menu: navMenu,
+                     menu: navMenu
                  }
              }"
          >
@@ -41,7 +41,7 @@
             [ngTemplateOutletContext]="{
                 $implicit: {
                     userName: 'Pham Hoang Tuan',
-                    menu: userMenu,
+                    menu: userMenu
                 }
             }"
         >
@@ -52,7 +52,7 @@
         <ng-container [ngTemplateOutlet]="language"
             [ngTemplateOutletContext]="{
                 $implicit: {
-                    languages: languages,
+                    languages: languages
                 }
             }"
         >

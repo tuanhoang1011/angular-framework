@@ -6,20 +6,20 @@ import { ComponentStoreBase } from '../../../services/state-manager/component-st
 
 @Injectable({ providedIn: 'root' })
 export class LoadingService extends ComponentStoreBase<LoadingState> {
-    public loading$ = this.select((state) => state.loading);
+    public loadingOn$ = this.select((state) => state.loadingOn);
     public apiReqCount: number = 0;
     public isPendingAPI: boolean = false;
 
     constructor() {
         super({
-            loading: false
+            loadingOn: false
         });
     }
 
     show = (isPendingAPI: boolean = true) => {
         try {
             this.updateState({
-                loading: true
+                loadingOn: true
             });
 
             if (!isPendingAPI) {
@@ -35,7 +35,7 @@ export class LoadingService extends ComponentStoreBase<LoadingState> {
         try {
             if (this.apiReqCount === 0) {
                 this.updateState({
-                    loading: false
+                    loadingOn: false
                 });
             }
 
@@ -50,7 +50,7 @@ export class LoadingService extends ComponentStoreBase<LoadingState> {
     hideByZeroCount(reqUrl?: string) {
         try {
             // if reqURL is not API route => stop
-            if (reqUrl?.includes(`${environment.host}${environment.prefix}`.toLowerCase())) {
+            if (reqUrl?.includes(`${environment.apiHost}${environment.apiPrefix}`.toLowerCase())) {
                 if (this.apiReqCount > 0) {
                     this.apiReqCount--;
                 }

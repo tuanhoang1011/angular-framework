@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment as env } from 'projects/ngframework/src/environments/environment';
+import { environment } from 'projects/ngframework/src/environments/environment';
 import { interval, Observable, Subscription } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';
 import { webSocket, WebSocketSubject, WebSocketSubjectConfig } from 'rxjs/webSocket';
@@ -8,6 +8,7 @@ import { MessageToastService } from '../../components/message-toast/message-toas
 import { WSReceiveEvent } from '../../enums/web-socket.enum';
 import { WebSocketRequestResponse } from '../../models/web-socket.model';
 import { showMessageDebug } from '../../utils/common-func.ultility';
+import { GlobalVariables } from '../../utils/global-variables.ultility';
 
 @Injectable({
     providedIn: 'root'
@@ -20,12 +21,11 @@ export class WebSocketService {
     private sub: Subscription = new Subscription();
 
     private webSocket$!: WebSocketSubject<WebSocketRequestResponse>;
-    private wsConfig = env.wsConfig;
 
     private reconnect$?: Observable<number>;
 
     private wsSubjectConfig: WebSocketSubjectConfig<WebSocketRequestResponse> = {
-        url: this.wsConfig.wsUrl,
+        url: environment.wsUrl,
         openObserver: {
             next: (e) => {
                 this.isConnected = true;
@@ -111,8 +111,8 @@ export class WebSocketService {
         try {
             if (this.reconnect$) return;
 
-            this.reconnect$ = interval(this.wsConfig.reconnectInterval).pipe(
-                takeWhile((v, index) => !this.isConnected && index < this.wsConfig.reconnectAttempts)
+            this.reconnect$ = interval(GlobalVariables.wsConfig.reconnectInterval).pipe(
+                takeWhile((v, index) => !this.isConnected && index < GlobalVariables.wsConfig.reconnectAttempts)
             );
 
             this.sub.add(

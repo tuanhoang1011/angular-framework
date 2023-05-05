@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 
+import { APIName, APIRoutes } from '../../core/constants/api-routes';
 import { RefreshTokenResponse, SignInRequest, SignInResponse, UserProfileResponse } from '../../core/models/auth.model';
 import { HttpBaseService } from '../../core/services/communicate-server/http-base.service';
-import { APIName, APIRoutes } from '../api-routes';
 
 @Injectable({
     providedIn: 'root'

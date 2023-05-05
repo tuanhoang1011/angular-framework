@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PublicRoutes } from '../../../routers/public.routes';
+import { PublicRoutes } from '../../../constants/router.const';
 import { PublicComponent } from './public.component';
 
 const routes: Routes = [

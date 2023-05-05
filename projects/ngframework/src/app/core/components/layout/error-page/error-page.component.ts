@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
 import { LogActiveScreen } from '../../../constants/log.const';
-import { AppRoutes } from '../../../routers/app.routes';
+import { AppRoutes } from '../../../constants/router.const';
 import { GlobalStateService } from '../../../services/state-manager/component-store/global-state.service';
 import { BaseComponent } from '../../base.component';
 

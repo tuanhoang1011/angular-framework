@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { LogActiveScreen, LogSubType, LogType } from '../constants/log.const';
-import { AppRoutes } from '../routers/app.routes';
+import { AppRoutes } from '../constants/router.const';
 import { LogService } from '../services/log/log.service';
 import { GlobalStateService } from '../services/state-manager/component-store/global-state.service';
 import { isNullOrUndefined } from '../utils/common-func.ultility';

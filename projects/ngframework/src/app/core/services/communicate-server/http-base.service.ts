@@ -140,7 +140,7 @@ export abstract class HttpBaseService {
 
     private getURL(apiRoute: string): string {
         try {
-            const result = new URL(`${environment.prefix}${apiRoute}`, environment.host);
+            const result = new URL(`${environment.apiPrefix}${apiRoute}`, environment.apiHost);
 
             return result.href;
         } catch (error) {

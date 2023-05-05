@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { BreadcrumbItemList } from '../../../models/breadcrumb.model';
 import { LayoutState } from '../../../models/state.model';
 import { ComponentStoreBase } from '../../../services/state-manager/component-store/component-store-base.service';
 
@@ -8,17 +9,17 @@ import { ComponentStoreBase } from '../../../services/state-manager/component-st
     providedIn: 'root'
 })
 export class BreadcrumbService extends ComponentStoreBase<LayoutState> {
-    public readonly breadcrumb$: Observable<any> = this.select((state) => state.breadcrumb!);
+    public readonly breadcrumb$: Observable<BreadcrumbItemList> = this.select((state) => state.breadcrumbs!);
 
     constructor() {
         super({
-            breadcrumb: undefined
+            breadcrumbs: undefined
         });
     }
 
-    setBreadcrumb(breadcrumb: any) {
+    setBreadcrumb(breadcrumbs: BreadcrumbItemList) {
         const state: LayoutState = {
-            breadcrumb: breadcrumb
+            breadcrumbs: breadcrumbs
         };
         this.updateState(state);
     }
