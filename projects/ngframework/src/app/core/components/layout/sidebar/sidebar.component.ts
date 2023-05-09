@@ -27,7 +27,7 @@ export class SidebarComponent extends BaseComponent implements OnInit {
 
     async ngOnInit() {
         this.listenState();
-        this.navMenu = await (await this.sidebarService.getNavMenu()).menu;
+        this.navMenu = (await this.sidebarService.getNavMenu()).menu;
         this.cdr.markForCheck();
     }
 

@@ -14,11 +14,11 @@ import {
 
 import { RangeDate } from '../models/common.model';
 
-export function startOfNextDay(endDate: Date) {
+export const startOfNextDay = (endDate: Date) => {
     return setHours(startOfDay(endDate), 24);
-}
+};
 
-export function generateDateToBefore(to: Date, amount: number = 1, dateType: 'day' | 'week' | 'month' | 'year') {
+export const generateDateToBefore = (to: Date, amount: number = 1, dateType: 'day' | 'week' | 'month' | 'year') => {
     to = endOfDay(to);
     let before;
 
@@ -44,9 +44,9 @@ export function generateDateToBefore(to: Date, amount: number = 1, dateType: 'da
         from: startOfDay(addDays(before, 1)),
         to: endOfDay(to)
     } as RangeDate;
-}
+};
 
-export function generateDateToAfter(from: Date, amount: number = 1, dateType: 'day' | 'week' | 'month' | 'year') {
+export const generateDateToAfter = (from: Date, amount: number = 1, dateType: 'day' | 'week' | 'month' | 'year') => {
     from = startOfDay(from);
     let after;
 
@@ -72,4 +72,4 @@ export function generateDateToAfter(from: Date, amount: number = 1, dateType: 'd
         from: startOfDay(from),
         to: endOfDay(from.getDate() === after.getDate() ? subDays(after, 1) : after)
     } as RangeDate;
-}
+};

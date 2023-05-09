@@ -4,7 +4,7 @@ import { differenceInCalendarDays } from 'date-fns';
 import { assignIn, cloneDeep } from 'lodash';
 
 import { AuthAPIService } from '../../../network-service/api/auth-api.service';
-import { LoadingService } from '../../components/loading/loading.service';
+import { LoadingService } from '../../components/layout/loading/loading.service';
 import { MessageToastService } from '../../components/message-toast/message-toast.service';
 import { StorageKey } from '../../constants/storage-key.const';
 import { ErrorCode } from '../../enums/server-error-code.enum';

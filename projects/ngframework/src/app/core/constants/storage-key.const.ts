@@ -1,4 +1,4 @@
-export const StorageKey = {
+export const StorageKey = Object.freeze({
     SignInState: 'sign-in-state',
     SignOutState: 'sign-out-state',
     AutoSignOutState: 'auto-sign-out-state',
@@ -14,4 +14,4 @@ export const StorageKey = {
 
     ExpiredPasswordState: 'expired-password-state',
     CurrentRoute: 'current-route'
-};
+});

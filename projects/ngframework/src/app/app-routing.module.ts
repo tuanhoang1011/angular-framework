@@ -23,7 +23,7 @@ const routes: Routes = [
                 path: AppRoutes.Error,
                 canActivate: [() => inject(ErrorPageGuard).canActivate()],
                 loadChildren: () =>
-                    import('./core/components/error-page/error-page.module').then((m) => m.ErrorPageModule)
+                    import('./core/components/layout/error-page/error-page.module').then((m) => m.ErrorPageModule)
             },
             { path: '**', redirectTo: AppRoutes.Public }
         ]

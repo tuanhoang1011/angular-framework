@@ -102,65 +102,8 @@ module.exports = {
         createThemes({
             light: {
                 // common
-                body: '#fff',
-                primary: '#1ea97c',
-                secondary: '#a0a3ad',
-                danger: '#F23645',
-                border: '#707070',
-                hyperlink: '#1ea97c',
-
-                // loading
-                mask: '#1e222dcc',
-                'loading-gradient-fr': '#00f0fc',
-                'loading-gradient-to': '#bcfd02',
-
-                // text
-                'tc-default': '#C8CCD8',
-                'tc-title': '#f2f2f2',
-                'tc-btn': '#fff',
-
-                // header
-                header: '#1e222d',
-                'header-menu': '#707070',
-                'header-submenu': '#707070',
-
-                // sidebar
-                sidebar: '#1e222d',
-                'sidebar-menu': '#707070',
-                'sidebar-submenu': '#707070',
-
-                // footer
-                footer: '#1e222d',
-                'footer-menu': '#707070',
-                'footer-submenu': '#707070',
-
-                // dialog
-                dialog: '#1e222d',
-                'dialog-header': '#707070',
-                'dialog-content': '#707070',
-
-                // button
-                'btn-primary': '#1ea97c',
-                'btn-secondary': '#1ea97c',
-                'btn-danger': '#F23645',
-                'btn-icon': '#1e222d',
-
-                // message
-                'toast-message': '#1e222d',
-                success: '#1ea97c',
-                warn: '#cc8925',
-                error: '#FC6161',
-                info: '#696cff',
-                confirm: '#50535e',
-
-                // scrollbar
-                scrollbar: '#50535e',
-                'scrollbar-hover': '#465268'
-            },
-            dark: {
-                // common
-                'body-primary': '#000',
-                'body-secondary': '#1e222d',
+                'bg-primary': '#000',
+                'bg-secondary': '#1e222d',
                 primary: '#1ea97c',
                 secondary: '#a0a3ad',
                 danger: '#F23645',
@@ -173,9 +116,62 @@ module.exports = {
                 'loading-gradient-to': '#bcfd02',
 
                 // text
-                'tc-default': '#C8CCD8',
-                'tc-title': '#f2f2f2',
-                'tc-btn': '#fff',
+                'txt-default': '#C8CCD8',
+                'txt-title': '#f2f2f2',
+                'txt-btn': '#fff',
+
+                // header
+                'header-menu': '#707070',
+                'header-submenu': '#707070',
+
+                // sidebar
+                'sidebar-menu': '#707070',
+                'sidebar-submenu': '#707070',
+
+                // footer
+                'footer-menu': '#707070',
+                'footer-submenu': '#707070',
+
+                // dialog
+                'dialog-header': '#707070',
+                'dialog-content': '#707070',
+
+                // button
+                'btn-primary': '#1ea97c',
+                'btn-secondary': '#1ea97c',
+                'btn-danger': '#F23645',
+                'btn-icon': '#1e222d',
+
+                // message
+                success: '#1ea97c',
+                warn: '#cc8925',
+                error: '#FC6161',
+                info: '#696cff',
+                confirm: '#50535e',
+
+                // scrollbar
+                scrollbar: '#50535e',
+                'scrollbar-hover': '#465268'
+            },
+            dark: {
+                // common
+                'bg-primary': '#000',
+                'bg-secondary': '#1e222d',
+                primary: '#1ea97c',
+                secondary: '#a0a3ad',
+                danger: '#F23645',
+                border: '#50535e',
+                hyperlink: '#1ea97c',
+
+                // loading
+                mask: '#1e222dcc',
+                'loading-gradient-fr': '#00f0fc',
+                'loading-gradient-to': '#bcfd02',
+
+                // text
+                'txt-default': '#C8CCD8',
+                'txt-title': '#f2f2f2',
+                'txt-btn': '#fff',
 
                 // header
                 'header-menu': '#707070',

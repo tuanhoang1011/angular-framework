@@ -1,7 +1,7 @@
 import * as wjPdf from '@grapecity/wijmo.pdf';
 import { endOfDay, startOfDay } from 'date-fns';
 
-export const CommonConstant = {
+export const CommonConstant = Object.freeze({
     WebSite: 'Tnet',
     NA: 'N/A',
 
@@ -70,4 +70,4 @@ export const CommonConstant = {
         MinDay: 1,
         MaxDay: 31
     }
-};
+});

@@ -1,7 +1,7 @@
 import { BreadcrumbItemList } from '../models/breadcrumb.model';
 import { LogActiveScreen } from './log.const';
 
-export const Breadcrumb = {
+export const Breadcrumb = Object.freeze({
     Screen1: {
         Id: 'screen-1',
         Child: {
@@ -11,7 +11,7 @@ export const Breadcrumb = {
             ScreenDetail2: 'screen-2-detail'
         }
     }
-};
+});
 
 export const BreadcrumbRoutes = [
     {

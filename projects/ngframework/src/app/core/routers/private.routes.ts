@@ -1,3 +1,3 @@
-export const PrivateRoutes = {
+export const PrivateRoutes = Object.freeze({
     Auth: 'auth'
-};
+});

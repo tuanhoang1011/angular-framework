@@ -4,16 +4,16 @@ import { sprintf } from 'sprintf-js';
 import { LogIdentiferFormat } from '../constants/log.const';
 
 // trim field with check undefined
-export function trimField(value: string) {
+export const trimField = (value: string) => {
     try {
         return value ? String(value).trim() : '';
     } catch (error) {
         throw error;
     }
-}
+};
 
 // trim all properties in object
-export function trimObj(obj: any, exceptionList: Array<string> = [], exceptionTrimEmptyList: Array<string> = []) {
+export const trimObj = (obj: any, exceptionList: Array<string> = [], exceptionTrimEmptyList: Array<string> = []) => {
     try {
         keys(obj).forEach((element) => {
             if (
@@ -36,19 +36,19 @@ export function trimObj(obj: any, exceptionList: Array<string> = [], exceptionTr
     } catch (error) {
         throw error;
     }
-}
+};
 
 // trim field with check undefined
-export function trimFieldTextArea(value: string) {
+export const trimFieldTextArea = (value: string) => {
     try {
         return value ? value.trim() : '';
     } catch (error) {
         throw error;
     }
-}
+};
 
 // trim HTML with check undefined
-export function trimHTML(value: string) {
+export const trimHTML = (value: string) => {
     try {
         const regEmtyPtag = new RegExp('<p[^>]*>(\\s|)+<\\/p[^>]*>', 'g');
 
@@ -61,19 +61,23 @@ export function trimHTML(value: string) {
     } catch (error) {
         throw error;
     }
-}
+};
 
 // trim all free space
-export function trimAllSpaces(value: string) {
+export const trimAllSpaces = (value: string) => {
     try {
         return value ? value.trim().replace(/\s+/g, ' ') : '';
     } catch (error) {
         throw error;
     }
-}
+};
 
 // trim all properties in object
-export function trimSearchObj(obj: any, exceptionList: Array<string> = [], exceptionTrimEmptyList: Array<string> = []) {
+export const trimSearchObj = (
+    obj: any,
+    exceptionList: Array<string> = [],
+    exceptionTrimEmptyList: Array<string> = []
+) => {
     try {
         keys(obj).forEach((element) => {
             if (typeof obj[element] === 'string' && !exceptionList.some((x) => x === element)) {
@@ -84,13 +88,13 @@ export function trimSearchObj(obj: any, exceptionList: Array<string> = [], excep
     } catch (error) {
         throw error;
     }
-}
+};
 
 // generate table item id
-export function generateTableItemID(tableName: string, itemKey: string, itemData: string | number | undefined) {
+export const generateTableItemID = (tableName: string, itemKey: string, itemData: string | number | undefined) => {
     try {
         return sprintf(LogIdentiferFormat.TableItem, tableName, itemKey, itemData);
     } catch (error) {
         throw error;
     }
-}
+};

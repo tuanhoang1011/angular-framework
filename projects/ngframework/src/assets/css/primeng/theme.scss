@@ -1874,7 +1874,7 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     border-radius: 6px;
 
-    @apply bg-btn-primary text-tc-btn;
+    @apply bg-btn-primary text-txt-btn;
 }
 .p-button:enabled:hover {
     @apply opacity-hover;
@@ -2810,7 +2810,7 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
     transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
     margin: 0.5rem;
 
-    @apply bg-btn-icon text-tc-btn w-icon-btn h-icon-btn;
+    @apply bg-btn-icon text-txt-btn w-icon-btn h-icon-btn;
 }
 .p-carousel .p-carousel-content .p-carousel-prev:enabled:hover,
 .p-carousel .p-carousel-content .p-carousel-next:enabled:hover {
@@ -4491,7 +4491,7 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
     transition: box-shadow 0.2s;
     margin: 0 0 -2px 0;
 
-    @apply bg-body-secondary;
+    @apply bg-bg-secondary;
 }
 .p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus-visible {
     @apply ring-1;
@@ -4500,7 +4500,7 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
     @apply bg-opacity-hover border-primary;
 }
 .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
-    @apply bg-body-secondary text-primary border-primary;
+    @apply bg-bg-secondary text-primary border-primary;
 }
 .p-tabview .p-tabview-left-icon {
     margin-right: 0.5rem;
@@ -4528,7 +4528,7 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
     padding: 1.25rem;
     border: 0 none;
 
-    @apply bg-body-secondary;
+    @apply bg-bg-secondary;
 }
 
 .p-toolbar {
@@ -4596,7 +4596,7 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
 .p-dialog .p-dialog-header {
     border-bottom: 0 none;
 
-    @apply bg-body-secondary text-[20px] font-bold text-tc-default mt-4 p-3;
+    @apply bg-bg-secondary text-[20px] font-bold text-txt-default mt-4 p-3;
 }
 .p-dialog .p-dialog-header .p-dialog-title {
     font-weight: 700;
@@ -4626,7 +4626,7 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
     margin-right: 0;
 }
 .p-dialog .p-dialog-content {
-    @apply bg-body-secondary text-fs-default text-tc-default px-6;
+    @apply bg-bg-secondary text-fs-default text-txt-default px-6;
 }
 .p-dialog .p-dialog-content:last-of-type {
     @apply rounded-b-[6px];
@@ -4635,7 +4635,7 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
     border-top: 0 none;
     text-align: right;
 
-    @apply bg-body-secondary text-fs-default text-tc-default p-6 pt-4;
+    @apply bg-bg-secondary text-fs-default text-txt-default p-6 pt-4;
 }
 .p-dialog .p-dialog-footer button {
 }
@@ -4647,7 +4647,7 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
 }
 
 .p-overlaypanel {
-    @apply bg-body-secondary rounded-default;
+    @apply bg-bg-secondary rounded-default;
 }
 .p-overlaypanel .p-overlaypanel-content {
     @apply p-3;
@@ -6047,7 +6047,7 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
     box-shadow: none;
     border-radius: 6px;
 
-    @apply bg-body-secondary border-solid border-l-[6px];
+    @apply bg-bg-secondary border-solid border-l-[6px];
 }
 .p-toast .p-toast-message .p-toast-message-content {
     padding: 1rem;

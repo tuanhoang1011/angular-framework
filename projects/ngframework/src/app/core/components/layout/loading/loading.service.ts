@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'projects/ngframework/src/environments/environment';
 
-import { LoadingState } from '../../models/state.model';
-import { ComponentStoreBase } from '../../services/state-manager/component-store/component-store-base.service';
+import { LoadingState } from '../../../models/state.model';
+import { ComponentStoreBase } from '../../../services/state-manager/component-store/component-store-base.service';
 
 @Injectable({ providedIn: 'root' })
 export class LoadingService extends ComponentStoreBase<LoadingState> {
