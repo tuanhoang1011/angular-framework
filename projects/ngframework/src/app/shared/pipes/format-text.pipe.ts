@@ -1,7 +1,7 @@
 import { NgModule, Pipe, PipeTransform } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { format, fromUnixTime } from 'date-fns';
-import { floor, replace } from 'lodash';
+import { find, floor, replace } from 'lodash';
 import { sprintf } from 'sprintf-js';
 
 import { CommonConstant } from '../../core/constants/common.const';
@@ -66,7 +66,10 @@ export class FormatTextPipe implements PipeTransform {
             case FormatTextType.Gender:
                 try {
                     return this.translateService.instant(
-                        CommonConstant.Gender.find((x) => (data ? data === x.value : x.value === 2))?.label!
+                        !isNullOrUndefined(data)
+                            ? find(CommonConstant.Gender, (gender) => gender.value === data)?.label ??
+                                  CommonConstant.Gender.Undefined.label
+                            : CommonConstant.Gender.Undefined.label
                     );
                 } catch (error) {
                     return '';

@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 
 import { LogActiveScreen, LogSubType, LogType } from '../constants/log.const';
 import { AppRoutes } from '../constants/router.const';
-import { LogService } from '../services/log/log.service';
-import { GlobalStateService } from '../services/state-manager/component-store/global-state.service';
+import { GlobalStateService } from '../services/global-state.service';
+import { LogService } from '../services/log.service';
 import { isNullOrUndefined } from '../utils/common-func.ultility';
 
 @Injectable({ providedIn: 'root' })
@@ -26,8 +26,14 @@ export class ErrorPageGuard {
             this.router.navigate([AppRoutes.Public]);
 
             return false;
-        }
+        } else {
+            // write log
+            this.logService.operation(LogType.Action, {
+                subType: LogSubType.ScreenTransition,
+                destinationScreen: LogActiveScreen.ErrorPage
+            });
 
-        return true;
+            return true;
+        }
     }
 }

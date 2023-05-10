@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IDBPDatabase, openDB } from 'idb';
 
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -39,7 +39,7 @@ export class IndexedDBService {
         return (await this.dbPromise).put(objStore, val, key);
     }
 
-    async delete(objStore: string, key: IDBKeyRange | IDBValidKey) {
+    async remove(objStore: string, key: IDBKeyRange | IDBValidKey) {
         return (await this.dbPromise).delete(objStore, key);
     }
 

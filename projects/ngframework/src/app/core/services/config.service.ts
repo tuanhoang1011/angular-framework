@@ -3,10 +3,10 @@ import { isEmpty, keys } from 'lodash';
 import { environment } from 'projects/ngframework/src/environments/environment';
 import { Subject, takeUntil } from 'rxjs';
 
-import { Configuration } from '../../models/config.model';
-import { isNullOrUndefined } from '../../utils/common-func.ultility';
-import { GlobalVariables } from '../../utils/global-variables.ultility';
-import { HttpBaseService } from '../communicate-server/http-base.service';
+import { Configuration } from '../models/config.model';
+import { isNullOrUndefined } from '../utils/common-func.ultility';
+import { GlobalVariables } from '../utils/global-variables.ultility';
+import { HttpBaseService } from './http-base.service';
 
 @Injectable({ providedIn: 'root' })
 export class ConfigService extends HttpBaseService {

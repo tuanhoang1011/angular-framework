@@ -9,7 +9,7 @@ import {
     subDays,
     subMonths,
     subWeeks,
-    subYears,
+    subYears
 } from 'date-fns';
 
 import { RangeDate } from '../models/common.model';

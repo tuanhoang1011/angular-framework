@@ -1,8 +1,8 @@
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { isNull, isUndefined } from 'lodash';
-import { environment } from 'projects/ngframework/src/environments/environment';
 
+import { environment } from '../../../environments/environment';
 import { AppModule } from '../../app.module';
 import { AuthRoutes, PublicRoutes } from '../constants/router.const';
 

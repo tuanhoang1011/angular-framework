@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 import { DialogInfo } from '../../models/common.model';
 import { DialogManagerState } from '../../models/state.model';
-import { ComponentStoreBase } from '../../services/state-manager/component-store/component-store-base.service';
+import { ComponentStoreBase } from '../../services/component-store-base.service';
 
 @Injectable({
     providedIn: 'root'

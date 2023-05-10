@@ -15,11 +15,11 @@ export const CommonConstant = Object.freeze({
         Dark: { value: 1, label: 'dark' }
     },
 
-    Gender: [
-        { value: 0, label: 'LBL_0001' },
-        { value: 1, label: 'LBL_0002' },
-        { value: 2, label: 'N/A' }
-    ],
+    Gender: {
+        Male: { value: 0, label: 'LBL_0001' },
+        Female: { value: 1, label: 'LBL_0002' },
+        Undefined: { value: 2, label: 'N/A' }
+    },
 
     ActiveStatus: {
         Active: { value: 0, label: 'LBL_0003' },

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { APIName, APIRoutes } from '../../core/constants/api-routes';
-import { GraphQLBaseService } from '../../core/services/communicate-server/graphQL-base.service';
 import { HttpBaseService } from '../../core/services/communicate-server/http-base.service';
+import { GraphQLBaseService } from '../../core/services/graphQL-base.service';
 
 @Injectable({
     providedIn: 'root'

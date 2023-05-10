@@ -10,7 +10,7 @@ import {
     OnInit,
     Output,
     Renderer2,
-    SimpleChanges,
+    SimpleChanges
 } from '@angular/core';
 import { Router } from '@angular/router';
 

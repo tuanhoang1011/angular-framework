@@ -18,6 +18,10 @@
     @apply bg-confirm #{!important};
 }
 
+.p-dialog-mask {
+    @apply z-[100000] #{!important};
+}
+
 .p-dialog {
     @apply bg-bg-secondary;
 

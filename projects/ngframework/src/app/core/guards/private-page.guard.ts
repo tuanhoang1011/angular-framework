@@ -3,8 +3,8 @@ import { ActivatedRouteSnapshot } from '@angular/router';
 
 import { LogActiveScreen, LogSubType, LogType } from '../constants/log.const';
 import { AppRoutes } from '../constants/router.const';
-import { AuthBaseService } from '../services/auth/auth-base.service';
-import { LogService } from '../services/log/log.service';
+import { AuthBaseService } from '../services/auth-base.service';
+import { LogService } from '../services/log.service';
 
 @Injectable({ providedIn: 'root' })
 export class PrivatePageGuard {

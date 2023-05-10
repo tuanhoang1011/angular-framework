@@ -10,21 +10,21 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { isEmpty } from 'lodash';
-import { environment } from 'projects/ngframework/src/environments/environment';
 import { Observable, of } from 'rxjs';
 import { catchError, finalize, skip, switchMap, takeUntil, timeout } from 'rxjs/operators';
 
-import { AuthAPIService } from '../../../network-service/api/auth-api.service';
-import { LoadingService } from '../../components/loading/loading.service';
-import { MessageToastService } from '../../components/message-toast/message-toast.service';
-import { LogMessage, LogSubType, LogType } from '../../constants/log.const';
-import { ErrorResponse } from '../../models/http-response.model';
-import { LogContent } from '../../models/log.model';
-import { GlobalVariables } from '../../utils/global-variables.ultility';
-import { AuthBaseService } from '../auth/auth-base.service';
-import { HttpBaseService } from '../communicate-server/http-base.service';
-import { LogService } from '../log/log.service';
-import { GlobalStateService } from '../state-manager/component-store/global-state.service';
+import { environment } from '../../../environments/environment';
+import { AuthAPIService } from '../../network-service/api/auth-api.service';
+import { LoadingService } from '../components/loading/loading.service';
+import { MessageToastService } from '../components/message-toast/message-toast.service';
+import { LogMessage, LogSubType, LogType } from '../constants/log.const';
+import { ErrorResponse } from '../models/http-response.model';
+import { LogContent } from '../models/log.model';
+import { GlobalVariables } from '../utils/global-variables.ultility';
+import { AuthBaseService } from './auth-base.service';
+import { GlobalStateService } from './global-state.service';
+import { HttpBaseService } from './http-base.service';
+import { LogService } from './log.service';
 
 @Injectable({ providedIn: 'root' })
 export class CustomInterceptor implements HttpInterceptor {

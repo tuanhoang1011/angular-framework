@@ -11,8 +11,8 @@ import { MessageToastModule } from './components/message-toast/message-toast.mod
 import { SplashScreenModule } from './components/splash-screen/splash-screen.module';
 import { EnsureModuleLoadedOnceGuard } from './guards/ensure-module-loaded-once.guard';
 import { HttpLoaderFactory } from './modules/lazy-load-translate.module';
-import { HTTP_INTERCEPTORS_PROVIDERS } from './services/interceptors/http-interceptor.service';
-import { GLOBAL_ERROR_PROVIDERS } from './services/log/global-error-handler.service';
+import { GLOBAL_ERROR_PROVIDERS } from './services/global-error-handler.service';
+import { HTTP_INTERCEPTORS_PROVIDERS } from './services/http-interceptor.service';
 import { GlobalVariables } from './utils/global-variables.ultility';
 
 // ---------------- Defined modules ----------------

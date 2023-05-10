@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { isEmpty } from 'lodash';
 import { environment } from 'projects/ngframework/src/environments/environment';
 
-import { StorageItem } from '../../models/item.model';
+import { StorageItem } from '../models/item.model';
 
 @Injectable({ providedIn: 'root' })
 export class LocalStorageService {
-    mainKey = environment.storage.localStorage.key;
+    private mainKey = environment.storage.localStorage.key;
     constructor() {}
 
     get(key: string): string {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { GlobalState } from '../../../core/models/state.model';
-import { ComponentStoreBase } from '../../../core/services/state-manager/component-store/component-store-base.service';
+import { ComponentStoreBase } from '../../../core/services/component-store-base.service';
 
 @Injectable({
     providedIn: 'root'

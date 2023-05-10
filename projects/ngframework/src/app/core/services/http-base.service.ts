@@ -2,10 +2,10 @@ import { HttpClient, HttpContext, HttpHeaders, HttpParams } from '@angular/commo
 import { Injectable } from '@angular/core';
 import autoBind from 'auto-bind';
 import { keys } from 'lodash';
-import { environment } from 'projects/ngframework/src/environments/environment';
 import { Observable, Subject } from 'rxjs';
 
-import { AppModule } from '../../../app.module';
+import { environment } from '../../../environments/environment';
+import { AppModule } from '../../app.module';
 
 export type HttpMethod = 'DELETE' | 'GET' | 'HEAD' | 'JSONP' | 'OPTIONS' | 'POST' | 'PUT' | 'PATCH';
 

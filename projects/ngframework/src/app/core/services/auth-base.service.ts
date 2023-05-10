@@ -3,15 +3,15 @@ import { ChangeDetectorRef, Injectable } from '@angular/core';
 import { differenceInCalendarDays } from 'date-fns';
 import { assignIn, cloneDeep } from 'lodash';
 
-import { AuthAPIService } from '../../../network-service/api/auth-api.service';
-import { LoadingService } from '../../components/loading/loading.service';
-import { MessageToastService } from '../../components/message-toast/message-toast.service';
-import { AppRoutes } from '../../constants/router.const';
-import { StorageKey } from '../../constants/storage-key.const';
-import { ErrorCode } from '../../enums/server-error-code.enum';
-import { SignInRequest, SignInResponse, UserProfileResponse } from '../../models/auth.model';
-import { ErrorResponse } from '../../models/http-response.model';
-import { LocalStorageService } from '../storage/local-storage.service';
+import { AuthAPIService } from '../../network-service/api/auth-api.service';
+import { LoadingService } from '../components/loading/loading.service';
+import { MessageToastService } from '../components/message-toast/message-toast.service';
+import { AppRoutes } from '../constants/router.const';
+import { StorageKey } from '../constants/storage-key.const';
+import { ErrorCode } from '../enums/server-error-code.enum';
+import { SignInRequest, SignInResponse, UserProfileResponse } from '../models/auth.model';
+import { ErrorResponse } from '../models/http-response.model';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthBaseService {

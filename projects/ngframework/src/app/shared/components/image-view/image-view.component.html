@@ -7,7 +7,6 @@
         class="rounded-default"
         [width]="width"
         [height]="height"
-        [class]="styleClass"
         [alt]="alt">
 </div>
 
@@ -15,6 +14,16 @@
     id="img-preview"
     class="img-preview-container"
     (click)="clickOutside($event)">
+  
+    <div #previewImgRef class="preview-img">
+        <img imageSize
+            class="rounded-default"
+            [src]="src"
+            [width]="imgRatio.Preview.width"
+            [height]="imgRatio.Preview.height"
+            [alt]="alt">
+    </div>
+
     <div class="preview-btn">
         <ng-container *ngIf="transformMode">
             <app-button styleClass="btn-icon"
@@ -43,14 +52,5 @@
             (onClickAction)="offPreviewMode()">
             <i class="pi pi-times"></i>
         </app-button>
-    </div>
-
-    <div #previewImg class="preview-img">
-        <img imageRatio
-            class="rounded-default"
-            [src]="src"
-            [width]="imgRatio.Preview.width"
-            [height]="imgRatio.Preview.height"
-            [alt]="alt">
     </div>
 </div>

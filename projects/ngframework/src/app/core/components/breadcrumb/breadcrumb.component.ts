@@ -5,7 +5,7 @@ import { sprintf } from 'sprintf-js';
 
 import { LogIdentiferFormat, LogSubType, LogType } from '../../constants/log.const';
 import { BreadcrumbItem, BreadcrumbItemList } from '../../models/breadcrumb.model';
-import { LogService } from '../../services/log/log.service';
+import { LogService } from '../../services/log.service';
 import { BaseComponent } from '../base.component';
 import { BreadcrumbService } from './breadcrumb.service';
 
@@ -30,22 +30,30 @@ export class BreadcrumbComponent extends BaseComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.breadcrumbService.breadcrumb$.subscribe((res: BreadcrumbItemList) => {
-            this.items = res.items ?? [];
-            this.cdr.markForCheck();
-        });
+        try {
+            this.breadcrumbService.breadcrumb$.subscribe((res: BreadcrumbItemList) => {
+                this.items = res.items ?? [];
+                this.cdr.markForCheck();
+            });
+        } catch (error) {
+            throw error;
+        }
     }
 
     redirectPage(item: BreadcrumbItem) {
-        if (item.url) {
-            // write log
-            this.logService.operation(LogType.Action, {
-                subType: LogSubType.ScreenTransition,
-                identifier: sprintf(LogIdentiferFormat.Breadcrumb, this.translateService.instant(item.label!)),
-                destinationScreen: item.destinationScreen
-            });
+        try {
+            if (item.url) {
+                // write log
+                this.logService.operation(LogType.Action, {
+                    subType: LogSubType.ScreenTransition,
+                    identifier: sprintf(LogIdentiferFormat.Breadcrumb, this.translateService.instant(item.label!)),
+                    destinationScreen: item.destinationScreen
+                });
 
-            this.router.navigate([item.url]);
+                this.router.navigate([item.url]);
+            }
+        } catch (error) {
+            throw error;
         }
     }
 

@@ -5,7 +5,7 @@ import {
     OnInit,
     ViewChild,
     ViewContainerRef,
-    ViewEncapsulation,
+    ViewEncapsulation
 } from '@angular/core';
 import { takeUntil } from 'rxjs';
 

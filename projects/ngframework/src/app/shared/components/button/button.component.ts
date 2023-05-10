@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { sprintf } from 'sprintf-js';
 
 import { LogIdentiferFormat, LogSubType, LogType } from '../../../core/constants/log.const';
-import { LogService } from '../../../core/services/log/log.service';
+import { LogService } from '../../../core/services/log.service';
 
 @Component({
     selector: 'app-button',

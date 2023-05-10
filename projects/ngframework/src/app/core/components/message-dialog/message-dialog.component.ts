@@ -4,7 +4,7 @@ import { sprintf } from 'sprintf-js';
 
 import { LogIdentiferFormat, LogSubType, LogType } from '../../constants/log.const';
 import { Message, MessageAction } from '../../models/message.model';
-import { LogService } from '../../services/log/log.service';
+import { LogService } from '../../services/log.service';
 import { MessageDialogService } from './message-dialog.service';
 
 @Component({
