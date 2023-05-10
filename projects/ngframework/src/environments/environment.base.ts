@@ -1,15 +1,11 @@
 export default {
-    host: 'host',
-    prefix: 'prefix',
+    apiHost: 'host',
+    apiPrefix: 'prefix',
+    wsUrl: 'ws://localhost:8181',
     production: true,
     debugMode: false,
     env: '',
     version: '',
-    wsConfig: {
-        wsUrl: 'ws://localhost:8181',
-        reconnectInterval: 2000, // 2s
-        reconnectAttempts: 10 // 10 times
-    },
     aws_appsync: {
         API: {
             aws_appsync_graphqlEndpoint: '',

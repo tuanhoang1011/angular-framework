@@ -1,6 +1,7 @@
 import { HttpStatusCode } from '@angular/common/http';
 import { ViewContainerRef } from '@angular/core';
 
+import { BreadcrumbItemList } from './breadcrumb.model';
 import { DialogInfo } from './common.model';
 
 export interface GlobalState {
@@ -11,13 +12,13 @@ export interface GlobalState {
 }
 
 export interface LoadingState {
-    loading?: boolean;
-    splashScreen?: boolean;
+    loadingOn?: boolean;
+    splashScreenOn?: boolean;
 }
 
 export interface LayoutState {
     expandSidebar?: boolean;
-    breadcrumb?: any;
+    breadcrumbs?: BreadcrumbItemList;
 }
 
 export interface DialogManagerState {

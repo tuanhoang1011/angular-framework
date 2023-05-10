@@ -77,13 +77,7 @@ module.exports = {
             },
 
             boxShadow: {
-                default: '0px 1px 8px #0000000D',
-                header: '0 5px 5px 0 #0000000d',
-                dialog: '5px 5px 10px #00000033',
-                'text-box': '0 0 0 0.2rem #eff0e0',
-                panel: '0 3px 6px 0 #0000000d',
-
-                errpage: '5px 5px 30px 20px #14380c'
+                errpage: '5px 5px 30px 20px'
             }
         }
     },
@@ -104,16 +98,16 @@ module.exports = {
                 // common
                 'bg-primary': '#000',
                 'bg-secondary': '#1e222d',
-                primary: '#1ea97c',
+                primary: '#23a6d5',
                 secondary: '#a0a3ad',
                 danger: '#F23645',
                 border: '#50535e',
-                hyperlink: '#1ea97c',
+                hyperlink: '#23a6d5',
 
                 // loading
                 mask: '#1e222dcc',
-                'loading-gradient-fr': '#00f0fc',
-                'loading-gradient-to': '#bcfd02',
+                'loading-gradient-fr': '#23a6d5',
+                'loading-gradient-to': '#23d5ab',
 
                 // text
                 'txt-default': '#C8CCD8',
@@ -137,13 +131,13 @@ module.exports = {
                 'dialog-content': '#707070',
 
                 // button
-                'btn-primary': '#1ea97c',
-                'btn-secondary': '#1ea97c',
+                'btn-primary': '#23a6d5',
+                'btn-secondary': '#23a6d5',
                 'btn-danger': '#F23645',
                 'btn-icon': '#1e222d',
 
                 // message
-                success: '#1ea97c',
+                success: '#23a6d5',
                 warn: '#cc8925',
                 error: '#FC6161',
                 info: '#696cff',

@@ -40,7 +40,7 @@ export class CustomInterceptor implements HttpInterceptor {
             const reqUrl = req.url.toLowerCase();
 
             // not API request => stop
-            if (!reqUrl.includes(`${environment.host}${environment.prefix}`.toLowerCase())) {
+            if (!reqUrl.includes(`${environment.apiHost}${environment.apiPrefix}`.toLowerCase())) {
                 return next.handle(req);
             }
 
@@ -114,7 +114,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         try {
             const reqUrl = req.url.toLowerCase();
 
-            if (reqUrl.includes(`${environment.host}${environment.prefix}`.toLowerCase())) {
+            if (reqUrl.includes(`${environment.apiHost}${environment.apiPrefix}`.toLowerCase())) {
                 this.loadingService.apiReqCount++;
             }
 

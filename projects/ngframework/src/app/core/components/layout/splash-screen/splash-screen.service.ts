@@ -5,15 +5,15 @@ import { ComponentStoreBase } from '../../../services/state-manager/component-st
 
 @Injectable({ providedIn: 'root' })
 export class SplashScreenService extends ComponentStoreBase<LoadingState> {
-    public splashScreen$ = this.select((state) => state.splashScreen);
+    public splashScreenOn$ = this.select((state) => state.splashScreenOn);
 
     constructor() {
         super({
-            splashScreen: true
+            splashScreenOn: true
         });
     }
 
-    show = () => this.updateState({ splashScreen: true });
+    show = () => this.updateState({ splashScreenOn: true });
 
-    hide = () => this.updateState({ splashScreen: false });
+    hide = () => this.updateState({ splashScreenOn: false });
 }

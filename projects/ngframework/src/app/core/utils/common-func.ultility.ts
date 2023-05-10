@@ -4,8 +4,7 @@ import { isNull, isUndefined } from 'lodash';
 import { environment } from 'projects/ngframework/src/environments/environment';
 
 import { AppModule } from '../../app.module';
-import { AuthRoutes } from '../routers/auth.routes';
-import { PublicRoutes } from '../routers/public.routes';
+import { AuthRoutes, PublicRoutes } from '../constants/router.const';
 
 export const isNullOrUndefined = (val) => {
     return isUndefined(val) || isNull(val);

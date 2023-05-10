@@ -4,7 +4,6 @@ export class GlobalVariables {
     // map to value in config files
     static messageLifeTimeMilSecond = 3000;
     static version = '';
-    static defaultLanguage = CommonConstant.Language.English.sortLabel;
     static defaultTheme = CommonConstant.Theme.Light.label;
     static logMaxBundleSize = 500;
     static requestHTTPTimeoutMilSecond = 60000;
@@ -12,7 +11,13 @@ export class GlobalVariables {
     static autoSignOutDurationMinute = 15;
     static splashScreenDurationMilSecond = 2000;
     static imageCarouselNumVisible = 5;
+    static wsConfig = {
+        reconnectInterval: 2000, // 2s
+        reconnectAttempts: 10 // 10 times
+    };
+
     // other
+    static defaultLanguage = CommonConstant.Language.English.sortLabel;
     static language = CommonConstant.Language.English.sortLabel;
     static theme = CommonConstant.Theme.Light.label;
     static pendingAutoSignOut = false;

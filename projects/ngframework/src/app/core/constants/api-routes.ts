@@ -1,4 +1,4 @@
-export const APIRoutes = {
+export const APIRoutes = Object.freeze({
     // profile
     SignIn: '/sign-in',
     SignOut: '/sign-out',
@@ -7,12 +7,12 @@ export const APIRoutes = {
 
     // Log
     Log: '/logs'
-};
+});
 
-export const APIName = {
+export const APIName = Object.freeze({
     LogPOST: 'PushLogFunc',
     SignInPOST: 'SignInFunc',
     SignOutPUT: 'SignOutFunc',
     ProfileGET: 'GetProfileFunc',
     RefreshTokenPOST: 'RefreshTokenFunc'
-};
+});

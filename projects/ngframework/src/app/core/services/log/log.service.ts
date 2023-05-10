@@ -16,10 +16,14 @@ export class LogService {
     public screenIdentifer = '';
     private isPushingLog: boolean = false;
     private pendingKey: IDBValidKey = '';
-    private logDB = environment?.storage.indexedDB?.log;
+
+    private logDB = {
+        ...environment?.storage.indexedDB?.log,
+        maxBundleSize: GlobalVariables.logMaxBundleSize
+    };
 
     constructor(private idxDBService: IndexedDBService, private msgToastService: MessageToastService) {
-        this.idxDBService.createObjectStore(environment.storage.indexedDB.log.objectStore);
+        this.idxDBService.createObjectStore(this.logDB.objectStore);
     }
 
     pushingLogs(): Promise<void> {
@@ -161,7 +165,7 @@ export class LogService {
             await this.idxDBService.set(this.logDB.objectStore, key, logBundle);
 
             // logBundle is always first bundle which has most logs -> use it to compare with logMaxBundleSize
-            if (logBundle.length >= GlobalVariables.logMaxBundleSize) {
+            if (logBundle.length >= this.logDB.maxBundleSize) {
                 this.pushingLogs();
             }
         } catch (error) {

@@ -20,8 +20,8 @@ import { HeaderService } from './core/components/layout/header/header.service';
 import { LoadingService } from './core/components/layout/loading/loading.service';
 import { SplashScreenService } from './core/components/layout/splash-screen/splash-screen.service';
 import { LogActiveScreen, LogSubType, LogType } from './core/constants/log.const';
+import { AppRoutes } from './core/constants/router.const';
 import { StorageKey } from './core/constants/storage-key.const';
-import { AppRoutes } from './core/routers/app.routes';
 import { AuthBaseService } from './core/services/auth/auth-base.service';
 import { AutoSignOutService } from './core/services/auth/auto-signout.service';
 import { ConfigService } from './core/services/common/config.service';
@@ -48,7 +48,7 @@ export class AppComponent extends BaseComponent implements OnInit {
     @HostListener('document:keydown', ['$event'])
     handleKeyboardEvent(event: KeyboardEvent) {
         // prevent input when loading is showing
-        if (this.loadingService.getStates.loading) {
+        if (this.loadingService.getStates.loadingOn) {
             event.preventDefault();
         }
     }
@@ -171,7 +171,7 @@ export class AppComponent extends BaseComponent implements OnInit {
 
         this.translateService.setDefaultLang(GlobalVariables.language);
         this.translateService
-            .get('primeng')
+            .stream('primeng')
             .pipe(takeUntil(this.destroy$))
             .subscribe((res) => this.primeNGConfig.setTranslation(res));
 

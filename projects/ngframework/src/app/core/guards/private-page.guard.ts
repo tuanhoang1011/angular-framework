@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot } from '@angular/router';
 
 import { LogActiveScreen, LogSubType, LogType } from '../constants/log.const';
-import { AppRoutes } from '../routers/app.routes';
+import { AppRoutes } from '../constants/router.const';
 import { AuthBaseService } from '../services/auth/auth-base.service';
 import { LogService } from '../services/log/log.service';
 
