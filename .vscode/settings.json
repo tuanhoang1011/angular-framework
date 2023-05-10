@@ -1,0 +1,42 @@
+{
+    "workbench.colorTheme": "Default Dark+",
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.codeLens": true,
+    "diffEditor.codeLens": true,
+    "git.mergeEditor": false,
+    "explorer.decorations.colors": false,
+    "explorer.compactFolders": false,
+    "gitlens.views.searchAndCompare.files.compact": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "errorLens.exclude": ["Unknown at rule @apply", "at-rule or selector expected"],
+    "typescriptHero.imports.organizeOnSave": true,
+    "typescriptHero.imports.organizeSortsByFirstSpecifier": true,
+    "typescriptHero.imports.grouping": ["Plains", "Modules", "Workspace"],
+    "editor.formatOnSave": true,
+    "workbench.editorAssociations": {
+        "git-rebase-todo": "gitlens.rebase"
+    },
+    "search.exclude": {
+        "**/.git": true,
+        "**/node_modules": true,
+        "**/.angular": true,
+        "**/bower_components": true,
+        "**/tmp": true
+    },
+    "prettier.configPath": "projects\\ngframework\\src\\.prettierrc",
+    "html.format.enable": false
+}
