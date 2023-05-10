@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { BreadcrumbItemList } from '../../../models/breadcrumb.model';
-import { LayoutState } from '../../../models/state.model';
-import { ComponentStoreBase } from '../../../services/state-manager/component-store/component-store-base.service';
+import { BreadcrumbItemList } from '../../models/breadcrumb.model';
+import { LayoutState } from '../../models/state.model';
+import { ComponentStoreBase } from '../../services/state-manager/component-store/component-store-base.service';
 
 @Injectable({
     providedIn: 'root'

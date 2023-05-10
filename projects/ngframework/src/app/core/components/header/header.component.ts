@@ -4,13 +4,13 @@ import { TranslateService } from '@ngx-translate/core';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { environment } from 'projects/ngframework/src/environments/environment';
 
-import { CommonConstant } from '../../../constants/common.const';
-import { StorageKey } from '../../../constants/storage-key.const';
-import { FormatTextType } from '../../../enums/format-text.enum';
-import { MenuItem } from '../../../models/item.model';
-import { LocalStorageService } from '../../../services/storage/local-storage.service';
-import { GlobalVariables } from '../../../utils/global-variables.ultility';
-import { BaseComponent } from '../../base.component';
+import { CommonConstant } from '../../constants/common.const';
+import { StorageKey } from '../../constants/storage-key.const';
+import { FormatTextType } from '../../enums/format-text.enum';
+import { MenuItem } from '../../models/item.model';
+import { LocalStorageService } from '../../services/storage/local-storage.service';
+import { GlobalVariables } from '../../utils/global-variables.ultility';
+import { BaseComponent } from '../base.component';
 import { SidebarService } from '../sidebar/sidebar.service';
 import { HeaderService } from './header.service';
 

@@ -11,19 +11,18 @@ const routes: Routes = [
         children: [
             {
                 path: AppRoutes.Public,
-                loadChildren: () => import('./core/components/layout/public/public.module').then((m) => m.PublicModule)
+                loadChildren: () => import('./core/components/public/public.module').then((m) => m.PublicModule)
             },
             {
                 path: AppRoutes.Private,
                 canActivate: [(route: ActivatedRouteSnapshot) => inject(PrivatePageGuard).canActivate(route)],
-                loadChildren: () =>
-                    import('./core/components/layout/private/private.module').then((m) => m.PrivateModule)
+                loadChildren: () => import('./core/components/private/private.module').then((m) => m.PrivateModule)
             },
             {
                 path: AppRoutes.Error,
                 canActivate: [() => inject(ErrorPageGuard).canActivate()],
                 loadChildren: () =>
-                    import('./core/components/layout/error-page/error-page.module').then((m) => m.ErrorPageModule)
+                    import('./core/components/error-page/error-page.module').then((m) => m.ErrorPageModule)
             },
             { path: '**', redirectTo: AppRoutes.Public }
         ]

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { lastValueFrom, Observable } from 'rxjs';
 
-import { MenuItem } from '../../../models/item.model';
-import { LayoutState } from '../../../models/state.model';
-import { HttpBaseService } from '../../../services/communicate-server/http-base.service';
-import { ComponentStoreBase } from '../../../services/state-manager/component-store/component-store-base.service';
+import { MenuItem } from '../../models/item.model';
+import { LayoutState } from '../../models/state.model';
+import { HttpBaseService } from '../../services/communicate-server/http-base.service';
+import { ComponentStoreBase } from '../../services/state-manager/component-store/component-store-base.service';
 
 const root = '../../../../../assets/json/';
 const sidebarJSON = `${root}items/sidebar.json`;

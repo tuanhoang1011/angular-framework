@@ -7,12 +7,12 @@ import { environment } from 'projects/ngframework/src/environments/environment';
 import { lastValueFrom, takeUntil } from 'rxjs';
 
 import { BaseComponent } from '../../core/components/base.component';
+import { BreadcrumbService } from '../../core/components/breadcrumb/breadcrumb.service';
 import { DialogManagerService } from '../../core/components/dialog-manager/dialog-manager.service';
-import { BreadcrumbService } from '../../core/components/layout/breadcrumb/breadcrumb.service';
-import { LoadingService } from '../../core/components/layout/loading/loading.service';
-import { SplashScreenService } from '../../core/components/layout/splash-screen/splash-screen.service';
+import { LoadingService } from '../../core/components/loading/loading.service';
 import { MessageDialogService } from '../../core/components/message-dialog/message-dialog.service';
 import { MessageToastService } from '../../core/components/message-toast/message-toast.service';
+import { SplashScreenService } from '../../core/components/splash-screen/splash-screen.service';
 import { Breadcrumb, BreadcrumbRoutes } from '../../core/constants/breadcrumb.const';
 import { CommonConstant } from '../../core/constants/common.const';
 import { DialogInfo } from '../../core/models/common.model';
