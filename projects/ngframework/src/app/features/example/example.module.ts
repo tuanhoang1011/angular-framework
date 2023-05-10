@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { BreadcrumbModule } from '../../core/components/layout/breadcrumb/breadcrumb.module';
+import { BreadcrumbModule } from '../../core/components/breadcrumb/breadcrumb.module';
 import { LazyLoadTranslateModule } from '../../core/modules/lazy-load-translate.module';
 import { SharedModule } from '../../shared/shared.module';
 import { Component1Component } from './component1/component1.component';

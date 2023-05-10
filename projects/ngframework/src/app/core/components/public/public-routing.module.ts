@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PublicRoutes } from '../../../constants/router.const';
+import { PublicRoutes } from '../../constants/router.const';
 import { PublicComponent } from './public.component';
 
 const routes: Routes = [
@@ -12,7 +12,7 @@ const routes: Routes = [
             // remove later
             {
                 path: PublicRoutes.Example,
-                loadChildren: () => import('../../../../features/example/example.module').then((m) => m.ExampleModule)
+                loadChildren: () => import('../../../features/example/example.module').then((m) => m.ExampleModule)
             },
             { path: '**', redirectTo: PublicRoutes.Example }
         ]

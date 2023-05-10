@@ -4,7 +4,7 @@ import { differenceInCalendarDays, endOfDay, endOfToday, startOfDay } from 'date
 import { CommonConstant } from '../../../core/constants/common.const';
 import { RangeDate } from '../../../core/models/common.model';
 import { isNullOrUndefined } from '../../../core/utils/common-func.ultility';
-import { generateDateToBefore, startOfNextDay } from '../../../core/utils/date';
+import { generateDateToBefore, startOfNextDay } from '../../../core/utils/date.ultility';
 
 @Component({
     selector: 'app-range-date-selector',

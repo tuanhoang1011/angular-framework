@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEnca
 import { environment } from 'projects/ngframework/src/environments/environment';
 import { takeUntil } from 'rxjs';
 
-import { CommonConstant } from '../../../constants/common.const';
-import { MenuItem } from '../../../models/item.model';
-import { BaseComponent } from '../../base.component';
+import { CommonConstant } from '../../constants/common.const';
+import { MenuItem } from '../../models/item.model';
+import { BaseComponent } from '../base.component';
 import { SidebarService } from './sidebar.service';
 
 @Component({

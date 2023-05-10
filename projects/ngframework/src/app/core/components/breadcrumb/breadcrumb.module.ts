@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { LazyLoadTranslateModule } from '../../../modules/lazy-load-translate.module';
+import { LazyLoadTranslateModule } from '../../modules/lazy-load-translate.module';
 import { BreadcrumbComponent } from './breadcrumb.component';
 
 @NgModule({

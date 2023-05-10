@@ -16,9 +16,9 @@ import { takeUntil } from 'rxjs';
 
 import { environment } from '../environments/environment';
 import { BaseComponent } from './core/components/base.component';
-import { HeaderService } from './core/components/layout/header/header.service';
-import { LoadingService } from './core/components/layout/loading/loading.service';
-import { SplashScreenService } from './core/components/layout/splash-screen/splash-screen.service';
+import { HeaderService } from './core/components/header/header.service';
+import { LoadingService } from './core/components/loading/loading.service';
+import { SplashScreenService } from './core/components/splash-screen/splash-screen.service';
 import { LogActiveScreen, LogSubType, LogType } from './core/constants/log.const';
 import { AppRoutes } from './core/constants/router.const';
 import { StorageKey } from './core/constants/storage-key.const';

@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { sprintf } from 'sprintf-js';
 
-import { LogIdentiferFormat, LogSubType, LogType } from '../../../constants/log.const';
-import { BreadcrumbItem, BreadcrumbItemList } from '../../../models/breadcrumb.model';
-import { LogService } from '../../../services/log/log.service';
-import { BaseComponent } from '../../base.component';
+import { LogIdentiferFormat, LogSubType, LogType } from '../../constants/log.const';
+import { BreadcrumbItem, BreadcrumbItemList } from '../../models/breadcrumb.model';
+import { LogService } from '../../services/log/log.service';
+import { BaseComponent } from '../base.component';
 import { BreadcrumbService } from './breadcrumb.service';
 
 @Component({

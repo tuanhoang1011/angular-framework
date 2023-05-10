@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
-import { CommonConstant } from '../../../constants/common.const';
-import { BaseComponent } from '../../base.component';
+import { CommonConstant } from '../../constants/common.const';
+import { BaseComponent } from '../base.component';
 
 @Component({
     selector: 'app-footer',
