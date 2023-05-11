@@ -1,13 +1,20 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { BaseComponent } from 'projects/ngframework/src/app/core/components/base.component';
-import { LoadingService } from 'projects/ngframework/src/app/core/components/layout/loading/loading.service';
-import { LogActiveScreen } from 'projects/ngframework/src/app/core/constants/log.const';
-import { SignInRequest } from 'projects/ngframework/src/app/core/models/auth.model';
-import { AuthBaseService } from 'projects/ngframework/src/app/core/services/auth/auth-base.service';
-import { focusError } from 'projects/ngframework/src/app/core/utils/form.ultility';
-import { GlobalVariables } from 'projects/ngframework/src/app/core/utils/global-variables.ultility';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    OnInit,
+    ViewChild,
+    ViewEncapsulation
+} from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { BaseComponent } from '../../../../core/components/base.component';
+import { LoadingService } from '../../../../core/components/layout/loading/loading.service';
+import { LogActiveScreen } from '../../../../core/constants/log.const';
+import { SignInRequest } from '../../../../core/models/auth.model';
+import { AuthBaseService } from '../../../../core/services/auth-base.service';
+import { focusError } from '../../../../core/utils/form.ultility';
+import { GlobalVariables } from '../../../../core/utils/global-variables.ultility';
 import { SignInService } from './sign-in.service';
 
 @Component({

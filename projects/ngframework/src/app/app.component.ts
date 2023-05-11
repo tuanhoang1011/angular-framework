@@ -19,16 +19,13 @@ import { BaseComponent } from './core/components/base.component';
 import { HeaderService } from './core/components/header/header.service';
 import { LoadingService } from './core/components/loading/loading.service';
 import { SplashScreenService } from './core/components/splash-screen/splash-screen.service';
-import { LogActiveScreen, LogSubType, LogType } from './core/constants/log.const';
-import { AppRoutes } from './core/constants/router.const';
 import { StorageKey } from './core/constants/storage-key.const';
-import { AuthBaseService } from './core/services/auth/auth-base.service';
-import { AutoSignOutService } from './core/services/auth/auto-signout.service';
-import { ConfigService } from './core/services/common/config.service';
-import { LogService } from './core/services/log/log.service';
-import { GlobalStateService } from './core/services/state-manager/component-store/global-state.service';
-import { LocalStorageService } from './core/services/storage/local-storage.service';
-import { isNullOrUndefined } from './core/utils/common-func.ultility';
+import { AuthBaseService } from './core/services/auth-base.service';
+import { AutoSignOutService } from './core/services/auto-signout.service';
+import { ConfigService } from './core/services/config.service';
+import { GlobalStateService } from './core/services/global-state.service';
+import { LocalStorageService } from './core/services/local-storage.service';
+import { LogService } from './core/services/log.service';
 import { GlobalVariables } from './core/utils/global-variables.ultility';
 
 @Component({
@@ -109,22 +106,6 @@ export class AppComponent extends BaseComponent implements OnInit {
             try {
                 // set active screen/dialog for writing log
                 this.logService.screenIdentifer = res.activeDialog || res.activeScreen;
-            } catch (error) {
-                throw error;
-            }
-        });
-
-        this.globalStateService.errorPage$.pipe(takeUntil(this.destroy$)).subscribe((errCode) => {
-            try {
-                if (!isNullOrUndefined(errCode)) {
-                    // write log
-                    this.logService.operation(LogType.Action, {
-                        subType: LogSubType.ScreenTransition,
-                        destinationScreen: LogActiveScreen.ErrorPage
-                    });
-
-                    this.router.navigate([AppRoutes.Error]);
-                }
             } catch (error) {
                 throw error;
             }

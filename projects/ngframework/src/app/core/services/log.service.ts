@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { format } from 'date-fns';
 import { isEmpty } from 'lodash';
-import { environment } from 'projects/ngframework/src/environments/environment';
 
-import { MessageToastService } from '../../components/message-toast/message-toast.service';
-import { LogLevel } from '../../constants/log.const';
-import { LogContent, LogRequest } from '../../models/log.model';
-import { GlobalVariables } from '../../utils/global-variables.ultility';
-import { IndexedDBService } from '../storage/indexed-db.service';
+import { environment } from '../../../environments/environment';
+import { MessageToastService } from '../components/message-toast/message-toast.service';
+import { LogLevel } from '../constants/log.const';
+import { LogContent, LogRequest } from '../models/log.model';
+import { GlobalVariables } from '../utils/global-variables.ultility';
+import { IndexedDBService } from './indexed-db.service';
 
 @Injectable({
     providedIn: 'root'
@@ -66,7 +66,7 @@ export class LogService {
                 // remove later
                 setTimeout(async () => {
                     for (let i = 0; i < keys.length; i++) {
-                        await this.idxDBService.delete(this.logDB.objectStore, keys[i]);
+                        await this.idxDBService.remove(this.logDB.objectStore, keys[i]);
                     }
                     finishPushingLogs();
                 }, 3000);
@@ -75,7 +75,7 @@ export class LogService {
                 // this.logAPIService.pushingLogs(totalLogs).subscribe({
                 //     next: async (res) => {
                 // for (let i = 0; i < keys.length; i++) {
-                //     await this.idxDBService.delete(this.logDB.objectStore, keys[i]);
+                //     await this.idxDBService.remove(this.logDB.objectStore, keys[i]);
                 // }
                 // finishPushingLogs();
                 //     },

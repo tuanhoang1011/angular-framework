@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'projects/ngframework/src/environments/environment';
 
+import { environment } from '../../../../environments/environment';
 import { LoadingState } from '../../models/state.model';
-import { ComponentStoreBase } from '../../services/state-manager/component-store/component-store-base.service';
+import { ComponentStoreBase } from '../../services/component-store-base.service';
 
 @Injectable({ providedIn: 'root' })
 export class LoadingService extends ComponentStoreBase<LoadingState> {
@@ -16,13 +16,13 @@ export class LoadingService extends ComponentStoreBase<LoadingState> {
         });
     }
 
-    show = (isPendingAPI: boolean = true) => {
+    show = (pendingAPI: boolean = true) => {
         try {
             this.updateState({
                 loadingOn: true
             });
 
-            if (!isPendingAPI) {
+            if (!pendingAPI) {
                 this.apiReqCount = 0;
                 this.isPendingAPI = false;
             }
@@ -31,7 +31,7 @@ export class LoadingService extends ComponentStoreBase<LoadingState> {
         }
     };
 
-    hide = (isPendingAPI: boolean = true) => {
+    hide = (pendingAPI: boolean = true) => {
         try {
             if (this.apiReqCount === 0) {
                 this.updateState({
@@ -39,7 +39,7 @@ export class LoadingService extends ComponentStoreBase<LoadingState> {
                 });
             }
 
-            if (isPendingAPI) {
+            if (pendingAPI) {
                 this.isPendingAPI = true;
             }
         } catch (error) {

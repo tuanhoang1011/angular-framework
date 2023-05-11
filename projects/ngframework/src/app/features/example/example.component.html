@@ -1,29 +1,37 @@
 <div class="ex-container animation-zoom-in">
     <div class="flex flex-col p-5 items-center">
         <div class="relative w-fit">
-            <img src="../../../../../assets/images/fw-logo.svg"
+            <img
+                src="../../../../../assets/images/fw-logo.svg"
                 width="200"
                 height="0"
-                class="self-center">
-            <img src="../../../../../assets/images/dummy-star.png"
+                class="self-center"
+            />
+            <img
+                src="../../../../../assets/images/dummy-star.png"
                 width="50"
                 height="0"
                 class="logo-sticker top-[-8%] left-[-12%]"
-                style="rotate: -20deg;">
-            <img src="../../../../../assets/images/dummy-star.png"
+                style="rotate: -20deg"
+            />
+            <img
+                src="../../../../../assets/images/dummy-star.png"
                 width="50"
                 height="0"
-                class="logo-sticker top-[13%] left-[49%]">
+                class="logo-sticker top-[13%] left-[49%]"
+            />
         </div>
 
-        <h1 class="header header-title gradient-1">
-            Angular
-        </h1>
-        <h1 class="header header-title gradient-1">
-            Base Project Framework
-        </h1>
+        <img src="../../../../../assets/images/dummy-logo-angular.svg"
+            width="60"
+            height="60"
+            className=""
+            alt=""
+        />
+        <h1 class="header header-title gradient-1">Angular</h1>
+        <h1 class="header header-title gradient-1">Base Project Framework</h1>
         <h3 class="header header-info gradient-1">
-           {{ 'EXAMPLE_0001' | translate }}
+            {{ 'EXAMPLE_0001' | translate }}
         </h3>
     </div>
 
@@ -45,42 +53,58 @@
             <h1 class="module-title">Button/ Hyperlink</h1>
             <p class="module-info">Normal</p>
             <div class="module-btn">
-                <app-button content="Secondary"
+                <app-button
+                    content="Secondary"
                     styleClass="btn-secondary"
-                    (onClickAction)="clickButton('Secondary')">
+                    (onClickAction)="clickButton('Secondary')"
+                >
                 </app-button>
-                <app-button content="Primary"
+                <app-button
+                    content="Primary"
                     styleClass="btn-primary"
-                    (onClickAction)="clickButton('Primary')">
+                    (onClickAction)="clickButton('Primary')"
+                >
                 </app-button>
-                <app-button content="Danger"
+                <app-button
+                    content="Danger"
                     styleClass="btn-danger"
-                    (onClickAction)="clickButton('Danger')">
+                    (onClickAction)="clickButton('Danger')"
+                >
                 </app-button>
-                <app-hyperlink content="Hyperlink"
-                    (onActionClick)="clickHyperlink()">
+                <app-hyperlink
+                    content="Hyperlink"
+                    (onActionClick)="clickHyperlink()"
+                >
                 </app-hyperlink>
             </div>
 
             <p class="module-info mt-4">Disabled</p>
             <div class="module-btn">
-                <app-button content="Secondary"
+                <app-button
+                    content="Secondary"
                     styleClass="btn-secondary"
                     [disabled]="true"
-                    (onClickAction)="clickButton('Secondary')">
+                    (onClickAction)="clickButton('Secondary')"
+                >
                 </app-button>
-                <app-button content="Primary"
+                <app-button
+                    content="Primary"
                     styleClass="btn-primary"
                     [disabled]="true"
-                    (onClickAction)="clickButton('Primary')">
+                    (onClickAction)="clickButton('Primary')"
+                >
                 </app-button>
-                <app-button content="Danger"
+                <app-button
+                    content="Danger"
                     styleClass="btn-danger"
                     [disabled]="true"
-                    (onClickAction)="clickButton('Danger')">
+                    (onClickAction)="clickButton('Danger')"
+                >
                 </app-button>
-                <app-hyperlink content="Hyperlink"
-                    [disabled]="true">
+                <app-hyperlink
+                    content="Hyperlink"
+                    [disabled]="true"
+                >
                 </app-hyperlink>
             </div>
         </div>
@@ -91,25 +115,33 @@
         <div class="module">
             <h1 class="module-title">Dynamic Dialog</h1>
             <div class="module-btn">
-                <app-button content="Open Dialog A"
+                <app-button
+                    content="Open Dialog A"
                     styleClass="btn-primary"
                     (onClickAction)="openDialogA()"
-                    [disabled]="true">
+                    [disabled]="true"
+                >
                 </app-button>
-                <app-button content="Open Dialog B"
+                <app-button
+                    content="Open Dialog B"
                     styleClass="btn-primary"
                     (onClickAction)="openDialogB()"
-                    [disabled]="true">
+                    [disabled]="true"
+                >
                 </app-button>
-                <app-button content="Update Dialog A"
+                <app-button
+                    content="Update Dialog A"
                     styleClass="btn-primary"
                     (onClickAction)="updateDialogA()"
-                    [disabled]="true">
+                    [disabled]="true"
+                >
                 </app-button>
-                <app-button content="Remove Dialog A"
+                <app-button
+                    content="Remove Dialog A"
                     styleClass="btn-danger"
                     (onClickAction)="removeDialogA()"
-                    [disabled]="true">
+                    [disabled]="true"
+                >
                 </app-button>
             </div>
         </div>
@@ -121,23 +153,31 @@
             <h1 class="module-title">Error Page</h1>
             <p class="module-info">Click on image to redirect to error page</p>
             <div class="module-img">
-                <app-image-view src="../../../assets/images/dummy-error-400.png"
+                <app-image-view
+                    src="../../../assets/images/dummy-error-400.png"
                     [width]="imgRatio.Thumbnail.width"
                     [height]="imgRatio.Thumbnail.height"
                     [previewMode]="false"
-                    (click)="redirectErrorPage(400)">
+                    (click)="redirectErrorPage(400)"
+                >
                 </app-image-view>
-                <app-image-view src="../../../assets/images/dummy-error-403.png"
+                <app-image-view
+                    src="../../../assets/images/dummy-error-403.png"
                     [previewMode]="false"
-                    (click)="redirectErrorPage(403)">
+                    (click)="redirectErrorPage(403)"
+                >
                 </app-image-view>
-                <app-image-view src="../../../assets/images/dummy-error-404.png"
+                <app-image-view
+                    src="../../../assets/images/dummy-error-404.png"
                     [previewMode]="false"
-                    (click)="redirectErrorPage(404)">
+                    (click)="redirectErrorPage(404)"
+                >
                 </app-image-view>
-                <app-image-view src="../../../assets/images/dummy-error-500.png"
+                <app-image-view
+                    src="../../../assets/images/dummy-error-500.png"
                     [previewMode]="false"
-                    (click)="redirectErrorPage(500)">
+                    (click)="redirectErrorPage(500)"
+                >
                 </app-image-view>
             </div>
         </div>
@@ -148,25 +188,35 @@
         <div class="module">
             <h1 class="module-title">Toast Message</h1>
             <div class="module-btn">
-                <app-button content="Success"
+                <app-button
+                    content="Success"
                     styleClass="btn-primary"
-                    (onClickAction)="showMessageToast('success')">
+                    (onClickAction)="showMessageToast('success')"
+                >
                 </app-button>
-                <app-button content="Error"
+                <app-button
+                    content="Error"
                     styleClass="btn-danger"
-                    (onClickAction)="showMessageToast('error')">
+                    (onClickAction)="showMessageToast('error')"
+                >
                 </app-button>
-                <app-button content="Info"
+                <app-button
+                    content="Info"
                     styleClass="btn-primary !bg-info !border-[#696cff]"
-                    (onClickAction)="showMessageToast('info')">
+                    (onClickAction)="showMessageToast('info')"
+                >
                 </app-button>
-                <app-button content="Warn"
+                <app-button
+                    content="Warn"
                     styleClass="btn-primary !bg-warn !border-warn"
-                    (onClickAction)="showMessageToast('warn')">
+                    (onClickAction)="showMessageToast('warn')"
+                >
                 </app-button>
-                <app-button content="Close All"
+                <app-button
+                    content="Close All"
                     styleClass="btn-danger"
-                    (onClickAction)="showMessageToast('')">
+                    (onClickAction)="showMessageToast('')"
+                >
                 </app-button>
             </div>
         </div>
@@ -177,29 +227,41 @@
         <div class="module">
             <h1 class="module-title">Dialog Message</h1>
             <div class="module-btn">
-                <app-button content="Success"
+                <app-button
+                    content="Success"
                     styleClass="btn-primary"
-                    (onClickAction)="showMessageDialog('success')">
+                    (onClickAction)="showMessageDialog('success')"
+                >
                 </app-button>
-                <app-button content="Error"
+                <app-button
+                    content="Error"
                     styleClass="btn-danger"
-                    (onClickAction)="showMessageDialog('error')">
+                    (onClickAction)="showMessageDialog('error')"
+                >
                 </app-button>
-                <app-button content="Info"
+                <app-button
+                    content="Info"
                     styleClass="btn-primary !bg-info !border-info"
-                    (onClickAction)="showMessageDialog('info')">
+                    (onClickAction)="showMessageDialog('info')"
+                >
                 </app-button>
-                <app-button content="Warn"
+                <app-button
+                    content="Warn"
                     styleClass="btn-primary !bg-warn !border-warn"
-                    (onClickAction)="showMessageDialog('warn')">
+                    (onClickAction)="showMessageDialog('warn')"
+                >
                 </app-button>
-                <app-button content="Confirm"
+                <app-button
+                    content="Confirm"
                     styleClass="btn-primary !bg-confirm !border-confirm"
-                    (onClickAction)="showMessageDialog('confirm')">
+                    (onClickAction)="showMessageDialog('confirm')"
+                >
                 </app-button>
-                <app-button content="Custom"
+                <app-button
+                    content="Custom"
                     styleClass="btn-primary !bg-bg-secondary !border-bg-secondary"
-                    (onClickAction)="showMessageDialog('custom')">
+                    (onClickAction)="showMessageDialog('custom')"
+                >
                 </app-button>
             </div>
         </div>
@@ -210,13 +272,17 @@
         <div class="module">
             <h1 class="module-title">Loading/ Splash Screen</h1>
             <div class="module-btn">
-                <app-button content="Loading"
+                <app-button
+                    content="Loading"
                     styleClass="btn-primary"
-                    (onClickAction)="showLoadingSplashScreen(true)">
+                    (onClickAction)="showLoadingSplashScreen(true)"
+                >
                 </app-button>
-                <app-button content="Splash Screen"
+                <app-button
+                    content="Splash Screen"
                     styleClass="btn-primary"
-                    (onClickAction)="showLoadingSplashScreen(false)">
+                    (onClickAction)="showLoadingSplashScreen(false)"
+                >
                 </app-button>
             </div>
         </div>
@@ -228,10 +294,12 @@
             <h1 class="module-title">Image Thumbnail/ Preview Mode</h1>
             <p class="module-info">You can view image at preview mode by clicking on image.</p>
             <div class="module-img">
-                <app-image-carousel [images]="thumbnailImages"
+                <app-image-carousel
+                    [images]="thumbnailImages"
                     [numVisible]="2"
                     [numScroll]="1"
-                    [circular]="false">
+                    [circular]="false"
+                >
                 </app-image-carousel>
             </div>
         </div>
@@ -242,17 +310,23 @@
         <div class="module">
             <h1 class="module-title">Write/ Push Log</h1>
             <div class="module-btn">
-                <app-button content="Write Log"
+                <app-button
+                    content="Write Log"
                     styleClass="btn-primary"
-                    (onClickAction)="processLog('write')">
+                    (onClickAction)="processLog('write')"
+                >
                 </app-button>
-                <app-button content="Push Logs"
+                <app-button
+                    content="Push Logs"
                     styleClass="btn-primary"
-                    (onClickAction)="processLog('push')">
+                    (onClickAction)="processLog('push')"
+                >
                 </app-button>
-                <app-button content="Clear Logs"
+                <app-button
+                    content="Clear Logs"
                     styleClass="btn-danger"
-                    (onClickAction)="processLog('clear')">
+                    (onClickAction)="processLog('clear')"
+                >
                 </app-button>
             </div>
         </div>
@@ -263,21 +337,25 @@
         <div class="module">
             <h1 class="module-title">Dynamic Tab</h1>
             <div class="module-btn">
-                <app-dynamic-tab-view class="w-full"
+                <app-dynamic-tab-view
+                    class="w-full"
                     [items]="tabItems"
                     [queryParamKey]="'tab'"
                     layout="horizontal"
-                    styleClass="dynamic-tab">
+                    styleClass="dynamic-tab"
+                >
                     <ng-template appTemplate="tab1"><app-component1></app-component1></ng-template>
                     <ng-template appTemplate="tab2"><app-component2></app-component2></ng-template>
                     <ng-template appTemplate="tab3"><app-component3></app-component3></ng-template>
                 </app-dynamic-tab-view>
 
-                <app-dynamic-tab-view class="w-full"
+                <app-dynamic-tab-view
+                    class="w-full"
                     [items]="tabItems"
                     [queryParamKey]="'tab'"
                     layout="vertical"
-                    styleClass="dynamic-tab">
+                    styleClass="dynamic-tab"
+                >
                     <ng-template appTemplate="tab1"><app-component1></app-component1></ng-template>
                     <ng-template appTemplate="tab2"><app-component2></app-component2></ng-template>
                     <ng-template appTemplate="tab3"><app-component3></app-component3></ng-template>
@@ -291,30 +369,38 @@
         <div class="module">
             <h1 class="module-title">Export PDF</h1>
             <div class="module-btn">
-                <app-button content="Export"
+                <app-button
+                    content="Export"
                     styleClass="btn-primary"
-                    (onClickAction)="exportPDF()">
+                    (onClickAction)="exportPDF()"
+                >
                 </app-button>
             </div>
         </div>
 
         <ng-container [ngTemplateOutlet]="lineModule"></ng-container>
 
-         <!-- COMMUNICATE SERVER -->
-         <div class="module">
+        <!-- COMMUNICATE SERVER -->
+        <div class="module">
             <h1 class="module-title">Communicate Server</h1>
             <div class="module-btn">
-                <app-button content="API"
+                <app-button
+                    content="API"
                     styleClass="btn-primary"
-                    [disabled]="true">
+                    [disabled]="true"
+                >
                 </app-button>
-                <app-button content="GraphQL"
+                <app-button
+                    content="GraphQL"
                     styleClass="btn-primary"
-                    [disabled]="true">
+                    [disabled]="true"
+                >
                 </app-button>
-                <app-button content="WebSocket"
+                <app-button
+                    content="WebSocket"
                     styleClass="btn-primary"
-                    [disabled]="true">
+                    [disabled]="true"
+                >
                 </app-button>
             </div>
         </div>
@@ -335,9 +421,11 @@
         <div class="module">
             <h1 class="module-title">Create Form</h1>
             <div class="module-btn">
-                <app-button content="Create Form"
+                <app-button
+                    content="Create Form"
                     styleClass="btn-primary"
-                    [disabled]="true">
+                    [disabled]="true"
+                >
                 </app-button>
             </div>
         </div>
@@ -348,13 +436,17 @@
         <div class="module">
             <h1 class="module-title">Dynamic Table</h1>
             <div class="module-btn">
-                <app-button content="Static Table"
+                <app-button
+                    content="Static Table"
                     styleClass="btn-primary"
-                    [disabled]="true">
+                    [disabled]="true"
+                >
                 </app-button>
-                <app-button content="Editable Table"
+                <app-button
+                    content="Editable Table"
                     styleClass="btn-primary"
-                    [disabled]="true">
+                    [disabled]="true"
+                >
                 </app-button>
             </div>
         </div>
@@ -362,5 +454,8 @@
 </div>
 
 <ng-template #lineModule>
-    <img class="module-line" src="../../../assets/images/dummy-line.svg">
+    <img
+        class="module-line"
+        src="../../../assets/images/dummy-line.svg"
+    />
 </ng-template>

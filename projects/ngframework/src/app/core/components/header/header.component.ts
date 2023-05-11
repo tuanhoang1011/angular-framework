@@ -2,13 +2,13 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, Renderer
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { OverlayPanel } from 'primeng/overlaypanel';
-import { environment } from 'projects/ngframework/src/environments/environment';
 
+import { environment } from '../../../../environments/environment';
 import { CommonConstant } from '../../constants/common.const';
 import { StorageKey } from '../../constants/storage-key.const';
 import { FormatTextType } from '../../enums/format-text.enum';
 import { MenuItem } from '../../models/item.model';
-import { LocalStorageService } from '../../services/storage/local-storage.service';
+import { LocalStorageService } from '../../services/local-storage.service';
 import { GlobalVariables } from '../../utils/global-variables.ultility';
 import { BaseComponent } from '../base.component';
 import { SidebarService } from '../sidebar/sidebar.service';
@@ -43,80 +43,112 @@ export class HeaderComponent extends BaseComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.getNavMenu();
-        this.getUserMenu();
-        this.getLanguages();
+        try {
+            this.getNavMenu();
+            this.getUserMenu();
+            this.getLanguages();
+        } catch (error) {
+            throw error;
+        }
     }
 
     async getNavMenu() {
-        this.navMenu = (await this.headerService.getNavMenu()).menu;
-        this.cdr.markForCheck();
+        try {
+            this.navMenu = (await this.headerService.getNavMenu()).menu;
+            this.cdr.markForCheck();
+        } catch (error) {
+            throw error;
+        }
     }
 
     async getUserMenu() {
-        this.userMenu = [
-            {
-                id: 'profile',
-                label: 'LBL_0005',
-                click: () => {
-                    // check later
-                    // view user profile
-                    console.log('View profile');
+        try {
+            this.userMenu = [
+                {
+                    id: 'profile',
+                    label: 'LBL_0005',
+                    click: () => {
+                        // check later
+                        // view user profile
+                        console.log('View profile');
+                    }
+                },
+                {
+                    id: 'signout',
+                    label: 'LBL_0007',
+                    click: () => {
+                        // check later
+                        // sign out
+                        console.log('Sign out');
+                    }
                 }
-            },
-            {
-                id: 'signout',
-                label: 'LBL_0007',
-                click: () => {
-                    // check later
-                    // sign out
-                    console.log('Sign out');
-                }
-            }
-        ];
-        this.cdr.markForCheck();
+            ];
+            this.cdr.markForCheck();
+        } catch (error) {
+            throw error;
+        }
     }
 
     async getLanguages() {
-        this.languages = (await this.headerService.getLanguages()).menu;
-        this.cdr.markForCheck();
+        try {
+            this.languages = (await this.headerService.getLanguages()).menu;
+            this.cdr.markForCheck();
+        } catch (error) {
+            throw error;
+        }
     }
 
     changeTheme() {
-        let newTheme;
-        if (GlobalVariables.theme === CommonConstant.Theme.Light.label) {
-            newTheme = CommonConstant.Theme.Dark.label;
-        } else {
-            newTheme = CommonConstant.Theme.Light.label;
-        }
+        try {
+            let newTheme;
+            if (GlobalVariables.theme === CommonConstant.Theme.Light.label) {
+                newTheme = CommonConstant.Theme.Dark.label;
+            } else {
+                newTheme = CommonConstant.Theme.Light.label;
+            }
 
-        this.headerService.setTheme(GlobalVariables.theme, newTheme, this.renderer2);
-        GlobalVariables.theme = newTheme;
+            this.headerService.setTheme(GlobalVariables.theme, newTheme, this.renderer2);
+            GlobalVariables.theme = newTheme;
+        } catch (error) {
+            throw error;
+        }
     }
 
     clickMenu(selectedItem: MenuItem | { menu: MenuItem; subMenu: MenuItem }) {
-        // select menu
-        if (!(selectedItem as any).menu && (selectedItem as MenuItem).url) {
-            this.router.navigateByUrl((selectedItem as MenuItem).url!);
-        }
+        try {
+            // select menu
+            if (!(selectedItem as any).menu && (selectedItem as MenuItem).url) {
+                this.router.navigateByUrl((selectedItem as MenuItem).url!);
+            }
 
-        // select submenu
-        if ((selectedItem as any).menu && (selectedItem as any).subMenu.url) {
-            this.router.navigateByUrl((selectedItem as any).subMenu.url);
+            // select submenu
+            if ((selectedItem as any).menu && (selectedItem as any).subMenu.url) {
+                this.router.navigateByUrl((selectedItem as any).subMenu.url);
+            }
+        } catch (error) {
+            throw error;
         }
     }
 
     changeLanguage(langOpt: MenuItem, langRef: OverlayPanel) {
-        if (langOpt && langOpt.id) {
-            this.translateService.use(langOpt.id);
-            GlobalVariables.language = langOpt.id;
-            this.localStorageService.set(StorageKey.Language, langOpt.id);
-        }
+        try {
+            if (langOpt && langOpt.id) {
+                this.translateService.use(langOpt.id);
+                GlobalVariables.language = langOpt.id;
+                this.localStorageService.set(StorageKey.Language, langOpt.id);
+            }
 
-        langRef.hide();
+            langRef.hide();
+        } catch (error) {
+            throw error;
+        }
     }
 
     clickSidebarMenu() {
-        this.sidebarService.setSidebarStatus(!this.sidebarService.getStates.expandSidebar);
+        try {
+            this.sidebarService.setSidebarStatus(!this.sidebarService.getStates.expandSidebar);
+        } catch (error) {
+            throw error;
+        }
     }
 }

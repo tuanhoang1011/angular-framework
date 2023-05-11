@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 
 import { AppModule } from '../../app.module';
 import { SortInfo } from '../models/common.model';
-import { GlobalStateService } from '../services/state-manager/component-store/global-state.service';
+import { GlobalStateService } from '../services/global-state.service';
 
 @Component({
     template: ''

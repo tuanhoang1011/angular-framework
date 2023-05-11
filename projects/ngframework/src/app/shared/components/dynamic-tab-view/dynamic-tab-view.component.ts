@@ -1,5 +1,4 @@
 import {
-    AfterContentInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
@@ -15,13 +14,14 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { isEmpty, isEqual } from 'lodash';
 import { filter } from 'rxjs';
 import { sprintf } from 'sprintf-js';
 
 import { BaseComponent } from '../../../core/components/base.component';
 import { LogIdentiferFormat, LogSubType, LogType } from '../../../core/constants/log.const';
 import { TabItem } from '../../../core/models/item.model';
-import { LogService } from '../../../core/services/log/log.service';
+import { LogService } from '../../../core/services/log.service';
 import { isNullOrUndefined } from '../../../core/utils/common-func.ultility';
 import { TemplateDirective } from '../../directives/template.directive';
 
@@ -32,7 +32,7 @@ import { TemplateDirective } from '../../directives/template.directive';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicTabViewComponent extends BaseComponent implements OnInit, OnChanges, AfterContentInit {
+export class DynamicTabViewComponent extends BaseComponent implements OnInit, OnChanges {
     @ContentChildren(TemplateDirective) templates!: QueryList<TemplateDirective>;
 
     @Input() items: TabItem[] = [];
@@ -61,24 +61,25 @@ export class DynamicTabViewComponent extends BaseComponent implements OnInit, On
         this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe((res) => {
             this.activeTab();
         });
-
-        this.activeTab();
-    }
-
-    ngAfterContentInit(): void {
-        this.templates?.forEach((template) => {
-            const tab = this.items.find((tab) => tab.id === template.appTemplate);
-
-            if (tab) {
-                tab.templateRef = template.templateRef;
-            }
-        });
-        this.onReady.emit(true);
     }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (!isNullOrUndefined(changes['items']?.currentValue)) {
+            if (!isEqual(changes['items']?.currentValue, changes['items']?.previousValue)) {
+                this.templates?.forEach((template) => {
+                    const tab = this.items.find((tab) => tab.id === template.appTemplate);
+
+                    if (tab) {
+                        tab.templateRef = template.templateRef;
+                    }
+                });
+                this.onReady.emit(true);
+            }
             this.cdr.markForCheck();
+        }
+
+        if (isEmpty(changes['items']?.previousValue) && !isEmpty(changes['items']?.currentValue)) {
+            this.activeTab();
         }
     }
 

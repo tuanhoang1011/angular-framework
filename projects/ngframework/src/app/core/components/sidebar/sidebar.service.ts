@@ -3,8 +3,8 @@ import { lastValueFrom, Observable } from 'rxjs';
 
 import { MenuItem } from '../../models/item.model';
 import { LayoutState } from '../../models/state.model';
-import { HttpBaseService } from '../../services/communicate-server/http-base.service';
-import { ComponentStoreBase } from '../../services/state-manager/component-store/component-store-base.service';
+import { ComponentStoreBase } from '../../services/component-store-base.service';
+import { HttpBaseService } from '../../services/http-base.service';
 
 const root = '../../../../../assets/json/';
 const sidebarJSON = `${root}items/sidebar.json`;

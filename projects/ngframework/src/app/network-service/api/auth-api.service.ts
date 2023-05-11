@@ -3,7 +3,7 @@ import { map } from 'rxjs';
 
 import { APIName, APIRoutes } from '../../core/constants/api-routes';
 import { RefreshTokenResponse, SignInRequest, SignInResponse, UserProfileResponse } from '../../core/models/auth.model';
-import { HttpBaseService } from '../../core/services/communicate-server/http-base.service';
+import { HttpBaseService } from '../../core/services/http-base.service';
 
 @Injectable({
     providedIn: 'root'

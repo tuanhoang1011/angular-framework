@@ -19,7 +19,7 @@ const routes: Routes = [
                 loadChildren: () => import('./core/components/private/private.module').then((m) => m.PrivateModule)
             },
             {
-                path: AppRoutes.Error,
+                path: `${AppRoutes.Error}/:code`,
                 canActivate: [() => inject(ErrorPageGuard).canActivate()],
                 loadChildren: () =>
                     import('./core/components/error-page/error-page.module').then((m) => m.ErrorPageModule)

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { addMilliseconds } from 'date-fns';
 
-import { StorageKey } from '../../constants/storage-key.const';
-import { GlobalVariables } from '../../utils/global-variables.ultility';
-import { LocalStorageService } from '../storage/local-storage.service';
+import { StorageKey } from '../constants/storage-key.const';
+import { GlobalVariables } from '../utils/global-variables.ultility';
 import { AuthBaseService } from './auth-base.service';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class AutoSignOutService {

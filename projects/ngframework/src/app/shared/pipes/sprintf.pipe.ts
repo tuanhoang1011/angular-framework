@@ -1,6 +1,4 @@
 import { NgModule, Pipe, PipeTransform } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { map } from 'rxjs';
 import { sprintf } from 'sprintf-js';
 
 @Pipe({
@@ -9,13 +7,10 @@ import { sprintf } from 'sprintf-js';
 export class SprintfPipe implements PipeTransform {
     value?: string;
 
-    constructor(private translateService: TranslateService) {}
+    constructor() {}
 
-    transform(template: string, params?: any[]) {
-        this.translateService
-            .get([template])
-            .pipe(map((res) => (res[template] ? sprintf(res[template!], ...(params ?? [])) : '')))
-            .subscribe((value) => (this.value = value));
+    transform(content: string, params?: any[]) {
+        this.value = sprintf(content, ...(params ?? []));
 
         return this.value;
     }

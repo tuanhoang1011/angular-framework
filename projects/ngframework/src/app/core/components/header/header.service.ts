@@ -3,8 +3,8 @@ import { lastValueFrom } from 'rxjs';
 
 import { StorageKey } from '../../constants/storage-key.const';
 import { MenuItem } from '../../models/item.model';
-import { HttpBaseService } from '../../services/communicate-server/http-base.service';
-import { LocalStorageService } from '../../services/storage/local-storage.service';
+import { HttpBaseService } from '../../services/http-base.service';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 const root = '../../../../../assets/json/';
 const headerJSON = `${root}items/header.json`;

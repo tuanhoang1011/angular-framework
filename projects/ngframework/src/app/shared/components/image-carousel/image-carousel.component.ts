@@ -7,7 +7,7 @@ import {
     Renderer2,
     ViewChild,
     ViewContainerRef,
-    ViewEncapsulation,
+    ViewEncapsulation
 } from '@angular/core';
 
 import { ImageItem } from '../../../core/models/item.model';

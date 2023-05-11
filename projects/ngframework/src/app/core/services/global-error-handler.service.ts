@@ -1,7 +1,7 @@
 import { ErrorHandler, Injectable } from '@angular/core';
 
-import { LogSubType, LogType } from '../../constants/log.const';
-import { LogContent, LogExceptionContent } from '../../models/log.model';
+import { LogSubType, LogType } from '../constants/log.const';
+import { LogContent, LogExceptionContent } from '../models/log.model';
 import { LogService } from './log.service';
 
 @Injectable({ providedIn: 'root' })

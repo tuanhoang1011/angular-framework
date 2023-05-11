@@ -1,14 +1,14 @@
 {
-    "messageLifeTimeMilSecond": 3000,
-    "defaultTheme": "dark",
-    "logMaxBundleSize": 500,
-    "requestHTTPTimeoutMilSecond": 60000,
-    "autoSignOutIntervalMilSecond": 2000,
-    "autoSignOutDurationMinute": 15,
-    "splashScreenDurationMilSecond": 2000,
-    "imageCarouselNumVisible": 5,
-    "wsConfig": {
-        "reconnectInterval": 2000,
-        "reconnectAttempts": 10
-    }
+  "messageLifeTimeMilSecond": 3000,
+  "defaultTheme": "dark",
+  "logMaxBundleSize": 500,
+  "requestHTTPTimeoutMilSecond": 60000,
+  "autoSignOutIntervalMilSecond": 2000,
+  "autoSignOutDurationMinute": 15,
+  "splashScreenDurationMilSecond": 2000,
+  "imageCarouselNumVisible": 5,
+  "wsConfig": {
+    "reconnectInterval": 2000,
+    "reconnectAttempts": 10
+  }
 }

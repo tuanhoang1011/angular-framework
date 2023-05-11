@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { CanvasOptions } from '../../models/common.model';
-import { GlobalVariables } from '../../utils/global-variables.ultility';
+import { CanvasOptions } from '../models/common.model';
+import { GlobalVariables } from '../utils/global-variables.ultility';
 
 @Injectable({
     providedIn: 'root'

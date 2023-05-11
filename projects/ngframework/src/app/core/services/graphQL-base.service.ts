@@ -3,10 +3,10 @@ import autoBind from 'auto-bind';
 import { API, graphqlOperation } from 'aws-amplify';
 import { Observable, of } from 'rxjs';
 
-import { LogMessage, LogSubType, LogType } from '../../constants/log.const';
-import { LogContent } from '../../models/log.model';
-import { AuthBaseService } from '../auth/auth-base.service';
+import { LogMessage, LogSubType, LogType } from '../constants/log.const';
 import { LogService } from '../log/log.service';
+import { LogContent } from '../models/log.model';
+import { AuthBaseService } from './auth-base.service';
 
 @Injectable({
     providedIn: 'root'

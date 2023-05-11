@@ -16,7 +16,7 @@ import { SafeUrl } from '@angular/platform-browser';
 
 import { CommonConstant } from '../../../core/constants/common.const';
 import { LogSubType, LogType } from '../../../core/constants/log.const';
-import { LogService } from '../../../core/services/log/log.service';
+import { LogService } from '../../../core/services/log.service';
 import { bypassSecurityTrustUrl } from '../../../core/utils/common-func.ultility';
 
 @Component({
@@ -27,15 +27,15 @@ import { bypassSecurityTrustUrl } from '../../../core/utils/common-func.ultility
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ImageViewComponent implements OnInit {
-    @Input() src!: string | SafeUrl;
+    @Input() src?: string | SafeUrl;
     @Input() alt: string = '';
-    @Input() styleClass!: string;
+    @Input() styleClass?: string;
     @Input() height: number = CommonConstant.ImageRatio.Thumbnail.height;
     @Input() width: number = CommonConstant.ImageRatio.Thumbnail.width;
     @Input() previewMode: boolean = true;
     @Input() transformMode: boolean = true;
-    @Output() onPreviewMode: EventEmitter<boolean> = new EventEmitter<boolean>(false);
-    @ViewChild('previewImg', {
+    @Output() onClickImageView: EventEmitter<boolean> = new EventEmitter<boolean>(false);
+    @ViewChild('previewImgRef', {
         read: ViewContainerRef
     })
     private previewImgRef!: ViewContainerRef;
@@ -57,7 +57,7 @@ export class ImageViewComponent implements OnInit {
     constructor(private cdr: ChangeDetectorRef, private logService: LogService, private renderer2: Renderer2) {}
 
     ngOnInit(): void {
-        this.src = bypassSecurityTrustUrl(this.src);
+        this.src = this.src ? bypassSecurityTrustUrl(this.src) : '';
     }
 
     clickImage() {
@@ -68,7 +68,7 @@ export class ImageViewComponent implements OnInit {
             this.cdr.markForCheck();
 
             this.renderer2.setStyle(document.body, 'overflow', 'hidden');
-            this.onPreviewMode.emit(true);
+            this.onClickImageView.emit(true);
         } catch (error) {
             throw error;
         }
@@ -99,7 +99,7 @@ export class ImageViewComponent implements OnInit {
             this.zoomRatio = 1;
             this.cdr.markForCheck();
 
-            this.onPreviewMode.emit(false);
+            this.onClickImageView.emit(false);
         } catch (error) {
             throw error;
         }
