@@ -7,6 +7,7 @@ import { MessageToastService } from '../components/message-toast/message-toast.s
 import { LogLevel } from '../constants/log.const';
 import { LogContent, LogRequest } from '../models/log.model';
 import { GlobalVariables } from '../utils/global-variables.ultility';
+import { GlobalStateService } from './global-state.service';
 import { IndexedDBService } from './indexed-db.service';
 
 @Injectable({
@@ -22,8 +23,24 @@ export class LogService {
         maxBundleSize: GlobalVariables.logMaxBundleSize
     };
 
-    constructor(private idxDBService: IndexedDBService, private msgToastService: MessageToastService) {
+    constructor(
+        private idxDBService: IndexedDBService,
+        private msgToastService: MessageToastService,
+        private globalStateService: GlobalStateService
+    ) {
         this.idxDBService.createObjectStore(this.logDB.objectStore);
+        this.listenState();
+    }
+
+    private listenState() {
+        this.globalStateService.vm$.subscribe((res) => {
+            try {
+                // set active screen/dialog for writing log
+                this.screenIdentifer = res.activeDialog || res.activeScreen;
+            } catch (error) {
+                throw error;
+            }
+        });
     }
 
     pushingLogs(): Promise<void> {

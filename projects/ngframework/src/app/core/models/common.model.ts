@@ -33,3 +33,11 @@ export interface RangeDate {
     from?: Date;
     to?: Date;
 }
+
+export interface ErrorPage {
+    code: number;
+    title: string;
+    msg: string;
+    isShowBackBtn?: boolean;
+    isShowHomeBtn?: boolean;
+}

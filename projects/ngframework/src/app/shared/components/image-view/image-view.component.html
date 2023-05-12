@@ -4,6 +4,7 @@
     }"
     (click)="clickImage()">
     <img [src]="src"
+        imageSize
         class="rounded-default"
         [width]="width"
         [height]="height"
@@ -14,9 +15,10 @@
     id="img-preview"
     class="img-preview-container"
     (click)="clickOutside($event)">
-  
+
     <div #previewImgRef class="preview-img">
         <img imageSize
+            [imgRatio]="imgRatio.Preview.ratio"
             class="rounded-default"
             [src]="src"
             [width]="imgRatio.Preview.width"

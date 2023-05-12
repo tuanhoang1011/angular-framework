@@ -22,7 +22,7 @@ export class ConfigService extends HttpBaseService {
                 .subscribe({
                     next: (res) => {
                         try {
-                            if (!res || isEmpty(res)) return;
+                            if (!res || isEmpty(res)) resolve({});
 
                             keys(res).forEach((key) => {
                                 if (!isNullOrUndefined(res[key])) GlobalVariables[key] = res[key];
@@ -30,6 +30,7 @@ export class ConfigService extends HttpBaseService {
 
                             resolve({});
                         } catch (error) {
+                            resolve({});
                             throw error;
                         }
                     }

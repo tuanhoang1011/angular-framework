@@ -12,6 +12,7 @@ import { SplashScreenModule } from './components/splash-screen/splash-screen.mod
 import { EnsureModuleLoadedOnceGuard } from './guards/ensure-module-loaded-once.guard';
 import { HttpLoaderFactory } from './modules/lazy-load-translate.module';
 import { GLOBAL_ERROR_PROVIDERS } from './services/global-error-handler.service';
+import { GraphQLBaseModule } from './services/graphQL-base.service';
 import { HTTP_INTERCEPTORS_PROVIDERS } from './services/http-interceptor.service';
 import { GlobalVariables } from './utils/global-variables.ultility';
 
@@ -19,6 +20,7 @@ import { GlobalVariables } from './utils/global-variables.ultility';
 const modules: any = [
     MessageToastModule.forRoot(),
     MessageDialogModule,
+    GraphQLBaseModule,
     DialogManagerModule,
     LoadingModule,
     SplashScreenModule,

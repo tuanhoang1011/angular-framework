@@ -1,16 +1,16 @@
 import {
-    AfterViewChecked,
-    Directive,
-    ElementRef,
-    EventEmitter,
-    HostListener,
-    Input,
-    NgModule,
-    OnChanges,
-    OnInit,
-    Output,
-    Renderer2,
-    SimpleChanges
+  AfterViewChecked,
+  Directive,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  NgModule,
+  OnChanges,
+  OnInit,
+  Output,
+  Renderer2,
+  SimpleChanges,
 } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -38,7 +38,7 @@ export class ScrollbarDialogDirective {
 export class ScrollbarTableDirective implements OnInit, OnChanges {
     @Input() hasOffsetTop: boolean = true;
     @Input() hasUpdateSize: boolean = true;
-    @Input() bottomHeight: number = 0;
+    @Input() offsetBottom: number = 0;
     @Input() scrollHeight = '';
     @Input() isDialog: boolean = false;
     @Output() scrollHeightChange: EventEmitter<string> = new EventEmitter<string>();
@@ -68,7 +68,7 @@ export class ScrollbarTableDirective implements OnInit, OnChanges {
             const finalHeight = `${this.isDialog ? GlobalVariables.standardSize.heightDialog : rootHeight}px`;
 
             // add more height under table
-            const remainHeight = `${offsetTop + this.bottomHeight}px`;
+            const remainHeight = `${offsetTop + this.offsetBottom}px`;
             this.scrollHeight = `calc(${finalHeight} - ${remainHeight})`;
             this.scrollHeightChange.emit(this.scrollHeight);
         }, 200);
@@ -82,8 +82,8 @@ export class ScrollbarToBottomTableDirective {
     @Output() scrollToBottomEl: EventEmitter<boolean> = new EventEmitter<boolean>(false);
 
     @HostListener('scroll', ['$event'])
-    handleKeyboardEvent(event: any) {
-        const { offsetHeight, scrollTop, scrollHeight } = event.srcElement;
+    handleKeyboardEvent(e: any) {
+        const { offsetHeight, scrollTop, scrollHeight } = e.srcElement;
         this.scrollToBottomEl.emit(scrollTop + offsetHeight === scrollHeight);
     }
 }

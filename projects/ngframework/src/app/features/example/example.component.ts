@@ -23,6 +23,7 @@ import { GlobalStateService } from '../../core/services/global-state.service';
 import { HttpBaseService } from '../../core/services/http-base.service';
 import { IndexedDBService } from '../../core/services/indexed-db.service';
 import { GlobalVariables } from '../../core/utils/global-variables.ultility';
+import { ExampleAPIService } from '../../network-service/api/example-api.service';
 import { DialogAComponent } from './dialog-a/dialog-a.component';
 import { DialogAService } from './dialog-a/dialog-a.service';
 import { DialogBComponent } from './dialog-b/dialog-b.component';
@@ -53,7 +54,8 @@ export class ExampleComponent extends BaseComponent {
         private cdr: ChangeDetectorRef,
         private breadcrumbService: BreadcrumbService,
         private canvasService: CanvasService,
-        private httpBaseService: HttpBaseService
+        private httpBaseService: HttpBaseService,
+        private exampleAPIService: ExampleAPIService
     ) {
         super('Example Page');
 
@@ -442,6 +444,19 @@ export class ExampleComponent extends BaseComponent {
             doc.end();
         } catch (error) {
             throw error;
+        }
+    }
+
+    executeRequestServer(type: 'restfulAPI' | 'graphQL' | 'websocket') {
+        switch (type) {
+            case 'graphQL':
+                this.exampleAPIService.createCommentSubscription('').subscribe({
+                    next: (res) => {
+                        console.log(res);
+                    },
+                    error: (err) => console.log(err)
+                });
+                break;
         }
     }
 }

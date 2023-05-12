@@ -3,14 +3,14 @@ import { addMilliseconds } from 'date-fns';
 
 import { StorageKey } from '../constants/storage-key.const';
 import { GlobalVariables } from '../utils/global-variables.ultility';
-import { AuthBaseService } from './auth-base.service';
+import { AuthService } from './auth.service';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class AutoSignOutService {
     private interval: any;
 
-    constructor(private authService: AuthBaseService, private localStorageService: LocalStorageService) {}
+    constructor(private authService: AuthService, private localStorageService: LocalStorageService) {}
 
     init() {
         this.tracker();
@@ -41,10 +41,9 @@ export class AutoSignOutService {
 
     private updateExpiredTime() {
         try {
-            const newExpiredTime = addMilliseconds(
-                Date.now(),
-                GlobalVariables.autoSignOutDurationMinute * 60 * 1000
-            ).toString();
+            const newExpiredTime = addMilliseconds(Date.now(), GlobalVariables.autoSignOutDurationMinute * 60 * 1000)
+                .getTime()
+                .toString();
             this.localStorageService.set(StorageKey.AutoSignoutTime, newExpiredTime);
         } catch (error) {
             throw error;
