@@ -1,12 +1,12 @@
 import {
-    HTTP_INTERCEPTORS,
-    HttpErrorResponse,
-    HttpEvent,
-    HttpHandler,
-    HttpHeaders,
-    HttpInterceptor,
-    HttpRequest,
-    HttpStatusCode,
+  HTTP_INTERCEPTORS,
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpHeaders,
+  HttpInterceptor,
+  HttpRequest,
+  HttpStatusCode,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { isEmpty } from 'lodash';
@@ -21,7 +21,7 @@ import { LogMessage, LogSubType, LogType } from '../constants/log.const';
 import { ErrorResponse } from '../models/http-response.model';
 import { LogContent } from '../models/log.model';
 import { GlobalVariables } from '../utils/global-variables.ultility';
-import { AuthBaseService } from './auth-base.service';
+import { AuthService } from './auth.service';
 import { GlobalStateService } from './global-state.service';
 import { HttpBaseService } from './http-base.service';
 import { LogService } from './log.service';
@@ -29,7 +29,7 @@ import { LogService } from './log.service';
 @Injectable({ providedIn: 'root' })
 export class CustomInterceptor implements HttpInterceptor {
     constructor(
-        private authService: AuthBaseService,
+        private authService: AuthService,
         private httpBaseService: HttpBaseService,
         private authAPIService: AuthAPIService
     ) {}
@@ -40,7 +40,7 @@ export class CustomInterceptor implements HttpInterceptor {
             const reqUrl = req.url.toLowerCase();
 
             // not API request => stop
-            if (!reqUrl.includes(`${environment.apiHost}${environment.apiPrefix}`.toLowerCase())) {
+            if (!reqUrl.includes(`${environment.apiHost}/${environment.apiPrefix}`.toLowerCase())) {
                 return next.handle(req);
             }
 
@@ -102,7 +102,7 @@ export class CustomInterceptor implements HttpInterceptor {
 @Injectable({ providedIn: 'root' })
 export class ErrorInterceptor implements HttpInterceptor {
     constructor(
-        private authService: AuthBaseService,
+        private authService: AuthService,
         private logService: LogService,
         private msgToastService: MessageToastService,
         private loadingService: LoadingService,
@@ -114,7 +114,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         try {
             const reqUrl = req.url.toLowerCase();
 
-            if (reqUrl.includes(`${environment.apiHost}${environment.apiPrefix}`.toLowerCase())) {
+            if (reqUrl.includes(`${environment.apiHost}/${environment.apiPrefix}`.toLowerCase())) {
                 this.loadingService.apiReqCount++;
             }
 
@@ -197,15 +197,14 @@ export class ErrorInterceptor implements HttpInterceptor {
         try {
             this.msgToastService.error(key);
 
-            // check later
             const forceLogout: string[] = [];
             /*
                 force sign out when
                 + user already signed in
             */
             if (this.authService.isSignedInSession && forceLogout.includes(key)) {
-                // this.loadingService.show();
-                // this.authService.signOut(false, isPushLog);
+                this.loadingService.show();
+                this.authService.signOut();
             }
         } catch (error) {
             throw error;

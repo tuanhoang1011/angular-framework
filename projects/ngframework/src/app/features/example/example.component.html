@@ -388,18 +388,20 @@
                     content="API"
                     styleClass="btn-primary"
                     [disabled]="true"
+                    (onClickAction)="executeRequestServer('restfulAPI')"
                 >
                 </app-button>
                 <app-button
                     content="GraphQL"
                     styleClass="btn-primary"
-                    [disabled]="true"
+                    (onClickAction)="executeRequestServer('graphQL')"
                 >
                 </app-button>
                 <app-button
                     content="WebSocket"
                     styleClass="btn-primary"
                     [disabled]="true"
+                    (onClickAction)="executeRequestServer('websocket')"
                 >
                 </app-button>
             </div>

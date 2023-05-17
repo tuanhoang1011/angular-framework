@@ -5,7 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { LogActiveScreen } from '../../constants/log.const';
 import { AppRoutes } from '../../constants/router.const';
+import { ErrorPage } from '../../models/common.model';
 import { GlobalStateService } from '../../services/global-state.service';
+import { isNullOrUndefined } from '../../utils/common-func.ultility';
 import { BaseComponent } from '../base.component';
 
 @Component({
@@ -16,7 +18,7 @@ import { BaseComponent } from '../base.component';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ErrorPageComponent extends BaseComponent implements OnInit {
-    error: { code: number; title: string; msg: string; isShowBackBtn?: boolean; isShowHomeBtn?: boolean } = {
+    error: ErrorPage = {
         code: undefined!,
         title: '',
         msg: '',
@@ -51,47 +53,66 @@ export class ErrorPageComponent extends BaseComponent implements OnInit {
     }
 
     private snapshotError() {
-        const errCode = this.route.snapshot.params['code'];
-        this.error = {
-            code: errCode,
-            title: `ERRPAGE.${errCode}.TITLE`,
-            msg: `ERRPAGE.${errCode}.MSG`
-        };
+        try {
+            const errCode = this.route.snapshot.params['code'];
+            this.error = {
+                code: errCode,
+                title: `ERRPAGE.${errCode}.TITLE`,
+                msg: `ERRPAGE.${errCode}.MSG`
+            };
 
-        switch (errCode) {
-            case HttpStatusCode.BadRequest:
+            if (!isNullOrUndefined(errCode)) {
+                switch (errCode) {
+                    case HttpStatusCode.BadRequest:
+                        this.error = {
+                            ...this.error,
+                            isShowBackBtn: true,
+                            isShowHomeBtn: false
+                        };
+                        break;
+
+                    case HttpStatusCode.Forbidden:
+                        this.error = {
+                            ...this.error,
+                            isShowBackBtn: true,
+                            isShowHomeBtn: true
+                        };
+                        break;
+
+                    case HttpStatusCode.InternalServerError:
+                        this.error = {
+                            ...this.error,
+                            isShowBackBtn: false,
+                            isShowHomeBtn: false
+                        };
+                        break;
+
+                    case HttpStatusCode.NotFound:
+                    default:
+                        this.error = {
+                            ...this.error,
+                            code: HttpStatusCode.NotFound,
+                            title: `ERRPAGE.${HttpStatusCode.NotFound}.TITLE`,
+                            msg: `ERRPAGE.${HttpStatusCode.NotFound}.MSG`,
+                            isShowBackBtn: true,
+                            isShowHomeBtn: true
+                        };
+                        break;
+                }
+            } else {
                 this.error = {
                     ...this.error,
-                    isShowBackBtn: true,
-                    isShowHomeBtn: false
-                };
-                break;
-
-            case HttpStatusCode.Forbidden:
-                this.error = {
-                    ...this.error,
+                    code: HttpStatusCode.NotFound,
+                    title: `ERRPAGE.${HttpStatusCode.NotFound}.TITLE`,
+                    msg: `ERRPAGE.${HttpStatusCode.NotFound}.MSG`,
                     isShowBackBtn: true,
                     isShowHomeBtn: true
                 };
-                break;
+            }
 
-            case HttpStatusCode.NotFound:
-                this.error = {
-                    ...this.error,
-                    isShowBackBtn: true,
-                    isShowHomeBtn: true
-                };
-                break;
-
-            case HttpStatusCode.InternalServerError:
-                this.error = {
-                    ...this.error,
-                    isShowBackBtn: false,
-                    isShowHomeBtn: false
-                };
-                break;
+            this.cdr.markForCheck();
+        } catch (error) {
+            throw error;
         }
-
-        this.cdr.markForCheck();
     }
 }

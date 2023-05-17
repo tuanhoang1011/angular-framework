@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { APIName, APIRoutes } from '../../core/constants/api-routes';
-import { HttpBaseService } from '../../core/services/communicate-server/http-base.service';
 import { GraphQLBaseService } from '../../core/services/graphQL-base.service';
+import { HttpBaseService } from '../../core/services/http-base.service';
 
 @Injectable({
     providedIn: 'root'
@@ -29,16 +29,12 @@ export class ExampleAPIService extends HttpBaseService {
             }
         }`;
 
-        return this.graphQLBaseService.subscription<CommentCRUDRequest, CommentCRUDResponse>(
-            statement,
-            'Subcrice Creating Comment',
-            {
-                userID: userID
-            }
-        );
+        return this.graphQLBaseService.executeStatement<any, any>(statement, 'Subcrice Creating Comment', {
+            userID: userID
+        });
     }
 
-    async createCommentMutation(userID: string, topicID: string) {
+    createCommentMutation(userID: string, topicID: string) {
         const statement = `mutation CreateComment($userID: String!, $topicID: String!) {
             createComment(UserUID: $userID, TopicID: $topicID) {
                 UserUID
@@ -47,13 +43,9 @@ export class ExampleAPIService extends HttpBaseService {
             }
         }`;
 
-        return await this.graphQLBaseService.mutation<CommentCRUDRequest, CommentCRUDResponse>(
-            statement,
-            ' Create Comment',
-            {
-                userID: userID,
-                topicID: topicID
-            }
-        );
+        return this.graphQLBaseService.executeStatement<any, any>(statement, ' Create Comment', {
+            userID: userID,
+            topicID: topicID
+        });
     }
 }

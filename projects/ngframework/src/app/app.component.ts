@@ -1,26 +1,24 @@
 import {
-    ChangeDetectionStrategy,
-    Component,
-    HostListener,
-    OnInit,
-    Renderer2,
-    ViewChild,
-    ViewContainerRef,
-    ViewEncapsulation,
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  OnInit,
+  Renderer2,
+  ViewChild,
+  ViewContainerRef,
+  ViewEncapsulation,
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { Amplify } from 'aws-amplify';
 import { PrimeNGConfig } from 'primeng/api';
 import { takeUntil } from 'rxjs';
 
-import { environment } from '../environments/environment';
 import { BaseComponent } from './core/components/base.component';
 import { HeaderService } from './core/components/header/header.service';
 import { LoadingService } from './core/components/loading/loading.service';
 import { SplashScreenService } from './core/components/splash-screen/splash-screen.service';
 import { StorageKey } from './core/constants/storage-key.const';
-import { AuthBaseService } from './core/services/auth-base.service';
+import { AuthService } from './core/services/auth.service';
 import { AutoSignOutService } from './core/services/auto-signout.service';
 import { ConfigService } from './core/services/config.service';
 import { GlobalStateService } from './core/services/global-state.service';
@@ -43,10 +41,10 @@ export class AppComponent extends BaseComponent implements OnInit {
     appContainerRef!: ViewContainerRef;
 
     @HostListener('document:keydown', ['$event'])
-    handleKeyboardEvent(event: KeyboardEvent) {
+    handleKeyboardEvent(e: KeyboardEvent) {
         // prevent input when loading is showing
         if (this.loadingService.getStates.loadingOn) {
-            event.preventDefault();
+            e.preventDefault();
         }
     }
 
@@ -59,57 +57,42 @@ export class AppComponent extends BaseComponent implements OnInit {
         private primeNGConfig: PrimeNGConfig,
         private configService: ConfigService,
         private autoSignOutService: AutoSignOutService,
-        private authService: AuthBaseService,
+        private authService: AuthService,
         private globalStateService: GlobalStateService,
         private logService: LogService,
         private splashScreenService: SplashScreenService,
         private localStorageService: LocalStorageService
     ) {
         super();
+    }
 
+    ngOnInit(): void {
         try {
-            // set configuration for aws appsync
-            Amplify.configure(environment.aws_appsync);
-
             // get config from local file
             this.configService.loadConfig(this.destroy$).then(() => {
                 this.applyConfig();
+
+                // start automatically signing out
+                this.autoSignOutService.init();
+
+                // user signed out at other tab (same browser) -> will sign out at current tab
+                window.addEventListener('storage', this.onStorageChange, false);
+
+                // already signed in
+                if (this.authService.isSignedInSession) {
+                    this.authService.isSignedOutSession = this.authService.signedOutCurrentTab = false;
+                }
+
+                this.globalStateService.setAppContainerRef(this.appContainerRef);
             });
         } catch (error) {
             throw error;
         }
     }
 
-    ngOnInit(): void {
-        try {
-            // start automatically signing out
-            this.autoSignOutService.init();
-
-            this.listenState();
-
-            // user signed out at other tab (same browser) -> will sign out at current tab
-            window.addEventListener('storage', this.onStorageChange, false);
-
-            // already signed in
-            if (this.authService.isSignedInSession) {
-                this.authService.isSignedOutSession = this.authService.signedOutCurrentTab = false;
-            }
-
-            this.globalStateService.setAppContainerRef(this.appContainerRef);
-        } catch (error) {
-            throw error;
-        }
-    }
-
-    private listenState() {
-        this.globalStateService.vm$.pipe(takeUntil(this.destroy$)).subscribe((res) => {
-            try {
-                // set active screen/dialog for writing log
-                this.logService.screenIdentifer = res.activeDialog || res.activeScreen;
-            } catch (error) {
-                throw error;
-            }
-        });
+    override ngOnDestroy(): void {
+        super.ngOnDestroy();
+        window.removeEventListener('storage', this.onStorageChange, false);
     }
 
     private onStorageChange = async (e: StorageEvent) => {

@@ -12,7 +12,7 @@ import { BaseComponent } from '../../../../core/components/base.component';
 import { LoadingService } from '../../../../core/components/layout/loading/loading.service';
 import { LogActiveScreen } from '../../../../core/constants/log.const';
 import { SignInRequest } from '../../../../core/models/auth.model';
-import { AuthBaseService } from '../../../../core/services/auth-base.service';
+import { AuthService } from '../../../../core/services/auth.service';
 import { focusError } from '../../../../core/utils/form.ultility';
 import { GlobalVariables } from '../../../../core/utils/global-variables.ultility';
 import { SignInService } from './sign-in.service';
@@ -35,7 +35,7 @@ export class SignInComponent extends BaseComponent implements OnInit {
     signinConfig$?: Observable<FormConfig>;
 
     constructor(
-        public authService: AuthBaseService,
+        public authService: AuthService,
         private signinService: SignInService,
         private loadingService: LoadingService,
         private cdr: ChangeDetectorRef

@@ -14,7 +14,7 @@ import { ErrorResponse } from '../models/http-response.model';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable({ providedIn: 'root' })
-export class AuthBaseService {
+export class AuthService {
     signedOutCurrentTab = true;
 
     set isSignedInSession(value: boolean) {
