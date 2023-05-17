@@ -1,0 +1,19 @@
+<div *ngIf="!(splashScreenService.splashScreenOn$ | async)"
+    class="public-container">
+    <header class="public-header">
+        <app-header></app-header>
+    </header>
+    <div class="public-body">
+        <nav class="public-sidebar">
+            <app-sidebar></app-sidebar>
+        </nav>
+        <div class="public-content">
+            <main class="public-main">
+                <router-outlet></router-outlet>
+            </main>
+            <footer class="public-footer">
+                <app-footer></app-footer>
+            </footer>
+        </div>
+    </div>
+</div>

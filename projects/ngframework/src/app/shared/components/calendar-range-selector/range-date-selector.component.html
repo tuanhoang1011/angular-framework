@@ -1,0 +1,39 @@
+
+<div class="range-date-container">
+    <div class="rd-calendar rd-from">
+        <span>
+            {{ 'LBL_0008' | translate }}
+        </span>
+        <p-calendar
+            [(ngModel)]="from"
+            [defaultDate]="from!"
+            [minDate]="min"
+            [maxDate]="max"
+            [showIcon]="true"
+            [showButtonBar]="true"
+            (onSelect)="selectDate($event, 'from')"
+        >
+        </p-calendar>
+    </div>
+    <div class="rd-calendar rd-to">
+        <span>
+            {{ 'LBL_0009' | translate }}
+        </span>
+        <p-calendar
+            [(ngModel)]="to"
+            [defaultDate]="to!"
+            [minDate]="min"
+            [maxDate]="max"
+            [showIcon]="true"
+            [showButtonBar]="true"
+            (onSelect)="selectDate($event, 'to')"
+        >
+        </p-calendar>
+    </div>
+    <div *ngIf="rangeDay"
+        class="rd-range">
+        <span>
+            ~ {{  'LBL_0010' | translate: { day: rangeDay } }}
+        </span>
+    </div>
+</div>

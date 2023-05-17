@@ -1,0 +1,12 @@
+<a
+    [class]="styleClass + ' hyper-link'"
+    [ngClass]="{
+        'app-disabled': disabled
+    }"
+    aria-current="page"
+    tabindex="0"
+    (keyup.enter)="onClick($event)"
+    (click)="onClick($event)"
+>
+    {{ content || '' | translate }}
+</a>

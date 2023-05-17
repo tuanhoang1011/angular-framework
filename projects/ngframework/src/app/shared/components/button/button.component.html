@@ -1,0 +1,14 @@
+<button
+  [class]="'btn ' + styleClass"
+  [ngClass]="{
+      'app-disabled': disabled
+  }"
+  [disabled]="disabled"
+  (pointerdown)="clickAction($event)"
+  (keyup)="clickAction($event)"
+>
+    <ng-container *ngIf="content">
+        {{ content | translate }}
+    </ng-container>
+    <ng-content></ng-content>
+</button>

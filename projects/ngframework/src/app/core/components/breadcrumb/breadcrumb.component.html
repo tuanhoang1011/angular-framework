@@ -1,0 +1,38 @@
+<nav class="breadcrumb-container">
+    <ng-container *ngFor="let item of items; let first = first; let last = last; trackBy: breadcrumbById">
+        <ng-container *ngIf="item.url && !last; then anchorItem; else regularItem"></ng-container>
+
+        <ng-template #anchorItem>
+            <i *ngIf="!first" class="pi pi-angle-right"></i>
+            <a class="bc-item bc-anchor"
+                (click)="redirectPage(item)">
+                <img *ngIf="item.imgIcon"
+                    [class]="item.imgIconStyleClass"
+                    [src]="item.imgIcon"
+                    [alt]="item.imgIconAlt"
+                    [width]="item.style?.width || 12"
+                    [height]="item.style?.height || 16"/>
+                <i *ngIf="item.icon" [class]="'pi ' + item.icon"></i>
+                
+                {{ (item.label ?? '') | translate }}
+            </a>
+        </ng-template>
+
+        <ng-template #regularItem>
+            <i *ngIf="!first" class="pi pi-angle-right"></i>
+            <div class="bc-item">
+                <img *ngIf="item.imgIcon"
+                    [class]="item.imgIconStyleClass"
+                    [src]="item.imgIcon"
+                    [alt]="item.imgIconAlt"
+                    [width]="item.style?.width || 12"
+                    [height]="item.style?.height || 16"/>
+                <i *ngIf="item.icon" [class]="'pi ' + item.icon"></i>
+
+                <span class="active">
+                    {{ (item.label ?? '') | translate }}
+                </span>
+            </div>
+        </ng-template>
+    </ng-container>
+</nav>
