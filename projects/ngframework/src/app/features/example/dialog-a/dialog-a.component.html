@@ -1,0 +1,26 @@
+<p-dialog
+    [visible]="true"
+   
+    [styleClass]="'w-1166px h-590px'"
+    (visibleChange)="close()"
+>
+    <ng-template pTemplate="header">
+        <div class="dl-header">
+            <span class="dl-header-content">{{ data.activeDialog ?? '' | translate }}</span>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="content">
+        <div class="dl-content">
+            <div class="term-manual-main">
+                <div class="tm-file">
+                <div class="tm-f-text1">{{ data.activeDialog ?? '' | translate }}</div>
+
+                <app-button [title]="'Button A'"
+                    styleClass="btn-primary-2">
+                </app-button>
+            </div>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>

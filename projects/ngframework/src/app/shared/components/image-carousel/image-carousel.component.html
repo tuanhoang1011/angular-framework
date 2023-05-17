@@ -1,0 +1,26 @@
+<p-carousel #ref
+    [value]="images" 
+    [numVisible]="numVisible" 
+    [numScroll]="numScroll" 
+    [circular]="circular"
+    [page]="page" 
+    [showIndicators]="showIndicators" 
+    [showNavigators]="showNavigators" 
+    [styleClass]="styleClass" 
+    [contentClass]="contentClass" 
+    [indicatorStyleClass]="indicatorStyleClass" 
+    [indicatorsContentClass]="indicatorsContentClass" 
+    [responsiveOptions]="responsiveOptions">
+
+    <ng-template let-img pTemplate="item">
+        <app-image-view [src]="img.src"
+            [alt]="img.alt"
+            [styleClass]="img.styleClass"
+            [transformMode]="img.transformMode"
+            [width]="img.width"
+            [height]="img.height"
+            (onClickImageView)="previewImage($event)">
+        </app-image-view>
+    </ng-template>
+
+</p-carousel>

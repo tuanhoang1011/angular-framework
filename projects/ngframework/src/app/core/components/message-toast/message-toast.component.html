@@ -1,0 +1,21 @@
+<p-toast 
+    [position]="position"
+    [preventDuplicates]="preventDuplicates"
+    [styleClass]="styleClass"
+    [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}">
+    <ng-template 
+        let-msg 
+        pTemplate="message">
+        <div class="flex flex-col w-full gap-y-4">
+            <div class="flex items-center gap-x-2">
+                <i [class]="'text-[2rem] pi ' + msg.icon"></i>
+                <p class="text-fs-msg font-bold">
+                    {{ msg.summary | translate }}
+                </p>
+            </div>
+            <div [class]="'flex text-fs-msg ' + msg.data?.detailStyleClass">
+                {{ msg.detail | translate | sprintf: msg.data?.variables }}
+            </div>
+        </div>
+    </ng-template>
+</p-toast>
