@@ -1,61 +1,49 @@
 <ng-container *ngFor="let msgItem of msgDialogService.messageList$ | async; trackBy: msgByKey">
-    <p-dialog
-        trapFocus
-        [visible]="msgItem"
-        [modal]="true"
-        [closeOnEscape]="false"
+    <app-dialog
+        [dialogId]="msgItem.id"
+        [styleClass]="'msg-dialog-container ' + msgItem.options?.styleClass"
+        [contentClassName]="
+            'rounded-b-none ' +
+            msgItem.options?.contentStyleClass +
+            (msgItem.options?.header ? '' : ' rounded-t-default')
+        "
+        [footerClassName]="msgItem.options?.footerStyleClass"
         [showHeader]="!!msgItem.options?.header"
-        [styleClass]="(msgItem.options?.styleClass ?? '')"
-        [contentStyleClass]="'rounded-b-none ' + (msgItem.options?.header ? '' : 'rounded-t-default')"
         [draggable]="false"
-        [resizable]="false"
-        [blockScroll]="false"
         [closable]="msgItem.options?.closable ?? true"
-        [style]="{
-            'min-width':'600px',
-            'max-width':'800px',
-            'min-height':'200px',
-            'max-height':'350px'
-        }"
-        (visibleChange)="closeMessage(msgItem)"
+        [closeOnEscape]="false"
+        [maximizable]="false"
+        [headerTitle]="msgItem.options?.header"
+        (onHide)="closeMessage(msgItem)"
     >
-        <ng-template *ngIf="msgItem.options?.header" pTemplate="header">
-            <div class="dlg-header">
-                <h1 class="dlg-header-content">
-                    {{ msgItem.options?.header || '' | translate }}
-                </h1>
+        <ng-container id="content">
+            <div [class]="'msg-icon ' + msgItem.options?.iconStyleClass"></div>
+            <div [class]="'msg-content ' + msgItem.options?.detailStyleClass">
+                <p>{{ msgItem.key | translate | sprintf : msgItem.options?.variables }}</p>
             </div>
-        </ng-template>
+        </ng-container>
 
-        <ng-template pTemplate="content">
-            <div [class]="'dlg-content ' + msgItem.options?.contentStyleClass">
-                <div [class]="'msg-icon ' + msgItem.options?.iconStyleClass"></div>
-                <div [class]="'msg-content ' + msgItem.options?.detailStyleClass">
-                    <p>{{ msgItem.key | translate | sprintf: msgItem.options?.variables }}</p>
-                </div>
-            </div>
-        </ng-template>
-
-        <ng-template pTemplate="footer">
-            <div [class]="'dlg-footer ' + msgItem.options?.footerStyleClass">
-                <ng-container *ngFor="let action of msgItem.options?.actions; trackBy: actionByLabel">
-                    <app-button *ngIf="action.isDefault; else notDefault"
-                        autoFocus
+        <ng-container id="footer">
+            <ng-container *ngFor="let action of msgItem.options?.actions; trackBy: actionByLabel">
+                <app-button
+                    *ngIf="action.isDefault; else notDefault"
+                    autoFocus
+                    [content]="action.label"
+                    [styleClass]="'dl-btn ' + action.styleClass"
+                    [isWriteLog]="false"
+                    (onClickAction)="clickAction(msgItem, action)"
+                >
+                </app-button>
+                <ng-template #notDefault>
+                    <app-button
                         [content]="action.label"
-                        [styleClass]="'dlg-btn ' + action.styleClass"
+                        [styleClass]="'dl-btn ' + action.styleClass"
                         [isWriteLog]="false"
-                        (onClickAction)="clickAction(msgItem, action)">
+                        (onClickAction)="clickAction(msgItem, action)"
+                    >
                     </app-button>
-                    <ng-template #notDefault>
-                        <app-button
-                            [content]="action.label"
-                            [styleClass]="'dlg-btn ' + action.styleClass"
-                            [isWriteLog]="false"
-                            (onClickAction)="clickAction(msgItem, action)">
-                        </app-button>
-                    </ng-template>
-                </ng-container>
-            </div>
-        </ng-template>
-    </p-dialog>
+                </ng-template>
+            </ng-container>
+        </ng-container>
+    </app-dialog>
 </ng-container>

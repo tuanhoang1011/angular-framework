@@ -3,6 +3,7 @@ import { ViewContainerRef } from '@angular/core';
 
 import { BreadcrumbItemList } from './breadcrumb.model';
 import { DialogInfo } from './common.model';
+import { Message } from './message.model';
 
 export interface GlobalState {
     activeScreen?: string;
@@ -19,6 +20,10 @@ export interface LoadingState {
 export interface LayoutState {
     expandSidebar?: boolean;
     breadcrumbs?: BreadcrumbItemList;
+}
+
+export interface MessageDialogState {
+    messages?: Message[];
 }
 
 export interface DialogManagerState {

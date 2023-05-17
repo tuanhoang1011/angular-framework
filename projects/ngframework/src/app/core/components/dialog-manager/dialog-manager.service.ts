@@ -34,18 +34,18 @@ export class DialogManagerService extends ComponentStoreBase<DialogManagerState>
 
     open(dialogInfo: DialogInfo) {
         try {
-            // add new dialog to array
-            const openedDialog: DialogInfo = {
-                dialogId: dialogInfo.dialogId,
-                component: dialogInfo.component
-            };
-            this.getStates.dialogs!.push(openedDialog);
+            const isExisted = this.getStates.dialogs!.find((dlg) => dlg.dialogId === dialogInfo.dialogId);
 
-            const newState: DialogManagerState = {
-                dialogs: this.getStates.dialogs,
-                openedDialog
-            };
-            this.updateState(newState);
+            if (!isExisted) {
+                // add new dialog to array
+                this.getStates.dialogs!.push(dialogInfo);
+
+                const newState: DialogManagerState = {
+                    dialogs: this.getStates.dialogs,
+                    openedDialog: dialogInfo
+                };
+                this.updateState(newState);
+            }
         } catch (error) {
             throw error;
         }

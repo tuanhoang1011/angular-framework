@@ -1,0 +1,70 @@
+<p-dialog
+    #ref
+    [id]="dialogId ?? ''"
+    [styleClass]="'dialog-container ' + styleClass"
+    [baseZIndex]="99999"
+    [visible]="true"
+    [closable]="false"
+    [modal]="modal"
+    [blockScroll]="modal"
+    [closeOnEscape]="closeOnEscape"
+    [draggable]="draggable"
+    [keepInViewport]="keepInViewport"
+    [maximizable]="maximizable"
+    [minX]="minX"
+    [minY]="minY"
+    [position]="position"
+    [resizable]="resizable"
+    [showHeader]="showHeader"
+    appendTo="body"
+    (onShow)="show()"
+    (onHide)="hide()"
+>
+    <ng-template pTemplate="header">
+        <div [class]="'dl-header ' + headerClassName">
+            <ng-content select="[id=header]"></ng-content>
+
+            <span
+                *ngIf="headerTitle"
+                class="dl-h-title"
+            >
+                {{ headerTitle ?? '' | translate }}
+            </span>
+
+            <div
+                *ngIf="closable || maximizable"
+                class="dl-h-icons"
+            >
+                <div
+                    *ngIf="maximizable"
+                    class="dl-h-icon"
+                    tabIndex="0"
+                    (click)="maximize()"
+                >
+                    <i class="pi pi-window-maximize"></i>
+                </div>
+
+                <div
+                    *ngIf="closable"
+                    class="dl-h-icon"
+                    tabIndex="0"
+                    (click)="hide()"
+                >
+                    <i class="pi pi-times"></i>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="content">
+        <div [class]="'dl-content ' + contentClassName">
+            <ng-content select="[id=content]"></ng-content>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <div [class]="'dl-footer ' + footerClassName">
+            <ng-content select="[id=footer]"></ng-content>
+        </div>
+    </ng-template>
+</p-dialog>

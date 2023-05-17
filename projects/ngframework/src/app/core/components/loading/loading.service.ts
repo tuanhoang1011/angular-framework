@@ -6,9 +6,9 @@ import { ComponentStoreBase } from '../../services/component-store-base.service'
 
 @Injectable({ providedIn: 'root' })
 export class LoadingService extends ComponentStoreBase<LoadingState> {
-    public loadingOn$ = this.select((state) => state.loadingOn);
-    public apiReqCount: number = 0;
-    public isPendingAPI: boolean = false;
+    loadingOn$ = this.select((state) => state.loadingOn);
+    apiReqCount: number = 0;
+    isPendingAPI: boolean = false;
 
     constructor() {
         super({

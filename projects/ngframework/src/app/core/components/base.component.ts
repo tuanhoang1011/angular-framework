@@ -27,7 +27,11 @@ export abstract class BaseComponent implements OnDestroy {
         try {
             // set screen identifer for writing log when access pages
             if (this._activeScreen) AppModule.injector.get(GlobalStateService).setActiveScreen(this._activeScreen);
-            if (this._activeDialog) AppModule.injector.get(GlobalStateService).setActiveDialog(this._activeDialog);
+            if (this._activeDialog) {
+                setTimeout(() => {
+                    AppModule.injector.get(GlobalStateService).setActiveDialog(this._activeDialog!);
+                }, 200);
+            }
             if (this._tableID) this.tableID = this._tableID;
         } catch (error) {
             throw error;

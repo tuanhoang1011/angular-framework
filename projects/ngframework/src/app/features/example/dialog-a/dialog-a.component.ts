@@ -1,11 +1,8 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { cloneDeep } from 'lodash';
 
 import { BaseComponent } from '../../../core/components/base.component';
 import { DialogManagerService } from '../../../core/components/dialog-manager/dialog-manager.service';
-import { GlobalState } from '../../../core/models/state.model';
-import { DialogAService } from './dialog-a.service';
 
 @Component({
     selector: 'app-dialog-a',
@@ -14,32 +11,21 @@ import { DialogAService } from './dialog-a.service';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DialogAComponent extends BaseComponent implements OnInit {
-    data: GlobalState = {};
+export class DialogAComponent extends BaseComponent {
+    data: any;
 
-    constructor(
-        private translateService: TranslateService,
-        private cdr: ChangeDetectorRef,
-        private dialogAService: DialogAService,
-        private dialogService: DialogManagerService
-    ) {
-        super('Dialog A');
-    }
-
-    ngOnInit(): void {
-        this.dialogAService.vm$.subscribe((res) => {
-            console.log(cloneDeep(res));
-            this.data = res;
-            this.cdr.markForCheck();
-        });
+    constructor(private translateService: TranslateService, private dialogManagerService: DialogManagerService) {
+        super(undefined, 'Dialog A - Screen');
     }
 
     close() {
-        console.log('Close Dialog A');
-        this.dialogService.close('Dialog A');
+        this.data.clickFunc1();
+        console.log(`Close ${this.data.dialogId}`);
+        this.dialogManagerService.close(this.data.dialogId);
     }
 
     clickAction(action: string) {
-        console.log(`Click action: ${this.translateService.instant(action)}`);
+        this.data.clickFunc2();
+        alert(`Click action: ${this.translateService.instant(action)}`);
     }
 }

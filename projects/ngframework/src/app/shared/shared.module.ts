@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { DialogModule } from 'primeng/dialog';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { PanelModule } from 'primeng/panel';
 import { SkeletonModule } from 'primeng/skeleton';
 
 import { ButtonModule } from './components/button/button.module';
 import { RangeDateSelectorModule } from './components/calendar-range-selector/range-date-selector.module';
+import { DialogModule } from './components/dialog/dialog.module';
 import { DynamicTabViewModule } from './components/dynamic-tab-view/dynamic-tab-view.module';
 import { HyperLinkModule } from './components/hyperlink/hyperlink.module';
 import { ImageCarouselModule } from './components/image-carousel/image-carousel.module';
@@ -27,11 +27,11 @@ const modules = [
     ImageCarouselModule,
     OverlayPanelModule,
     SkeletonModule,
-    DialogModule,
     MenuModule,
     PanelModule,
     DynamicTabViewModule,
-    RangeDateSelectorModule
+    RangeDateSelectorModule,
+    DialogModule
 ];
 
 // ---------------- Directives ----------------
