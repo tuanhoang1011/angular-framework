@@ -1,14 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  Input,
-  Renderer2,
-  ViewChild,
-  ViewContainerRef,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 
 import { ImageItem } from '../../../core/models/item.model';
 import { GlobalVariables } from '../../../core/utils/global-variables.ultility';
@@ -49,19 +39,6 @@ export class ImageCarouselComponent {
             numScroll: 1
         }
     ];
-    @ViewChild('ref', {
-        read: ViewContainerRef,
-        static: true
-    })
-    ref!: ViewContainerRef;
 
-    constructor(private cdr: ChangeDetectorRef, private renderer2: Renderer2) {}
-
-    previewImage(isTurnOn: boolean) {
-        const itemContainer = this.ref.element.nativeElement.getElementsByClassName('p-carousel-items-container');
-        // remove transform style to view image at preview mode
-        setTimeout(() => {
-            this.renderer2.setStyle(itemContainer[0] as ElementRef, 'transform', ``);
-        }, 0);
-    }
+    constructor() {}
 }

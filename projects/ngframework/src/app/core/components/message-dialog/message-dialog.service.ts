@@ -1,25 +1,28 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 
-import { Message, MessageAction, MessageItem, MessageOptions } from '../../models/message.model';
+import { ActionItem } from '../../models/item.model';
+import { Message, MessageItem, MessageOptions } from '../../models/message.model';
+import { MessageDialogState } from '../../models/state.model';
+import { ComponentStoreBase } from '../../services/component-store-base.service';
 
-export const YES_BUTTON: MessageAction = {
+export const YES_BUTTON: ActionItem = {
     label: 'BTN_0001',
     styleClass: 'btn-primary',
     isDefault: true
 };
-export const NO_BUTTON: MessageAction = {
+export const NO_BUTTON: ActionItem = {
     label: 'BTN_0002',
     styleClass: 'btn-danger'
 };
 
-export const CLOSE_BUTTON: MessageAction = {
+export const CLOSE_BUTTON: ActionItem = {
     label: 'BTN_0003',
     styleClass: 'btn-secondary',
     isDefault: true
 };
 
-export const CANCEL_BUTTON: MessageAction = {
+export const CANCEL_BUTTON: ActionItem = {
     label: 'BTN_0004',
     styleClass: 'btn-secondary'
 };
@@ -27,14 +30,16 @@ export const CANCEL_BUTTON: MessageAction = {
 @Injectable({
     providedIn: 'root'
 })
-export class MessageDialogService {
-    messageSubject = new BehaviorSubject<Message[]>([]);
-
-    messageList$ = this.messageSubject.asObservable();
+export class MessageDialogService extends ComponentStoreBase<MessageDialogState> {
+    readonly messageList$: Observable<Message[]> = this.select((state) => state.messages ?? []);
 
     private messages: Message[] = [];
 
-    constructor() {}
+    constructor() {
+        super({
+            messages: []
+        });
+    }
 
     getAllMessages = () => {
         return this.messages;
@@ -42,12 +47,12 @@ export class MessageDialogService {
 
     clearAll = () => {
         this.messages = [];
-        this.messageSubject.next(this.messages);
+        this.setMessageState(this.messages);
     };
 
     clear = (id: string) => {
         this.messages = this.messages.filter((message) => message.id !== id);
-        this.messageSubject.next(this.messages);
+        this.setMessageState(this.messages);
     };
 
     custom = (key: string, options?: MessageOptions) => this.show(key, options);
@@ -123,12 +128,23 @@ export class MessageDialogService {
         this.show(key, options);
     }
 
-    private show = (key: string, options: MessageOptions = {}) => {
+    private show(key: string, options: MessageOptions = {}) {
         try {
             this.messages.push(new MessageItem(key, options));
-            this.messageSubject.next(this.messages);
+            this.setMessageState(this.messages);
         } catch (error) {
             throw error;
         }
-    };
+    }
+
+    private setMessageState(msgs: Message[]) {
+        try {
+            const state: MessageDialogState = {
+                messages: msgs
+            };
+            this.updateState(state);
+        } catch (error) {
+            throw error;
+        }
+    }
 }

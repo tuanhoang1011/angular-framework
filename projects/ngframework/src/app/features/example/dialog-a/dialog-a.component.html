@@ -1,26 +1,32 @@
-<p-dialog
-    [visible]="true"
-   
-    [styleClass]="'w-1166px h-590px'"
-    (visibleChange)="close()"
+<app-dialog
+    [dialogId]="data.dialogId"
+    [headerTitle]="data.dialogId"
+    styleClass="dialogA-class"
+    [modal]="false"
+    [maximizable]="true"
+    (onHide)="close()"
 >
-    <ng-template pTemplate="header">
-        <div class="dl-header">
-            <span class="dl-header-content">{{ data.activeDialog ?? '' | translate }}</span>
-        </div>
-    </ng-template>
-
-    <ng-template pTemplate="content">
-        <div class="dl-content">
-            <div class="term-manual-main">
-                <div class="tm-file">
-                <div class="tm-f-text1">{{ data.activeDialog ?? '' | translate }}</div>
-
-                <app-button [title]="'Button A'"
-                    styleClass="btn-primary-2">
-                </app-button>
-            </div>
+    <ng-container id="content">
+        <div className="term-manual-main">
+            <div className="tm-file">
+                <div className="tm-f-text1">{{ data.propA ?? '' | translate }}</div>
+                <div className="tm-f-text1">{{ data.propB }}</div>
+                <div className="tm-f-text1">{{ data.propC?.a }}</div>
+                <div className="tm-f-text1">{{ data.propC?.c }}</div>
             </div>
         </div>
-    </ng-template>
-</p-dialog>
+    </ng-container>
+
+    <ng-container id="footer">
+        <app-button
+            content="Button A"
+            styleClass="btn-secondary"
+            (onClickAction)="clickAction('Button A')"
+        ></app-button>
+        <app-button
+            content="Button B"
+            styleClass="btn-primary"
+            (onClickAction)="clickAction('Button B')"
+        ></app-button>
+    </ng-container>
+</app-dialog>

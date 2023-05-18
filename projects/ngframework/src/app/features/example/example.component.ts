@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
 import * as wjPdf from '@grapecity/wijmo.pdf';
 import { TranslateService } from '@ngx-translate/core';
 import { cloneDeep } from 'lodash';
-import { lastValueFrom, takeUntil } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
 import { BaseComponent } from '../../core/components/base.component';
@@ -17,7 +16,6 @@ import { Breadcrumb, BreadcrumbRoutes } from '../../core/constants/breadcrumb.co
 import { CommonConstant } from '../../core/constants/common.const';
 import { DialogInfo } from '../../core/models/common.model';
 import { ImageItem, TabItem } from '../../core/models/item.model';
-import { GlobalState } from '../../core/models/state.model';
 import { CanvasService } from '../../core/services/canvas.service';
 import { GlobalStateService } from '../../core/services/global-state.service';
 import { HttpBaseService } from '../../core/services/http-base.service';
@@ -25,7 +23,6 @@ import { IndexedDBService } from '../../core/services/indexed-db.service';
 import { GlobalVariables } from '../../core/utils/global-variables.ultility';
 import { ExampleAPIService } from '../../network-service/api/example-api.service';
 import { DialogAComponent } from './dialog-a/dialog-a.component';
-import { DialogAService } from './dialog-a/dialog-a.service';
 import { DialogBComponent } from './dialog-b/dialog-b.component';
 
 @Component({
@@ -42,7 +39,6 @@ export class ExampleComponent extends BaseComponent {
 
     constructor(
         private dialogService: DialogManagerService,
-        private dialogAService: DialogAService,
         private globalStateService: GlobalStateService,
         private msgToastService: MessageToastService,
         private msgDialogService: MessageDialogService,
@@ -50,7 +46,6 @@ export class ExampleComponent extends BaseComponent {
         private LoadingService: LoadingService,
         private splashScreenService: SplashScreenService,
         private indexedDBService: IndexedDBService,
-        private router: Router,
         private cdr: ChangeDetectorRef,
         private breadcrumbService: BreadcrumbService,
         private canvasService: CanvasService,
@@ -60,12 +55,6 @@ export class ExampleComponent extends BaseComponent {
         super('Example Page');
 
         try {
-            this.dialogService.closedDialog$.pipe(takeUntil(this.destroy$)).subscribe((res) => {
-                if (res) {
-                    console.log(res);
-                }
-            });
-
             this.generateImages();
             this.buildBreadcrumbData();
             this.getTabItem();
@@ -78,7 +67,7 @@ export class ExampleComponent extends BaseComponent {
 
     generateImages() {
         try {
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 10; i++) {
                 this.thumbnailImages.push({
                     src: '../../../assets/images/dummy-angular.png',
                     width: CommonConstant.ImageRatio.Thumbnail.width,
@@ -161,14 +150,31 @@ export class ExampleComponent extends BaseComponent {
 
     openDialogA() {
         try {
-            const dialog: DialogInfo = {
+            const dialog: DialogInfo<{
+                dialogId: string;
+                propA: string;
+                propB: number;
+                propC: any;
+                clickFunc1: () => void;
+                clickFunc2: () => void;
+            }> = {
                 dialogId: 'Dialog A',
-                component: DialogAComponent
+                component: DialogAComponent,
+                data: {
+                    dialogId: 'Dialog A',
+                    propA: 'Prop A',
+                    propB: 100,
+                    propC: { a: 'a in PropC', b: 'b in PropC' },
+                    clickFunc1: () => {
+                        console.log('clickFunc1');
+                    },
+                    clickFunc2: () => {
+                        console.log('clickFunc2');
+                    }
+                }
             };
 
             this.dialogService.open(dialog);
-
-            this.dialogAService.updateState({ activeDialog: 'A', activeScreen: 'A' } as GlobalState);
         } catch (error) {
             throw error;
         }
@@ -176,20 +182,23 @@ export class ExampleComponent extends BaseComponent {
 
     openDialogB() {
         try {
-            const dialog: DialogInfo = {
+            const dialog: DialogInfo<{
+                dialogId: string;
+                propA: string;
+                propB: number;
+                propC: any;
+            }> = {
                 dialogId: 'Dialog B',
-                component: DialogBComponent
+                component: DialogBComponent,
+                data: {
+                    dialogId: 'Dialog B',
+                    propA: 'Prop A',
+                    propB: 50,
+                    propC: { a: 'a in PropC', b: 'b in PropC' }
+                }
             };
 
             this.dialogService.open(dialog);
-        } catch (error) {
-            throw error;
-        }
-    }
-
-    updateDialogA() {
-        try {
-            this.dialogAService.updateState({ activeDialog: 'B', activeScreen: 'B' } as GlobalState);
         } catch (error) {
             throw error;
         }

@@ -3,7 +3,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { sprintf } from 'sprintf-js';
 
 import { LogIdentiferFormat, LogSubType, LogType } from '../../constants/log.const';
-import { Message, MessageAction } from '../../models/message.model';
+import { ActionItem } from '../../models/item.model';
+import { Message } from '../../models/message.model';
 import { LogService } from '../../services/log.service';
 import { MessageDialogService } from './message-dialog.service';
 
@@ -21,7 +22,7 @@ export class MessageDialogComponent {
         private translateService: TranslateService
     ) {}
 
-    clickAction(msgItem: Message, action: MessageAction) {
+    clickAction(msgItem: Message, action: ActionItem) {
         try {
             this.msgDialogService.clear(msgItem.id);
 

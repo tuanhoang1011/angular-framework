@@ -5,7 +5,7 @@ import { ComponentStoreBase } from '../../services/component-store-base.service'
 
 @Injectable({ providedIn: 'root' })
 export class SplashScreenService extends ComponentStoreBase<LoadingState> {
-    public splashScreenOn$ = this.select((state) => state.splashScreenOn);
+    splashScreenOn$ = this.select((state) => state.splashScreenOn);
 
     constructor() {
         super({

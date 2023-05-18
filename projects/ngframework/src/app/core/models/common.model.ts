@@ -1,23 +1,14 @@
 import { Type } from '@angular/core';
 
-export interface BaseItem {
-    id: string;
-    label?: string;
-    icon?: string;
-    imgIcon?: string;
-    imgIconAlt?: string;
-    imgIconStyleClass?: string;
-    disabled?: boolean;
-}
-
 export interface SortInfo {
     sortOrder: 'asc' | 'desc';
     sortField: string;
 }
 
-export interface DialogInfo {
+export interface DialogInfo<T = any> {
     dialogId: string;
     component: Type<any>;
+    data?: T;
 }
 
 export interface CanvasOptions {

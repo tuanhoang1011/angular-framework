@@ -22,7 +22,8 @@
             />
         </div>
 
-        <img src="../../../../../assets/images/dummy-logo-angular.svg"
+        <img
+            src="../../../../../assets/images/dummy-logo-angular.svg"
             width="60"
             height="60"
             className=""
@@ -119,28 +120,18 @@
                     content="Open Dialog A"
                     styleClass="btn-primary"
                     (onClickAction)="openDialogA()"
-                    [disabled]="true"
                 >
                 </app-button>
                 <app-button
                     content="Open Dialog B"
                     styleClass="btn-primary"
                     (onClickAction)="openDialogB()"
-                    [disabled]="true"
-                >
-                </app-button>
-                <app-button
-                    content="Update Dialog A"
-                    styleClass="btn-primary"
-                    (onClickAction)="updateDialogA()"
-                    [disabled]="true"
                 >
                 </app-button>
                 <app-button
                     content="Remove Dialog A"
                     styleClass="btn-danger"
                     (onClickAction)="removeDialogA()"
-                    [disabled]="true"
                 >
                 </app-button>
             </div>
@@ -259,7 +250,7 @@
                 </app-button>
                 <app-button
                     content="Custom"
-                    styleClass="btn-primary !bg-bg-secondary !border-bg-secondary"
+                    styleClass="btn-primary !bg-bg-primary !border-bg-primary"
                     (onClickAction)="showMessageDialog('custom')"
                 >
                 </app-button>
@@ -293,6 +284,25 @@
         <div class="module">
             <h1 class="module-title">Image Thumbnail/ Preview Mode</h1>
             <p class="module-info">You can view image at preview mode by clicking on image.</p>
+            <div class="module-img">
+                <app-image-view
+                    src="../../../assets/images/dummy-angular.png"
+                    [width]="imgRatio.Thumbnail.width"
+                    [height]="imgRatio.Thumbnail.height"
+                >
+                </app-image-view>
+                <app-image-view
+                    src="../../../assets/images/dummy-angular.png"
+                    [width]="imgRatio.Thumbnail.width"
+                    [height]="imgRatio.Thumbnail.height"
+                >
+                </app-image-view>
+            </div>
+        </div>
+
+        <!-- IMAGE CAROUSEL -->
+        <div class="module">
+            <h1 class="module-title">Image Carousel</h1>
             <div class="module-img">
                 <app-image-carousel
                     [images]="thumbnailImages"

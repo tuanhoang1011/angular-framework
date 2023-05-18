@@ -1,11 +1,11 @@
 import {
-    ChangeDetectionStrategy,
-    Component,
-    ComponentRef,
-    OnInit,
-    ViewChild,
-    ViewContainerRef,
-    ViewEncapsulation
+  ChangeDetectionStrategy,
+  Component,
+  ComponentRef,
+  OnInit,
+  ViewChild,
+  ViewContainerRef,
+  ViewEncapsulation,
 } from '@angular/core';
 import { takeUntil } from 'rxjs';
 
@@ -63,6 +63,7 @@ export class DialogManagerComponent extends BaseComponent implements OnInit {
              * after excute detectChanges -> methods of life cycle hook (EXCEPT ngOnChange) of created component will be trigger
              * due to ngOnChange not be trigger -> in order to detect change of 'data' variable in created component -> use get() and set() for 'data'
              */
+            componentRef.instance.data = dialog.data;
             componentRef.changeDetectorRef.detectChanges();
 
             this.dlgComponentRef.push({
