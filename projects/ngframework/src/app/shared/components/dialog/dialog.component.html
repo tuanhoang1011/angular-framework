@@ -1,6 +1,6 @@
 <p-dialog
     #ref
-    [id]="dialogId ?? ''"
+    [id]="dialogId || ''"
     [styleClass]="'dialog-container ' + styleClass"
     [baseZIndex]="99999"
     [visible]="true"
@@ -28,7 +28,7 @@
                 *ngIf="headerTitle"
                 class="dl-h-title"
             >
-                {{ headerTitle ?? '' | translate }}
+                {{ headerTitle || '' | translate }}
             </span>
 
             <div
