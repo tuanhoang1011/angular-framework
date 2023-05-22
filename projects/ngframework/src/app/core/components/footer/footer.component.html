@@ -1,12 +1,15 @@
 <div class="footer-container">
     <!-- Navigation -->
     <div class="footer-nav">
-
+        <app-menu
+            [menuItems]="navMenu"
+            type="panel"
+            orientation="vertical"
+            (onClickMenu)="clickMenu($event)"
+        ></app-menu>
     </div>
     <!-- Website information -->
     <div class="footer-info">
-        <span class="gradient-1">
-          {{ constant.WebSite }} © 2023
-        </span>
+        <span class="gradient-1"> {{ constant.WebSite }} © 2023 </span>
     </div>
 </div>

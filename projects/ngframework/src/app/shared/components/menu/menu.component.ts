@@ -10,20 +10,20 @@ import { MenuItem } from '../../../core/models/item.model';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenuComponent {
-    @Input() menus?: MenuItem[] = [];
+    @Input() menuItems?: MenuItem[] = [];
+    @Input() type: 'panel' | 'dropdown' = 'dropdown';
+    @Input() orientation: 'horizontal' | 'vertical' = 'vertical';
     @Input() styleClass?: string;
-    @Input() subMenuStyleClass?: string;
     @Output() onClickMenu: EventEmitter<MenuItem> = new EventEmitter();
-    @Output() onClickSubMenu: EventEmitter<{ menu: MenuItem; subMenu: MenuItem }> = new EventEmitter();
 
     constructor() {}
 
-    clickMenu(menu: MenuItem) {
-        this.onClickMenu?.emit(menu);
+    getItems(items: MenuItem[] | MenuItem[][]) {
+        return items as MenuItem[];
     }
 
-    clickSubMenu(menu: MenuItem, subMenu: MenuItem) {
-        this.onClickSubMenu?.emit({ menu, subMenu });
+    clickMenu(menu: MenuItem) {
+        this.onClickMenu?.emit(menu);
     }
 
     menuById(index, menu) {

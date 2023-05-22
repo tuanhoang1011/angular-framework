@@ -19,8 +19,12 @@ export interface StorageItem {
 export interface MenuItem extends BaseItem {
     url?: string;
     styleClass?: string;
-    subMenu?: MenuItem[];
-    click?: () => void;
+    subMenuClassName?: string;
+    expanded?: boolean;
+    visible?: boolean;
+    items?: MenuItem[] | MenuItem[][];
+    formatTextType?: string;
+    click?: (item?: MenuItem) => void;
 }
 
 export interface TabItem extends BaseItem {

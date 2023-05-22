@@ -22,7 +22,12 @@ export class GlobalVariables {
     static theme = CommonConstant.Theme.Light.label;
     static pendingAutoSignOut = false;
     static standardSize = {
-        heightDialog: 590
+        heightDialog: 590,
+        sm: 640,
+        md: 768,
+        lg: 1024,
+        xl: 1280,
+        '2xl': 1536
     };
     static isMobile =
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||

@@ -28,11 +28,11 @@ module.exports = {
     theme: {
         extend: {
             screens: {
-                sm: { max: '640px' },
-                md: { max: '768px' },
-                lg: { max: '1024px' },
-                xl: { max: '1280px' },
-                '2xl': { max: '1536px' }
+                sm: '640px',
+                md: '768px',
+                lg: '1024px',
+                xl: '1280px',
+                '2xl': '1536px'
             },
 
             fontSize: {
@@ -42,6 +42,7 @@ module.exports = {
             },
 
             minWidth: {
+                screen: '100vw',
                 support: '1200px',
                 'sidebar-expand': '220px',
                 'sidebar-collapse': '60px',
@@ -49,6 +50,7 @@ module.exports = {
             },
 
             maxWidth: {
+                screen: '100vw',
                 support: '1200px',
                 'sidebar-expand': '220px',
                 'sidebar-collapse': '60px',
@@ -56,20 +58,24 @@ module.exports = {
             },
 
             width: (theme) => ({
+                screen: '100vw',
                 min: theme('minWidth.support'),
                 max: theme('maxWidth.support'),
                 'icon-btn': '35px'
             }),
 
             minHeight: {
+                screen: '100vh',
                 'icon-btn': '35px'
             },
 
             maxHeight: {
+                screen: '100vh',
                 'icon-btn': '35px'
             },
 
             height: {
+                screen: '100vh',
                 header: '48px',
                 sidebar: 'calc(100vh - 48px)', // minus header height
                 'icon-btn': '35px'
@@ -87,6 +93,7 @@ module.exports = {
 
             boxShadow: {
                 'line-bottom': '0 5px 10px -5px',
+                line: '0 0px 10px -5px',
                 errpage: '5px 5px 30px 20px'
             }
         }

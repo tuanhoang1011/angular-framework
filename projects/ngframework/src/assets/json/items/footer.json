@@ -1,0 +1,46 @@
+{
+  "menu": [
+    {
+      "id": "product",
+      "label": "EXAMPLE_0002",
+      "styleClass": "product",
+      "expanded": true,
+      "items": [
+        {
+          "id": "react",
+          "label": "EXAMPLE_0003",
+          "imgIcon": "../images/dummy-logo-react.svg",
+          "imgIconAlt": "",
+          "styleClass": "react"
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "label": "EXAMPLE_0004",
+      "styleClass": "contact",
+      "expanded": true,
+      "items": [
+        {
+          "id": "phone",
+          "label": "035847XXXX",
+          "icon": "pi-phone",
+          "styleClass": "phone",
+          "formatTextType": "phoneNumber"
+        },
+        {
+          "id": "twitter",
+          "label": "tuanPHXX",
+          "icon": "pi-twitter",
+          "styleClass": "twitter"
+        },
+        {
+          "id": "email",
+          "label": "tuan.hoangXXXX@gmail.com",
+          "icon": "pi-envelope",
+          "styleClass": "email"
+        }
+      ]
+    }
+  ]
+}

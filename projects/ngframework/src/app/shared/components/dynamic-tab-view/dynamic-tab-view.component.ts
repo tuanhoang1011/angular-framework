@@ -10,7 +10,7 @@ import {
     Output,
     QueryList,
     SimpleChanges,
-    ViewEncapsulation,
+    ViewEncapsulation
 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -128,7 +128,7 @@ export class DynamicTabViewComponent extends BaseComponent implements OnInit, On
         });
 
         // default
-        if (this.items.length > 0 && this.items.every((x) => !x.activated)) {
+        if (!isEmpty(this.items.length) && this.items.every((x) => !x.activated)) {
             this.items[0].activated = true;
             this.items[0].rendered = true;
             this.activeIdx = 0;

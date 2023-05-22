@@ -5,7 +5,7 @@ import { find, floor, replace } from 'lodash';
 import { sprintf } from 'sprintf-js';
 
 import { CommonConstant } from '../../core/constants/common.const';
-import { FormatTextType } from '../../core/enums/format-text.enum';
+import { FormatTextType } from '../../core/constants/format-text.const';
 import { FormBase } from '../../core/models/form-basic.model';
 import { isNullOrUndefined } from '../../core/utils/common-func.ultility';
 

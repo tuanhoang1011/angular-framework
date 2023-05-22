@@ -1,40 +1,54 @@
 <ul [class]="'menu ' + styleClass">
-    <li *ngFor="let menu of menus; trackBy: menuById"
+    <li
+        *ngFor="let menu of menuItems; trackBy: menuById"
         [id]="menu.id"
         [class]="'text-hover ' + menu.styleClass"
         [ngClass]="{
-          'app-disabled': menu.disabled,
-          'submenu': menu.subMenu && menu.subMenu.length > 0
+            'app-disabled': menu.disabled,
+            submenu: menu.items && menu.items.length > 0
         }"
-        (click)="menu.click ? menu.click() : clickMenu(menu)">
-        <img *ngIf="menu.imgIcon"
+        (click)="menu.click ? menu.click() : clickMenu(menu)"
+    >
+        <img
+            *ngIf="menu.imgIcon"
             [src]="menu.imgIcon"
             width="20"
             height="0"
-            [alt]="menu.imgIconAlt ?? ''">
-        <i *ngIf="menu.icon"
-            [class]="'pi ' + menu.icon">
+            [alt]="menu.imgIconAlt ?? ''"
+        />
+        <i
+            *ngIf="menu.icon"
+            [class]="'pi ' + menu.icon"
+        >
         </i>
-        <span>{{ (menu.label ?? '') | translate }}</span>
+        <span>{{ menu.label ?? '' | translate }}</span>
 
-        <ul *ngIf="menu.subMenu && menu.subMenu.length > 0"
-            [class]="'submenu-dropdown ' + subMenuStyleClass">
-            <li *ngFor="let sub of menu.subMenu; trackBy: subMenuById"
+        <ul
+            *ngIf="menu.items && menu.items.length > 0"
+            [class]="'submenu-dropdown '"
+        >
+            <li
+                *ngFor="let sub of getItems(menu.items); trackBy: subMenuById"
                 [id]="sub.id"
                 [class]="'text-hover ' + sub.styleClass"
                 [ngClass]="{
-                  'app-disabled': sub.disabled
+                    'app-disabled': sub.disabled
                 }"
-                (click)="sub.click ? sub.click() : clickSubMenu(menu, sub)">
-                <img *ngIf="sub.imgIcon"
+                (click)="sub.click ? sub.click() : clickMenu(menu)"
+            >
+                <img
+                    *ngIf="sub.imgIcon"
                     [src]="sub.imgIcon"
                     width="20"
                     height="0"
-                    [alt]="sub.imgIconAlt ?? ''">
-                <i *ngIf="sub.icon"
-                    [class]="'pi ' + sub.icon">
+                    [alt]="sub.imgIconAlt ?? ''"
+                />
+                <i
+                    *ngIf="sub.icon"
+                    [class]="'pi ' + sub.icon"
+                >
                 </i>
-                <span>{{ (sub.label ?? '') | translate }}</span>
+                <span>{{ sub.label ?? '' | translate }}</span>
             </li>
         </ul>
     </li>

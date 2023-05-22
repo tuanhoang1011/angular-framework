@@ -1,43 +1,52 @@
 <div class="header-container">
     <!-- Menu Sidebar -->
     <div class="header-sidebar-hamburger">
-        <input type="checkbox" id="hamburger" />
-        <i for="hamburger" 
+        <input
+            type="checkbox"
+            id="hamburger"
+        />
+        <i
+            for="hamburger"
             class="hamburger pi text-hover"
             [ngClass]="{
                 'pi-bars': !sidebarService.getStates.expandSidebar,
                 'pi-arrow-left': sidebarService.getStates.expandSidebar
             }"
-            (click)="clickSidebarMenu()">
+            (click)="clickSidebarMenu()"
+        >
         </i>
     </div>
 
     <!-- Logo -->
     <div class="header-logo">
-        <img src="../../../../../assets/images/fw-logo.svg"
+        <img
+            src="../../../../../assets/images/fw-logo.svg"
             width="60"
             height="0"
-            alt="">
+            alt=""
+        />
     </div>
 
     <!-- Navigation menu -->
     <div class="header-left">
         <div class="h-line-item !h-7"></div>
-         <ng-container [ngTemplateOutlet]="navigationMenu"
-             [ngTemplateOutletContext]="{
-                 $implicit: {
-                     menu: navMenu
-                 }
-             }"
-         >
-         </ng-container>
+        <ng-container
+            [ngTemplateOutlet]="navigationMenu"
+            [ngTemplateOutletContext]="{
+                $implicit: {
+                    menu: navMenu
+                }
+            }"
+        >
+        </ng-container>
     </div>
 
     <div class="header-right">
         <!-- User -->
         <div class="h-line-item"></div>
         <!-- Check later -->
-        <ng-container [ngTemplateOutlet]="user"
+        <ng-container
+            [ngTemplateOutlet]="user"
             [ngTemplateOutletContext]="{
                 $implicit: {
                     userName: 'Pham Hoang Tuan',
@@ -49,7 +58,8 @@
 
         <!-- Language -->
         <div class="h-line-item"></div>
-        <ng-container [ngTemplateOutlet]="language"
+        <ng-container
+            [ngTemplateOutlet]="language"
             [ngTemplateOutletContext]="{
                 $implicit: {
                     languages: languages
@@ -60,15 +70,17 @@
 
         <!-- Theme -->
         <div class="h-line-item"></div>
-        <i class="h-theme text-hover pi"
+        <i
+            class="h-theme text-hover pi"
             [ngClass]="{
                 'pi-sun': globalVar.theme === 'light',
                 'pi-moon': globalVar.theme === 'dark'
             }"
-            (click)="changeTheme()">
+            (click)="changeTheme()"
+        >
         </i>
 
-         <!-- Version -->
+        <!-- Version -->
         <div class="h-line-item"></div>
         <p class="h-verion gradient-1">
             {{ env.version }}
@@ -77,47 +89,70 @@
 </div>
 
 <!-- Navigation menu -->
-<ng-template #navigationMenu let-obj>
+<ng-template
+    #navigationMenu
+    let-obj
+>
     <nav class="h-navbar">
-        <app-menu [menus]="obj.menu"
+        <app-menu
+            [menuItems]="obj.menu"
             styleClass="h-nav-menu"
             (onClickMenu)="clickMenu($event)"
-            (onClickSubMenu)="clickMenu($event)">
+        >
         </app-menu>
     </nav>
 </ng-template>
 
 <!-- User -->
-<ng-template #user let-obj>
-    <div class="h-user text-hover"
+<ng-template
+    #user
+    let-obj
+>
+    <div
+        class="h-user text-hover"
         (click)="usr.toggle($event)"
-        (keyup.enter)="usr.toggle($event)">
+        (keyup.enter)="usr.toggle($event)"
+    >
         <i class="pi pi-user"></i>
         <div class="h-username">
             {{ obj.userName }}
         </div>
     </div>
-    <p-overlayPanel styleClass="w-[180px]" #usr>
-        <app-menu [menus]="obj.menu"
-            styleClass="h-menu">
+    <p-overlayPanel
+        styleClass="w-[180px]"
+        #usr
+    >
+        <app-menu
+            [menuItems]="userMenu"
+            orientation="vertical"
+            styleClass="h-menu"
+        >
         </app-menu>
     </p-overlayPanel>
 </ng-template>
 
 <!-- Language -->
-<ng-template #language let-obj>
-    <div class="h-lang text-hover"
+<ng-template
+    #language
+    let-obj
+>
+    <div
+        class="h-lang text-hover"
         (click)="lang.toggle($event)"
-        (keyup.enter)="lang.toggle($event)">
+        (keyup.enter)="lang.toggle($event)"
+    >
         <i class="pi pi-globe"></i>
         <span class="h-lang-main">
-            {{ globalVar.language | formatText: { formatTextType: formatTextEnum.Language } }}
+            {{ globalVar.language | formatText : { formatTextType: formatTextEnum.Language } }}
         </span>
     </div>
     <p-overlayPanel #lang>
-        <app-menu [menus]="obj.languages"
+        <app-menu
+            [menuItems]="obj.languages"
+            orientation="vertical"
             styleClass="h-menu"
-            (onClickMenu)="changeLanguage($event, lang)">
+            (onClickMenu)="changeLanguage($event, lang)"
+        >
         </app-menu>
     </p-overlayPanel>
 </ng-template>

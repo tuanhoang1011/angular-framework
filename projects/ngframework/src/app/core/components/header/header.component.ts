@@ -5,8 +5,8 @@ import { OverlayPanel } from 'primeng/overlaypanel';
 
 import { environment } from '../../../../environments/environment';
 import { CommonConstant } from '../../constants/common.const';
+import { FormatTextType } from '../../constants/format-text.const';
 import { StorageKey } from '../../constants/storage-key.const';
-import { FormatTextType } from '../../enums/format-text.enum';
 import { MenuItem } from '../../models/item.model';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { GlobalVariables } from '../../utils/global-variables.ultility';
@@ -114,16 +114,10 @@ export class HeaderComponent extends BaseComponent implements OnInit {
         }
     }
 
-    clickMenu(selectedItem: MenuItem | { menu: MenuItem; subMenu: MenuItem }) {
+    clickMenu(selectedItem: MenuItem) {
         try {
-            // select menu
-            if (!(selectedItem as any).menu && (selectedItem as MenuItem).url) {
-                this.router.navigateByUrl((selectedItem as MenuItem).url!);
-            }
-
-            // select submenu
-            if ((selectedItem as any).menu && (selectedItem as any).subMenu.url) {
-                this.router.navigateByUrl((selectedItem as any).subMenu.url);
+            if (selectedItem.url) {
+                this.router.navigateByUrl[selectedItem.url];
             }
         } catch (error) {
             throw error;

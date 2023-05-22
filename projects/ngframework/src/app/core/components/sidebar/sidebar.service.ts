@@ -5,6 +5,7 @@ import { MenuItem } from '../../models/item.model';
 import { LayoutState } from '../../models/state.model';
 import { ComponentStoreBase } from '../../services/component-store-base.service';
 import { HttpBaseService } from '../../services/http-base.service';
+import { GlobalVariables } from '../../utils/global-variables.ultility';
 
 const root = '../../../../../assets/json/';
 const sidebarJSON = `${root}items/sidebar.json`;
@@ -17,7 +18,7 @@ export class SidebarService extends ComponentStoreBase<LayoutState> {
 
     constructor(private httpBaseService: HttpBaseService) {
         super({
-            expandSidebar: true
+            expandSidebar: window.innerWidth >= GlobalVariables.standardSize.lg
         });
     }
 

@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from 'projects/ngframework/src/environments/environment';
 import { takeUntil } from 'rxjs';
 
 import { CommonConstant } from '../../constants/common.const';
 import { MenuItem } from '../../models/item.model';
+import { GlobalVariables } from '../../utils/global-variables.ultility';
 import { BaseComponent } from '../base.component';
 import { SidebarService } from './sidebar.service';
 
@@ -21,7 +23,7 @@ export class SidebarComponent extends BaseComponent implements OnInit {
     expanded = false;
     navMenu: MenuItem[] = [];
 
-    constructor(private cdr: ChangeDetectorRef, private sidebarService: SidebarService) {
+    constructor(private cdr: ChangeDetectorRef, private sidebarService: SidebarService, private router: Router) {
         super();
     }
 
@@ -36,5 +38,19 @@ export class SidebarComponent extends BaseComponent implements OnInit {
             this.expanded = expanded;
             this.cdr.markForCheck();
         });
+    }
+
+    clickMenu(selectedItem: MenuItem) {
+        try {
+            if (window.innerWidth < GlobalVariables.standardSize.lg) {
+                this.sidebarService.setSidebarStatus(false);
+            }
+
+            if (selectedItem.url) {
+                this.router.navigateByUrl[selectedItem.url];
+            }
+        } catch (error) {
+            throw error;
+        }
     }
 }

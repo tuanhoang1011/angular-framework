@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Inject, Input, OnDestroy, Output } from '@angular/core';
-import { orderBy } from 'lodash';
+import { isEmpty, orderBy } from 'lodash';
 import { Subject } from 'rxjs';
 
 import { AppModule } from '../../app.module';
@@ -68,7 +68,7 @@ export abstract class BaseComponent implements OnDestroy {
         try {
             const tableWrapper = document.querySelectorAll(`#${this.tableID} .p-datatable-wrapper`);
 
-            if (tableWrapper && tableWrapper.length > 0) {
+            if (!isEmpty(tableWrapper)) {
                 // scroll table to top
                 tableWrapper[0].scrollTop = 0;
             }
